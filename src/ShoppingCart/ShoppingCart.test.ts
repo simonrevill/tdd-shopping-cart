@@ -32,4 +32,14 @@ describe('shopping cart', () => {
       ]);
     });
   });
+
+  describe('calculate gross values', () => {
+    it('gets gross value for single item in the cart', () => {
+      const cart = new ShoppingCart();
+
+      cart.addItems([[10, 1]]);
+
+      expect(cart.total).toBe('£10.00');
+    });
+  });
 });

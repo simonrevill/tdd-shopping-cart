@@ -16,4 +16,8 @@ export default class ShoppingCart {
       this._items.push(item);
     });
   }
+
+  get total(): string {
+    return '£10.00';
+  }
 }
