@@ -1,1 +1,1 @@
-export type Item = [number];
+export type Item = [number, number];
