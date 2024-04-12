@@ -1,15 +1,17 @@
+import { Item } from '../types';
+
 export default class ShoppingCart {
-  _items: [number][];
+  _items: Item[];
 
   constructor() {
     this._items = [];
   }
 
-  get items(): [number][] {
+  get items(): Item[] {
     return this._items;
   }
 
-  addItem(item: [number]) {
+  addItem(item: Item) {
     this._items.push(item);
   }
 }
