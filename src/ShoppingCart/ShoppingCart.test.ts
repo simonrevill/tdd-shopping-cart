@@ -17,5 +17,17 @@ describe('shopping cart', () => {
 
       expect(cart.items).toEqual([[10, 2]]);
     });
+
+    it('adds two different items with different quantities to the cart', () => {
+      const cart = new ShoppingCart();
+
+      cart.addItem([10, 2]);
+      cart.addItem([20, 3]);
+
+      expect(cart.items).toEqual([
+        [10, 2],
+        [20, 3],
+      ]);
+    });
   });
 });
