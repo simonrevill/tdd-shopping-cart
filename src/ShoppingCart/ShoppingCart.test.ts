@@ -5,7 +5,7 @@ describe('shopping cart', () => {
     it('adds a single items to the cart', () => {
       const cart = new ShoppingCart();
 
-      cart.addItem([10, 1]);
+      cart.addItems([[10, 1]]);
 
       expect(cart.items).toEqual([[10, 1]]);
     });
@@ -13,7 +13,7 @@ describe('shopping cart', () => {
     it('adds multiple quantities of a single item to the cart', () => {
       const cart = new ShoppingCart();
 
-      cart.addItem([10, 2]);
+      cart.addItems([[10, 2]]);
 
       expect(cart.items).toEqual([[10, 2]]);
     });
@@ -21,8 +21,10 @@ describe('shopping cart', () => {
     it('adds two different items with different quantities to the cart', () => {
       const cart = new ShoppingCart();
 
-      cart.addItem([10, 2]);
-      cart.addItem([20, 3]);
+      cart.addItems([
+        [10, 2],
+        [20, 3],
+      ]);
 
       expect(cart.items).toEqual([
         [10, 2],

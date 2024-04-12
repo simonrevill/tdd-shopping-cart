@@ -11,7 +11,9 @@ export default class ShoppingCart {
     return this._items;
   }
 
-  addItem(item: Item) {
-    this._items.push(item);
+  addItems(items: Item[]) {
+    items.forEach((item: Item) => {
+      this._items.push(item);
+    });
   }
 }
