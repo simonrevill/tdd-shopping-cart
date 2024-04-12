@@ -13,13 +13,13 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 Add single item to the cart
 
-Get gross value for single item in the cart
-
 Add multiple quantities of a single item to the cart
 
-Get gross value of multiple single items in the cart
-
 Add two different items with different quantities to the cart
+
+Get gross value for single item in the cart
+
+Get gross value of multiple single items in the cart
 
 Get gross value for two different items with different quantities in the cart
 
