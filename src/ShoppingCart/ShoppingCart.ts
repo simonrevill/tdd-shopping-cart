@@ -36,7 +36,7 @@ export default class ShoppingCart {
     return grossPrices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  get total(): string {
+  get totalGrossValue(): string {
     const grossItemsPricesAsNumbers = this.getGrossItemPrices().map(
       this.removeCurrencySymbolFromPrice,
     );

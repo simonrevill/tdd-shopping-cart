@@ -39,7 +39,7 @@ describe('shopping cart', () => {
 
       cart.addItems([[10, 1]]);
 
-      expect(cart.total).toBe('£10.00');
+      expect(cart.totalGrossValue).toBe('£10.00');
     });
 
     it('gets gross value of multiple single items in the cart', () => {
@@ -47,7 +47,7 @@ describe('shopping cart', () => {
 
       cart.addItems([[10, 2]]);
 
-      expect(cart.total).toBe('£20.00');
+      expect(cart.totalGrossValue).toBe('£20.00');
     });
 
     it('gets gross value for two different items with different quantities in the cart', () => {
@@ -58,7 +58,7 @@ describe('shopping cart', () => {
         [15, 3],
       ]);
 
-      expect(cart.total).toBe('£65.00');
+      expect(cart.totalGrossValue).toBe('£65.00');
     });
   });
 });
