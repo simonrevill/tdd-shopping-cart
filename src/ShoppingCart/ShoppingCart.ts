@@ -24,7 +24,23 @@ export default class ShoppingCart {
     }).format(value);
   }
 
+  getGrossItemPrices(): string[] {
+    return this._items.map(([unitPrice, quantity]) => this.format(unitPrice * quantity));
+  }
+
+  removeCurrencySymbolFromPrice(grossItemPrice: string) {
+    return parseFloat(grossItemPrice.replace('£', ''));
+  }
+
+  getTotalGrossPrice(grossPrices: number[]): number {
+    return grossPrices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
+  }
+
   get total(): string {
-    return this.format(this._items[0][0] * this._items[0][1]);
+    const grossItemsPricesAsNumbers = this.getGrossItemPrices().map(
+      this.removeCurrencySymbolFromPrice,
+    );
+
+    return this.format(this.getTotalGrossPrice(grossItemsPricesAsNumbers));
   }
 }

@@ -49,5 +49,16 @@ describe('shopping cart', () => {
 
       expect(cart.total).toBe('£20.00');
     });
+
+    it('gets gross value for two different items with different quantities in the cart', () => {
+      const cart = new ShoppingCart();
+
+      cart.addItems([
+        [10, 2],
+        [15, 3],
+      ]);
+
+      expect(cart.total).toBe('£65.00');
+    });
   });
 });
