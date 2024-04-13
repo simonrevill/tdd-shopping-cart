@@ -32,8 +32,8 @@ export default class ShoppingCart {
     return parseFloat(grossItemPrice.replace('£', ''));
   }
 
-  getTotalGrossPrice(grossPrices: number[]): number {
-    return grossPrices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
+  getTotalGrossPrice(prices: number[]): number {
+    return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
   get totalGrossValue(): string {
