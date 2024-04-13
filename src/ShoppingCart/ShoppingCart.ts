@@ -1,5 +1,4 @@
 import { Item } from '../types';
-
 export default class ShoppingCart {
   _items: Item[];
 
@@ -17,7 +16,18 @@ export default class ShoppingCart {
     });
   }
 
+  format(value: number | bigint | string): string {
+    return new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+    }).format(value);
+  }
+
   get total(): string {
-    return '£10.00';
+    const itemTotals = this._items.map(([unitPrice, quantity]) => {
+      return this.format(unitPrice * quantity);
+    });
+
+    return itemTotals[0];
   }
 }
