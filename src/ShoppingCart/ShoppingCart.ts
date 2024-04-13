@@ -37,10 +37,8 @@ export default class ShoppingCart {
   }
 
   get totalGrossValue(): string {
-    const grossItemsPricesAsNumbers = this.getGrossItemPrices().map(
-      this.removeCurrencySymbolFromPrice,
-    );
+    const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
 
-    return this.format(this.getTotalGrossPrice(grossItemsPricesAsNumbers));
+    return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
 }
