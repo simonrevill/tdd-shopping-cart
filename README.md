@@ -23,7 +23,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Get gross value for two different items with different quantities in the cart_~~
 
-Get total gross value with unit prices of varying decimal values
+~~_Get total gross value with unit prices of varying decimal values_~~
 
 Get total gross value
 
