@@ -1,4 +1,5 @@
 import { Item } from '../types';
+
 export default class ShoppingCart {
   _items: Item[];
 
@@ -14,13 +15,6 @@ export default class ShoppingCart {
     items.forEach((item: Item) => {
       this._items.push(item);
     });
-  }
-
-  format(value: number | bigint | string): string {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-    }).format(value);
   }
 
   get total(): string {
