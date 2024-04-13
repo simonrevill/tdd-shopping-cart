@@ -17,6 +17,13 @@ export default class ShoppingCart {
     });
   }
 
+  format(value: number | bigint | string): string {
+    return new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+    }).format(value);
+  }
+
   get total(): string {
     return this.format(this._items[0][0] * this._items[0][1]);
   }
