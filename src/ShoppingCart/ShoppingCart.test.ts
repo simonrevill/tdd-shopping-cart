@@ -60,5 +60,17 @@ describe('shopping cart', () => {
 
       expect(cart.totalGrossValue).toBe('£65.00');
     });
+
+    it('gets total gross value with unit prices of varying decimal values', () => {
+      const cart = new ShoppingCart();
+
+      cart.addItems([
+        [17.09, 4],
+        [14.5, 1],
+        [7.22, 3],
+      ]);
+
+      expect(cart.totalGrossValue).toBe('£104.52');
+    });
   });
 });
