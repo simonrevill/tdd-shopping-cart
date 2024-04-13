@@ -19,7 +19,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Get gross value for single item in the cart_~~
 
-Get gross value of multiple single items in the cart
+~~_Get gross value of multiple single items in the cart_~~
 
 Get gross value for two different items with different quantities in the cart
 
