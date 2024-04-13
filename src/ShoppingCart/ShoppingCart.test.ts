@@ -73,4 +73,17 @@ describe('shopping cart', () => {
       expect(cart.totalGrossValue).toBe('£104.52');
     });
   });
+
+  describe('calculate net value', () => {
+    it('gets total net value', () => {
+      const cart = new ShoppingCart();
+
+      cart.addItems([
+        [10, 2],
+        [15, 3],
+      ]);
+
+      expect(cart.totalNetValue).toBe('£65.00');
+    });
+  });
 });

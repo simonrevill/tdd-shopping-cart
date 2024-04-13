@@ -41,4 +41,8 @@ export default class ShoppingCart {
 
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
+
+  get totalNetValue(): string {
+    return this.totalGrossValue;
+  }
 }
