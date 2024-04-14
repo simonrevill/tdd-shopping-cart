@@ -43,6 +43,12 @@ export default class ShoppingCart {
   }
 
   get totalNetValue(): string {
+    const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue);
+
+    if (grossPrice > 100) {
+      return this.format(grossPrice - grossPrice * 0.05);
+    }
+
     return this.totalGrossValue;
   }
 }

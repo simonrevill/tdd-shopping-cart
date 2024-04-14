@@ -75,5 +75,14 @@ describe('shopping cart', () => {
 
       expect(cart.totalNetValue).toBe('£65.00');
     });
+
+    it('applies a 5% discount if total gross value is over £100', () => {
+      cart.addItems([
+        [50, 2],
+        [10, 1],
+      ]);
+
+      expect(cart.totalNetValue).toBe('£104.50');
+    });
   });
 });
