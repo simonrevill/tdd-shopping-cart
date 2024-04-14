@@ -49,6 +49,10 @@ export default class ShoppingCart {
   get totalNetValue(): string {
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue);
 
+    if (grossPrice > 200) {
+      return this.applyDiscount(grossPrice, 0.1);
+    }
+
     if (grossPrice > 100) {
       return this.applyDiscount(grossPrice, 0.05);
     }
