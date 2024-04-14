@@ -1,4 +1,4 @@
-import { Item } from '../types';
+import { Item, DiscountPercentage } from '../types';
 
 export default class ShoppingCart {
   _items: Item[];
@@ -36,6 +36,10 @@ export default class ShoppingCart {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
+  applyDiscount(price: number, discountPercentage: DiscountPercentage) {
+    return this.format(price - price * discountPercentage);
+  }
+
   get totalGrossValue(): string {
     const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
 
@@ -46,7 +50,7 @@ export default class ShoppingCart {
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue);
 
     if (grossPrice > 100) {
-      return this.format(grossPrice - grossPrice * 0.05);
+      return this.applyDiscount(grossPrice, 0.05);
     }
 
     return this.totalGrossValue;
