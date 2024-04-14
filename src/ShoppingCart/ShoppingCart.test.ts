@@ -34,6 +34,10 @@ describe('shopping cart', () => {
   });
 
   describe('calculate gross values', () => {
+    it("gets '£0.00' as gross value if cart is empty", () => {
+      expect(cart.totalGrossValue).toBe('£0.00');
+    });
+
     it('gets gross value for single item in the cart', () => {
       cart.addItems([[10, 1]]);
 

@@ -41,6 +41,10 @@ export default class ShoppingCart {
   }
 
   get totalGrossValue(): string {
+    if (this._items.length === 0) {
+      return '£0.00';
+    }
+
     const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
 
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
