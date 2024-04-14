@@ -29,6 +29,6 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Get total net value_~~
 
-Apply 5% discount if total gross value is over £100
+~~_Apply 5% discount if total gross value is over £100_~~
 
 Apply 10% discount if total gross value is over £200
