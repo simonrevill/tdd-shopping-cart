@@ -28,8 +28,8 @@ export default class ShoppingCart {
     return this._items.map(([unitPrice, quantity]) => this.format(unitPrice * quantity));
   }
 
-  removeCurrencySymbolFromPrice(grossItemPrice: string) {
-    return parseFloat(grossItemPrice.replace('£', ''));
+  removeCurrencySymbolFromPrice(price: string) {
+    return parseFloat(price.replace('£', ''));
   }
 
   getTotalGrossPrice(prices: number[]): number {
