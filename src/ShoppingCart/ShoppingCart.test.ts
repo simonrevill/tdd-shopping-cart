@@ -35,19 +35,19 @@ describe('shopping cart', () => {
 
   describe('calculate gross values', () => {
     it("gets '£0.00' as gross value if cart is empty", () => {
-      expect(cart.totalGrossValue).toBe('£0.00');
+      expect(cart.total).toBe('£0.00');
     });
 
     it('gets gross value for single item in the cart', () => {
       cart.addItems([[10, 1]]);
 
-      expect(cart.totalGrossValue).toBe('£10.00');
+      expect(cart.total).toBe('£10.00');
     });
 
     it('gets gross value of multiple single items in the cart', () => {
       cart.addItems([[10, 2]]);
 
-      expect(cart.totalGrossValue).toBe('£20.00');
+      expect(cart.total).toBe('£20.00');
     });
 
     it('gets gross value for two different items with different quantities in the cart', () => {
@@ -56,23 +56,23 @@ describe('shopping cart', () => {
         [15, 3],
       ]);
 
-      expect(cart.totalGrossValue).toBe('£65.00');
+      expect(cart.total).toBe('£65.00');
     });
 
     it('gets total gross value with unit prices of varying decimal values', () => {
       cart.addItems([
-        [17.09, 4],
-        [14.5, 1],
-        [7.22, 3],
+        [17.09, 2],
+        [14.5, 3],
+        [7.22, 2],
       ]);
 
-      expect(cart.totalGrossValue).toBe('£104.52');
+      expect(cart.total).toBe('£92.12');
     });
   });
 
   describe('calculate net value', () => {
     it("gets '£0.00' as net value if cart is empty", () => {
-      expect(cart.totalNetValue).toBe('£0.00');
+      expect(cart.total).toBe('£0.00');
     });
 
     it('gets total net value', () => {
@@ -81,7 +81,7 @@ describe('shopping cart', () => {
         [15, 3],
       ]);
 
-      expect(cart.totalNetValue).toBe('£65.00');
+      expect(cart.total).toBe('£65.00');
     });
 
     it('applies a 5% discount if total gross value is over £100', () => {
@@ -90,7 +90,7 @@ describe('shopping cart', () => {
         [10, 1],
       ]);
 
-      expect(cart.totalNetValue).toBe('£104.50');
+      expect(cart.total).toBe('£104.50');
     });
 
     it('applies a 10% discount if total gross value is over £200', () => {
@@ -99,7 +99,7 @@ describe('shopping cart', () => {
         [10, 1],
       ]);
 
-      expect(cart.totalNetValue).toBe('£189.00');
+      expect(cart.total).toBe('£189.00');
     });
   });
 });

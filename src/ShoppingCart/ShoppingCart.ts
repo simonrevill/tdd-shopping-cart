@@ -40,7 +40,7 @@ export default class ShoppingCart {
     return this.format(price - price * discountPercentage);
   }
 
-  get totalGrossValue(): string {
+  totalGrossValue(): string {
     if (this._items.length === 0) {
       return '£0.00';
     }
@@ -50,12 +50,12 @@ export default class ShoppingCart {
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
 
-  get totalNetValue(): string {
+  get total(): string {
     if (this._items.length === 0) {
       return '£0.00';
     }
 
-    const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue);
+    const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
     if (grossPrice > 200) {
       return this.applyDiscount(grossPrice, 0.1);
@@ -65,6 +65,6 @@ export default class ShoppingCart {
       return this.applyDiscount(grossPrice, 0.05);
     }
 
-    return this.totalGrossValue;
+    return this.totalGrossValue();
   }
 }
