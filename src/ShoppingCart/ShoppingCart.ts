@@ -47,6 +47,10 @@ export default class ShoppingCart {
   }
 
   get totalNetValue(): string {
+    if (this._items.length === 0) {
+      return '£0.00';
+    }
+
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue);
 
     if (grossPrice > 200) {

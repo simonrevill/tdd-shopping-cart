@@ -67,6 +67,10 @@ describe('shopping cart', () => {
   });
 
   describe('calculate net value', () => {
+    it("gets '£0.00' as net value if cart is empty", () => {
+      expect(cart.totalNetValue).toBe('£0.00');
+    });
+
     it('gets total net value', () => {
       cart.addItems([
         [10, 2],
