@@ -1,3 +1,4 @@
+import { DISCOUNT_PERCENTAGES } from '../constants';
 import { Item, DiscountPercentage } from '../types';
 
 export default class ShoppingCart {
@@ -50,11 +51,11 @@ export default class ShoppingCart {
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
     if (grossPrice > 200) {
-      return this.applyDiscount(grossPrice, 0.1);
+      return this.applyDiscount(grossPrice, DISCOUNT_PERCENTAGES.TEN_PERCENT);
     }
 
     if (grossPrice > 100) {
-      return this.applyDiscount(grossPrice, 0.05);
+      return this.applyDiscount(grossPrice, DISCOUNT_PERCENTAGES.FIVE_PERCENT);
     }
 
     return this.totalGrossValue();
