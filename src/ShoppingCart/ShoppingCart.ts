@@ -31,17 +31,17 @@ export default class ShoppingCart {
     return this.format(price - price * discountPercentage);
   }
 
-  public addItems(items: Item[]) {
+  addItems(items: Item[]) {
     items.forEach((item: Item) => {
       this.items.push(item);
     });
   }
 
-  public list(): Item[] {
+  list(): Item[] {
     return this.items;
   }
 
-  public total(): string {
+  total(): string {
     if (this.items.length === 0) {
       return '£0.00';
     }
