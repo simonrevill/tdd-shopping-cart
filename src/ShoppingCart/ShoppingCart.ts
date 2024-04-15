@@ -3,12 +3,6 @@ import { Item, DiscountPercentage } from '../types';
 export default class ShoppingCart {
   private items: Item[] = [];
 
-  public addItems(items: Item[]) {
-    items.forEach((item: Item) => {
-      this.items.push(item);
-    });
-  }
-
   private format(value: number | bigint | string): string {
     return new Intl.NumberFormat('en-GB', {
       style: 'currency',
@@ -36,6 +30,12 @@ export default class ShoppingCart {
     const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
 
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
+  }
+
+  public addItems(items: Item[]) {
+    items.forEach((item: Item) => {
+      this.items.push(item);
+    });
   }
 
   public list(): Item[] {
