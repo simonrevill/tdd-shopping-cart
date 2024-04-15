@@ -1,9 +1,10 @@
+import { CurrencyFormatter } from '../types';
 import ShoppingCart from './ShoppingCart';
 
 let cart: ShoppingCart;
 
 beforeEach(() => {
-  const currencyFormatter = new Intl.NumberFormat('en-GB', {
+  const currencyFormatter: CurrencyFormatter = new Intl.NumberFormat('en-GB', {
     style: 'currency',
     currency: 'GBP',
   }).format;

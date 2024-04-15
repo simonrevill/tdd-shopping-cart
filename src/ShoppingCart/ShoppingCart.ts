@@ -1,11 +1,11 @@
 import { DISCOUNT_PERCENTAGES } from '../constants';
-import { Item, DiscountPercentage, CurrenyFormatter } from '../types';
+import { Item, DiscountPercentage, CurrencyFormatter } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
-  private format: CurrenyFormatter;
+  private format: CurrencyFormatter;
 
-  constructor(currencyFormatter: CurrenyFormatter) {
+  constructor(currencyFormatter: CurrencyFormatter) {
     this.format = currencyFormatter;
   }
 
