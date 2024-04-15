@@ -1,15 +1,15 @@
 import { Item, DiscountPercentage } from '../types';
 
 export default class ShoppingCart {
-  _items: Item[] = [];
+  private items: Item[] = [];
 
   get list(): Item[] {
-    return this._items;
+    return this.items;
   }
 
   addItems(items: Item[]) {
     items.forEach((item: Item) => {
-      this._items.push(item);
+      this.items.push(item);
     });
   }
 
@@ -21,7 +21,7 @@ export default class ShoppingCart {
   }
 
   getGrossItemPrices(): string[] {
-    return this._items.map(([unitPrice, quantity]) => this.format(unitPrice * quantity));
+    return this.items.map(([unitPrice, quantity]) => this.format(unitPrice * quantity));
   }
 
   removeCurrencySymbolFromPrice(price: string) {
@@ -43,7 +43,7 @@ export default class ShoppingCart {
   }
 
   get total(): string {
-    if (this._items.length === 0) {
+    if (this.items.length === 0) {
       return '£0.00';
     }
 
