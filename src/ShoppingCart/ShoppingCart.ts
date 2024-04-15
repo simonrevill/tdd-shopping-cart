@@ -3,7 +3,7 @@ import { Item, DiscountPercentage } from '../types';
 export default class ShoppingCart {
   _items: Item[] = [];
 
-  get items(): Item[] {
+  get list(): Item[] {
     return this._items;
   }
 
