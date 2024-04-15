@@ -27,7 +27,10 @@ export default class ShoppingCart {
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
 
-  private getDiscountedPrice(price: number, discountPercentage: DiscountPercentage): string {
+  private getDiscountedPrice(price: number): string {
+    const discountPercentage: DiscountPercentage =
+      price > 200 ? DISCOUNT_PERCENTAGES.TEN_PERCENT : DISCOUNT_PERCENTAGES.FIVE_PERCENT;
+
     return this.format(price - price * discountPercentage);
   }
 
@@ -48,11 +51,8 @@ export default class ShoppingCart {
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
-    if (grossPrice > 100) {
-      return this.getDiscountedPrice(
-        grossPrice,
-        grossPrice > 200 ? DISCOUNT_PERCENTAGES.TEN_PERCENT : DISCOUNT_PERCENTAGES.FIVE_PERCENT,
-      );
+    if (grossPrice > 200 || grossPrice > 100) {
+      return this.getDiscountedPrice(grossPrice);
     }
 
     return this.totalGrossValue();
