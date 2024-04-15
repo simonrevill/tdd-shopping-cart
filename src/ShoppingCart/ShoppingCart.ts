@@ -1,14 +1,12 @@
 import { DISCOUNT_PERCENTAGES } from '../constants';
-import { Item, DiscountPercentage } from '../types';
+import { Item, DiscountPercentage, CurrenyFormatter } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
+  private format: CurrenyFormatter;
 
-  private format(value: number | bigint | string): string {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-    }).format(value);
+  constructor(currencyFormatter: CurrenyFormatter) {
+    this.format = currencyFormatter;
   }
 
   private getGrossItemPrices(): string[] {

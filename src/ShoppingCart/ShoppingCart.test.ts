@@ -3,7 +3,12 @@ import ShoppingCart from './ShoppingCart';
 let cart: ShoppingCart;
 
 beforeEach(() => {
-  cart = new ShoppingCart();
+  const currencyFormatter = new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+  }).format;
+
+  cart = new ShoppingCart(currencyFormatter);
 });
 
 describe('shopping cart', () => {
