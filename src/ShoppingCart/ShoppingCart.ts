@@ -23,14 +23,14 @@ export default class ShoppingCart {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private applyDiscount(price: number, discountPercentage: DiscountPercentage) {
-    return this.format(price - price * discountPercentage);
-  }
-
   private totalGrossValue(): string {
     const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
 
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
+  }
+
+  private getDiscountedPrice(price: number, discountPercentage: DiscountPercentage): string {
+    return this.format(price - price * discountPercentage);
   }
 
   public addItems(items: Item[]) {
@@ -50,12 +50,11 @@ export default class ShoppingCart {
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
-    if (grossPrice > 200) {
-      return this.applyDiscount(grossPrice, DISCOUNT_PERCENTAGES.TEN_PERCENT);
-    }
-
     if (grossPrice > 100) {
-      return this.applyDiscount(grossPrice, DISCOUNT_PERCENTAGES.FIVE_PERCENT);
+      return this.getDiscountedPrice(
+        grossPrice,
+        grossPrice > 200 ? DISCOUNT_PERCENTAGES.TEN_PERCENT : DISCOUNT_PERCENTAGES.FIVE_PERCENT,
+      );
     }
 
     return this.totalGrossValue();
