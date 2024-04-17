@@ -1,5 +1,5 @@
 import { CurrencyFormatterOptions, CurrencyService } from '../types';
-import { createCurrencyFormatterService } from '../utils';
+import { createCurrencyService } from '../utils';
 import ShoppingCart from './ShoppingCart';
 
 let cart: ShoppingCart;
@@ -12,7 +12,7 @@ describe.each([
   'shopping cart with $currency as currency',
   ({ locale, currency, currencySymbol }: CurrencyFormatterOptions) => {
     beforeEach(() => {
-      currencyService = createCurrencyFormatterService({
+      currencyService = createCurrencyService({
         locale,
         currency,
         currencySymbol,

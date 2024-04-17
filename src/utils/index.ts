@@ -1,3 +1,3 @@
-import createCurrencyFormatterService from './createCurrencyFormatter';
+import createCurrencyService from './createCurrencyService';
 
-export { createCurrencyFormatterService };
+export { createCurrencyService };
