@@ -1,5 +1,5 @@
 import { DISCOUNT_PERCENTAGES } from '../constants';
-import { Item, DiscountPercentage, CurrencyFormatter, CurrencyFormatterService } from '../types';
+import { Item, DiscountPercentage, CurrencyFormatterService } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
