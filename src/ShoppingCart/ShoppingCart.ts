@@ -3,20 +3,20 @@ import { Item, DiscountPercentage, CurrencyFormatter, CurrencyFormatterService }
 
 export default class ShoppingCart {
   private items: Item[] = [];
-  private format: CurrencyFormatter;
-  private currencySymbol: string;
+  private currencyFormatterService: CurrencyFormatterService;
 
-  constructor({ format, currencySymbol }: CurrencyFormatterService) {
-    this.format = format;
-    this.currencySymbol = currencySymbol;
+  constructor(currencyFormatterService: CurrencyFormatterService) {
+    this.currencyFormatterService = currencyFormatterService;
   }
 
   private getGrossItemPrices(): string[] {
-    return this.items.map(([unitPrice, quantity]) => this.format(unitPrice * quantity));
+    return this.items.map(([unitPrice, quantity]) =>
+      this.currencyFormatterService.format(unitPrice * quantity),
+    );
   }
 
   private removeCurrencySymbolFromPrice(price: string) {
-    return parseFloat(price.replace(this.currencySymbol, ''));
+    return parseFloat(price.replace(this.currencyFormatterService.currencySymbol, ''));
   }
 
   private getTotalGrossPrice(prices: number[]): number {
@@ -28,14 +28,14 @@ export default class ShoppingCart {
       this.removeCurrencySymbolFromPrice.bind(this),
     );
 
-    return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
+    return this.currencyFormatterService.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
 
   private getDiscountedPrice(price: number): string {
     const discountPercentage: DiscountPercentage =
       price > 200 ? DISCOUNT_PERCENTAGES.TEN_PERCENT : DISCOUNT_PERCENTAGES.FIVE_PERCENT;
 
-    return this.format(price - price * discountPercentage);
+    return this.currencyFormatterService.format(price - price * discountPercentage);
   }
 
   addItems(items: Item[]) {
@@ -50,7 +50,7 @@ export default class ShoppingCart {
 
   total(): string {
     if (this.items.length === 0) {
-      return `${this.currencySymbol}0.00`;
+      return `${this.currencyFormatterService.currencySymbol}0.00`;
     }
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
