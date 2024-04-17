@@ -1,6 +1,6 @@
 import { CurrencyFormatterOptions, CurrencyFormatterService } from '../types';
 
-export const createCurrencyFormatterService = ({
+const createCurrencyFormatterService = ({
   locale,
   currency,
   currencySymbol,
@@ -11,3 +11,5 @@ export const createCurrencyFormatterService = ({
   }).format,
   currencySymbol,
 });
+
+export default createCurrencyFormatterService;
