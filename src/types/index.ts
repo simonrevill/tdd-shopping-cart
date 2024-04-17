@@ -10,7 +10,7 @@ export type CurrencyFormatterOptions = {
 
 export type CurrencyFormatter = (value: number | bigint | string) => string;
 
-export type CurrencyFormatterService = {
+export type CurrencyService = {
   format: CurrencyFormatter;
   currencySymbol: string;
 };

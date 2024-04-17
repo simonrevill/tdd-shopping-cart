@@ -1,9 +1,9 @@
-import { CurrencyFormatterOptions, CurrencyFormatterService } from '../types';
+import { CurrencyFormatterOptions, CurrencyService } from '../types';
 import { createCurrencyFormatterService } from '../utils';
 import ShoppingCart from './ShoppingCart';
 
 let cart: ShoppingCart;
-let currencyFormatterService: CurrencyFormatterService;
+let currencyService: CurrencyService;
 
 describe.each([
   { locale: 'en-GB', currency: 'GBP', currencySymbol: '£', currencyName: 'Great British Pound' },
@@ -12,13 +12,13 @@ describe.each([
   'shopping cart with $currency as currency',
   ({ locale, currency, currencySymbol }: CurrencyFormatterOptions) => {
     beforeEach(() => {
-      currencyFormatterService = createCurrencyFormatterService({
+      currencyService = createCurrencyFormatterService({
         locale,
         currency,
         currencySymbol,
       });
 
-      cart = new ShoppingCart(currencyFormatterService);
+      cart = new ShoppingCart(currencyService);
     });
 
     describe('add items to cart', () => {

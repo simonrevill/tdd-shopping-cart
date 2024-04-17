@@ -1,10 +1,10 @@
-import { CurrencyFormatterOptions, CurrencyFormatterService } from '../types';
+import { CurrencyFormatterOptions, CurrencyService } from '../types';
 
-const createCurrencyFormatterService = ({
+const createCurrencyService = ({
   locale,
   currency,
   currencySymbol,
-}: CurrencyFormatterOptions): CurrencyFormatterService => ({
+}: CurrencyFormatterOptions): CurrencyService => ({
   format: new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
@@ -12,4 +12,4 @@ const createCurrencyFormatterService = ({
   currencySymbol,
 });
 
-export default createCurrencyFormatterService;
+export default createCurrencyService;

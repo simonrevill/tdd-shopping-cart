@@ -1,22 +1,22 @@
 import { DISCOUNT_PERCENTAGES } from '../constants';
-import { Item, DiscountPercentage, CurrencyFormatterService } from '../types';
+import { Item, DiscountPercentage, CurrencyService } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
-  private currencyFormatterService: CurrencyFormatterService;
+  private currencyService: CurrencyService;
 
-  constructor(currencyFormatterService: CurrencyFormatterService) {
-    this.currencyFormatterService = currencyFormatterService;
+  constructor(currencyService: CurrencyService) {
+    this.currencyService = currencyService;
   }
 
   private getGrossItemPrices(): string[] {
     return this.items.map(([unitPrice, quantity]) =>
-      this.currencyFormatterService.format(unitPrice * quantity),
+      this.currencyService.format(unitPrice * quantity),
     );
   }
 
   private removeCurrencySymbolFromPrice(price: string) {
-    return parseFloat(price.replace(this.currencyFormatterService.currencySymbol, ''));
+    return parseFloat(price.replace(this.currencyService.currencySymbol, ''));
   }
 
   private getTotalGrossPrice(prices: number[]): number {
@@ -28,14 +28,14 @@ export default class ShoppingCart {
       this.removeCurrencySymbolFromPrice.bind(this),
     );
 
-    return this.currencyFormatterService.format(this.getTotalGrossPrice(grossPricesAsNumbers));
+    return this.currencyService.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
 
   private getDiscountedPrice(price: number): string {
     const discountPercentage: DiscountPercentage =
       price > 200 ? DISCOUNT_PERCENTAGES.TEN_PERCENT : DISCOUNT_PERCENTAGES.FIVE_PERCENT;
 
-    return this.currencyFormatterService.format(price - price * discountPercentage);
+    return this.currencyService.format(price - price * discountPercentage);
   }
 
   addItems(items: Item[]) {
@@ -50,7 +50,7 @@ export default class ShoppingCart {
 
   total(): string {
     if (this.items.length === 0) {
-      return `${this.currencyFormatterService.currencySymbol}0.00`;
+      return `${this.currencyService.currencySymbol}0.00`;
     }
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
