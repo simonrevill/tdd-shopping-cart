@@ -1,12 +1,14 @@
 import { DISCOUNT_PERCENTAGES } from '../constants';
-import { Item, DiscountPercentage, CurrencyFormatter } from '../types';
+import { Item, DiscountPercentage, CurrencyFormatter, CurrencyFormatterService } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
   private format: CurrencyFormatter;
+  private currencySymbol: string;
 
-  constructor(currencyFormatter: CurrencyFormatter) {
-    this.format = currencyFormatter;
+  constructor({ format, currencySymbol }: CurrencyFormatterService) {
+    this.format = format;
+    this.currencySymbol = currencySymbol;
   }
 
   private getGrossItemPrices(): string[] {
@@ -14,7 +16,7 @@ export default class ShoppingCart {
   }
 
   private removeCurrencySymbolFromPrice(price: string) {
-    return parseFloat(price.replace('£', ''));
+    return parseFloat(price.replace(this.currencySymbol, ''));
   }
 
   private getTotalGrossPrice(prices: number[]): number {
@@ -22,7 +24,9 @@ export default class ShoppingCart {
   }
 
   private totalGrossValue(): string {
-    const grossPricesAsNumbers = this.getGrossItemPrices().map(this.removeCurrencySymbolFromPrice);
+    const grossPricesAsNumbers = this.getGrossItemPrices().map(
+      this.removeCurrencySymbolFromPrice.bind(this),
+    );
 
     return this.format(this.getTotalGrossPrice(grossPricesAsNumbers));
   }
@@ -46,7 +50,7 @@ export default class ShoppingCart {
 
   total(): string {
     if (this.items.length === 0) {
-      return '£0.00';
+      return `${this.currencySymbol}0.00`;
     }
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
