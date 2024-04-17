@@ -5,11 +5,10 @@ import ShoppingCart from './ShoppingCart';
 let cart: ShoppingCart;
 let currencyFormatterService: CurrencyFormatterService;
 
-describe.each`
-  locale     | currency | currencySymbol | currencyName
-  ${'en-GB'} | ${'GBP'} | ${'£'}         | ${'Great British Pound'}
-  ${'en-US'} | ${'USD'} | ${'$'}         | ${'US Dollar'}
-`(
+describe.each([
+  { locale: 'en-GB', currency: 'GBP', currencySymbol: '£', currencyName: 'Great British Pound' },
+  { locale: 'en-US', currency: 'USD', currencySymbol: '$', currencyName: 'US Dollar' },
+])(
   'shopping cart with $currency as currency',
   ({ locale, currency, currencySymbol }: CurrencyFormatterOptions) => {
     beforeEach(() => {
