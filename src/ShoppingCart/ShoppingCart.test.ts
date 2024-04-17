@@ -5,10 +5,12 @@ import ShoppingCart from './ShoppingCart';
 let cart: ShoppingCart;
 let currencyService: CurrencyService;
 
-describe.each([
+const currencies = [
   { locale: 'en-GB', currency: 'GBP', currencySymbol: '£', currencyName: 'Great British Pound' },
   { locale: 'en-US', currency: 'USD', currencySymbol: '$', currencyName: 'US Dollar' },
-])(
+];
+
+describe.each(currencies)(
   'shopping cart with $currency as currency',
   ({ locale, currency, currencySymbol }: CurrencyFormatterOptions) => {
     beforeEach(() => {
