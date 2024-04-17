@@ -34,8 +34,8 @@ export default class ShoppingCart {
   private getDiscountedPrice(price: number): string {
     const discountPercentage: DiscountPercentage =
       price > DISCOUNT_THRESHOLDS.TWO_HUNDRED
-        ? DISCOUNT_PERCENTAGES.TEN_PERCENT
-        : DISCOUNT_PERCENTAGES.FIVE_PERCENT;
+        ? DISCOUNT_PERCENTAGES.TEN
+        : DISCOUNT_PERCENTAGES.FIVE;
 
     return this.currencyService.format(price - price * discountPercentage);
   }

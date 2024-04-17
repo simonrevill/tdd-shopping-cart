@@ -1,6 +1,6 @@
 export enum DISCOUNT_PERCENTAGES {
-  FIVE_PERCENT = 0.05,
-  TEN_PERCENT = 0.1,
+  FIVE = 0.05,
+  TEN = 0.1,
 }
 
 export enum DISCOUNT_THRESHOLDS {
