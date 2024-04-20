@@ -109,6 +109,12 @@ describe.each(currencies)(
         expect(cart.total()).toBe(`${currencySymbol}104.50`);
       });
 
+      it(`does not apply a 5% discount if total gross value is equal to ${currencySymbol}100`, () => {
+        cart.addItems([[50, 2]]);
+
+        expect(cart.total()).toBe(`${currencySymbol}100.00`);
+      });
+
       it(`applies a 10% discount if total gross value is over ${currencySymbol}200`, () => {
         cart.addItems([
           [50, 4],
