@@ -1,9 +1,3 @@
-export enum DiscountPercentages {
-  FIVE = 0.05,
-  TEN = 0.1,
-}
+import { DiscountPercentages, DiscountThresholds } from './discount';
 
-export enum DiscountThresholds {
-  ONE_HUNDRED = 100,
-  TWO_HUNDRED = 200,
-}
+export { DiscountPercentages, DiscountThresholds };

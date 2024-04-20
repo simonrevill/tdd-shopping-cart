@@ -1,4 +1,5 @@
-import { DiscountPercentages, DiscountThresholds } from '../constants';
+import { DiscountThresholds } from '../constants';
+import { DiscountPercentages } from '../constants';
 import { Item, DiscountPercentage, CurrencyService } from '../types';
 
 export default class ShoppingCart {
