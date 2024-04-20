@@ -1,4 +1,4 @@
-import { DISCOUNT_PERCENTAGES, DISCOUNT_THRESHOLDS } from '../constants';
+import { DiscountPercentages, DiscountThresholds } from '../constants';
 import { Item, DiscountPercentage, CurrencyService } from '../types';
 
 export default class ShoppingCart {
@@ -33,9 +33,7 @@ export default class ShoppingCart {
 
   private getDiscountedPrice(price: number): string {
     const discountPercentage: DiscountPercentage =
-      price > DISCOUNT_THRESHOLDS.TWO_HUNDRED
-        ? DISCOUNT_PERCENTAGES.TEN
-        : DISCOUNT_PERCENTAGES.FIVE;
+      price > DiscountThresholds.TWO_HUNDRED ? DiscountPercentages.TEN : DiscountPercentages.FIVE;
 
     return this.currencyService.format(price - price * discountPercentage);
   }
@@ -58,7 +56,7 @@ export default class ShoppingCart {
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
     const shouldApplyDiscount =
-      grossPrice > DISCOUNT_THRESHOLDS.ONE_HUNDRED || grossPrice > DISCOUNT_THRESHOLDS.TWO_HUNDRED;
+      grossPrice > DiscountThresholds.ONE_HUNDRED || grossPrice > DiscountThresholds.TWO_HUNDRED;
 
     return shouldApplyDiscount ? this.getDiscountedPrice(grossPrice) : this.totalGrossValue();
   }
