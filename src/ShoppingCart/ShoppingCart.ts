@@ -55,8 +55,10 @@ export default class ShoppingCart {
 
     const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
-    const shouldApplyDiscount =
-      grossPrice > DiscountThresholds.ONE_HUNDRED || grossPrice > DiscountThresholds.TWO_HUNDRED;
+    const shouldApplyDiscount = [
+      DiscountThresholds.ONE_HUNDRED,
+      DiscountThresholds.TWO_HUNDRED,
+    ].some((discountThreshold) => grossPrice > discountThreshold);
 
     return shouldApplyDiscount ? this.getDiscountedPrice(grossPrice) : this.totalGrossValue();
   }
