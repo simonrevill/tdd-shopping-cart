@@ -31,7 +31,11 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Apply 5% discount if total gross value is over £100_~~
 
+Don't apply 5% discount if total gross value is equal to £100
+
 ~~_Apply 10% discount if total gross value is over £200_~~
+
+Apply 5% discount (not 10%) if total gross value is equal to £200
 
 ~~_Get '£0.00' as gross value if cart is empty_~~
 
