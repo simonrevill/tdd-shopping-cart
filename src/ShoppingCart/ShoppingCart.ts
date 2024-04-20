@@ -15,17 +15,13 @@ export default class ShoppingCart {
     );
   }
 
-  private removeCurrencySymbolFromPrice(price: string) {
-    return parseFloat(price.replace(this.currencyService.currencySymbol, ''));
-  }
-
   private getTotalGrossPrice(prices: number[]): number {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
   private totalGrossValue(): string {
     const grossPricesAsNumbers = this.getGrossItemPrices().map(
-      this.removeCurrencySymbolFromPrice.bind(this),
+      this.currencyService.removeCurrencySymbolFromPrice,
     );
 
     return this.currencyService.format(this.getTotalGrossPrice(grossPricesAsNumbers));
@@ -53,7 +49,7 @@ export default class ShoppingCart {
       return `${this.currencyService.currencySymbol}0.00`;
     }
 
-    const grossPrice = this.removeCurrencySymbolFromPrice(this.totalGrossValue());
+    const grossPrice = this.currencyService.removeCurrencySymbolFromPrice(this.totalGrossValue());
 
     const shouldApplyDiscount = [
       DiscountThresholds.ONE_HUNDRED,

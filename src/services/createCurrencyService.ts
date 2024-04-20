@@ -10,6 +10,9 @@ const createCurrencyService = ({
     currency,
   }).format,
   currencySymbol,
+  removeCurrencySymbolFromPrice(price: string) {
+    return parseFloat(price.replace(currencySymbol, ''));
+  },
 });
 
 export default createCurrencyService;

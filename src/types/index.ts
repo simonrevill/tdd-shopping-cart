@@ -13,4 +13,5 @@ export type CurrencyFormatter = (value: number | bigint | string) => string;
 export type CurrencyService = {
   format: CurrencyFormatter;
   currencySymbol: string;
+  removeCurrencySymbolFromPrice: (price: string) => number;
 };
