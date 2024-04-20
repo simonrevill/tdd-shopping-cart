@@ -123,6 +123,12 @@ describe.each(currencies)(
 
         expect(cart.total()).toBe(`${currencySymbol}189.00`);
       });
+
+      it(`only applies a 5% discount (not 10%) if total gross value is equal to ${currencySymbol}200`, () => {
+        cart.addItems([[50, 4]]);
+
+        expect(cart.total()).toBe(`${currencySymbol}190.00`);
+      });
     });
   },
 );
