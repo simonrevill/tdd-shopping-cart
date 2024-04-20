@@ -14,4 +14,5 @@ export type CurrencyService = {
   format: CurrencyFormatter;
   currencySymbol: string;
   removeCurrencySymbolFromPrice: (price: string) => number;
+  getZeroPriceInCurrency: () => string;
 };

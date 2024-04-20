@@ -46,7 +46,7 @@ export default class ShoppingCart {
 
   total(): string {
     if (this.items.length === 0) {
-      return `${this.currencyService.currencySymbol}0.00`;
+      return this.currencyService.getZeroPriceInCurrency();
     }
 
     const grossPrice = this.currencyService.removeCurrencySymbolFromPrice(this.totalGrossValue());
