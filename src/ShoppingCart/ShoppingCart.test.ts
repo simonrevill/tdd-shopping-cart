@@ -1,5 +1,5 @@
 import { CurrencyFormatterOptions, CurrencyService } from '../types';
-import { createCurrencyService } from '../utils';
+import { createCurrencyService } from '../services';
 import ShoppingCart from './ShoppingCart';
 
 let cart: ShoppingCart;
