@@ -48,8 +48,8 @@ export default class ShoppingCart {
       DiscountThresholds.TWO_HUNDRED,
     ].some((discountThreshold) => grossPrice > discountThreshold);
 
-    return shouldApplyDiscount
-      ? this.currencyService.format(this.getDiscountedPrice(grossPrice))
-      : this.currencyService.format(grossPrice);
+    return this.currencyService.format(
+      shouldApplyDiscount ? this.getDiscountedPrice(grossPrice) : grossPrice,
+    );
   }
 }
