@@ -9,14 +9,10 @@ export default class ShoppingCart {
     this.currencyService = currencyService;
   }
 
-  private getTotalGrossPrice(prices: number[]): number {
-    return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
-  }
-
   private grossPrice(): number {
     const grossPriceList = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
 
-    return this.getTotalGrossPrice(grossPriceList);
+    return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
   private getDiscountedPrice(price: number): number {
