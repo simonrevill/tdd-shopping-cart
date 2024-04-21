@@ -10,9 +10,6 @@ const createCurrencyService = ({
     currency,
   }).format,
   currencySymbol,
-  removeCurrencySymbolFromPrice(price: string) {
-    return parseFloat(price.replace(currencySymbol, ''));
-  },
   getZeroPriceInCurrency() {
     return this.format(0);
   },

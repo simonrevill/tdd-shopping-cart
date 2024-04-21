@@ -9,29 +9,25 @@ export default class ShoppingCart {
     this.currencyService = currencyService;
   }
 
-  private getGrossItemPrices(): string[] {
-    return this.items.map(([unitPrice, quantity]) =>
-      this.currencyService.format(unitPrice * quantity),
-    );
+  private getGrossItemPrices(): number[] {
+    return this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
   }
 
   private getTotalGrossPrice(prices: number[]): number {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private totalGrossValue(): string {
-    const grossPricesAsNumbers = this.getGrossItemPrices().map(
-      this.currencyService.removeCurrencySymbolFromPrice,
-    );
+  private totalGrossValue(): number {
+    const grossPricesAsNumbers = this.getGrossItemPrices();
 
-    return this.currencyService.format(this.getTotalGrossPrice(grossPricesAsNumbers));
+    return this.getTotalGrossPrice(grossPricesAsNumbers);
   }
 
-  private getDiscountedPrice(price: number): string {
+  private getDiscountedPrice(price: number): number {
     const discountPercentage: DiscountPercentage =
       price > DiscountThresholds.TWO_HUNDRED ? DiscountPercentages.TEN : DiscountPercentages.FIVE;
 
-    return this.currencyService.format(price - price * discountPercentage);
+    return price - price * discountPercentage;
   }
 
   addItems(items: Item[]) {
@@ -49,13 +45,15 @@ export default class ShoppingCart {
       return this.currencyService.getZeroPriceInCurrency();
     }
 
-    const grossPrice = this.currencyService.removeCurrencySymbolFromPrice(this.totalGrossValue());
+    const grossPrice = this.totalGrossValue();
 
     const shouldApplyDiscount = [
       DiscountThresholds.ONE_HUNDRED,
       DiscountThresholds.TWO_HUNDRED,
     ].some((discountThreshold) => grossPrice > discountThreshold);
 
-    return shouldApplyDiscount ? this.getDiscountedPrice(grossPrice) : this.totalGrossValue();
+    return shouldApplyDiscount
+      ? this.currencyService.format(this.getDiscountedPrice(grossPrice))
+      : this.currencyService.format(this.totalGrossValue());
   }
 }
