@@ -14,9 +14,9 @@ export default class ShoppingCart {
   }
 
   private grossPrice(): number {
-    const grossPricesAsNumbers = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
+    const grossPriceList = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
 
-    return this.getTotalGrossPrice(grossPricesAsNumbers);
+    return this.getTotalGrossPrice(grossPriceList);
   }
 
   private getDiscountedPrice(price: number): number {
