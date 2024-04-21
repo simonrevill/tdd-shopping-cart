@@ -50,6 +50,6 @@ export default class ShoppingCart {
 
     return shouldApplyDiscount
       ? this.currencyService.format(this.getDiscountedPrice(grossPrice))
-      : this.currencyService.format(this.grossPrice());
+      : this.currencyService.format(grossPrice);
   }
 }
