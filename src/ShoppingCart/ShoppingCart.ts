@@ -13,7 +13,7 @@ export default class ShoppingCart {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private totalGrossValue(): number {
+  private grossPrice(): number {
     const grossPricesAsNumbers = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
 
     return this.getTotalGrossPrice(grossPricesAsNumbers);
@@ -41,7 +41,7 @@ export default class ShoppingCart {
       return this.currencyService.getZeroPriceInCurrency();
     }
 
-    const grossPrice = this.totalGrossValue();
+    const grossPrice = this.grossPrice();
 
     const shouldApplyDiscount = [
       DiscountThresholds.ONE_HUNDRED,
@@ -50,6 +50,6 @@ export default class ShoppingCart {
 
     return shouldApplyDiscount
       ? this.currencyService.format(this.getDiscountedPrice(grossPrice))
-      : this.currencyService.format(this.totalGrossValue());
+      : this.currencyService.format(this.grossPrice());
   }
 }
