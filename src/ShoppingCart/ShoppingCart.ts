@@ -9,16 +9,12 @@ export default class ShoppingCart {
     this.currencyService = currencyService;
   }
 
-  private getGrossItemPrices(): number[] {
-    return this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
-  }
-
   private getTotalGrossPrice(prices: number[]): number {
     return prices.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
   private totalGrossValue(): number {
-    const grossPricesAsNumbers = this.getGrossItemPrices();
+    const grossPricesAsNumbers = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
 
     return this.getTotalGrossPrice(grossPricesAsNumbers);
   }
