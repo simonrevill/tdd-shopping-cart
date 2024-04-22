@@ -1,8 +1,8 @@
-export type Item = [number, number];
+export type TItem = [number, number];
 
-export type DiscountPercentage = 0.05 | 0.1;
+export type TDiscountPercentage = 0.05 | 0.1;
 
-export type CurrencyFormatter = (value: number | bigint | string) => string;
+export type TCurrencyFormatter = (value: number | bigint | string) => string;
 
 export interface ICurrencyServiceOptions {
   locale: string;
@@ -11,6 +11,6 @@ export interface ICurrencyServiceOptions {
 }
 
 export interface ICurrencyService extends ICurrencyServiceOptions {
-  format: CurrencyFormatter;
+  format: TCurrencyFormatter;
   getZeroPriceInCurrency: () => string;
 }

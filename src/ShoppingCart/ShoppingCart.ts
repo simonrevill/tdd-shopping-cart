@@ -1,8 +1,8 @@
 import { DiscountPercentages, DiscountThresholds } from '../constants';
-import { Item, DiscountPercentage, ICurrencyService } from '../types';
+import { TItem, TDiscountPercentage, ICurrencyService } from '../types';
 
 export default class ShoppingCart {
-  private items: Item[] = [];
+  private items: TItem[] = [];
   private currencyService: ICurrencyService;
 
   constructor(currencyService: ICurrencyService) {
@@ -16,17 +16,17 @@ export default class ShoppingCart {
   }
 
   private discountedPrice(price: number): number {
-    const discountPercentage: DiscountPercentage =
+    const discountPercentage: TDiscountPercentage =
       price > DiscountThresholds.TWO_HUNDRED ? DiscountPercentages.TEN : DiscountPercentages.FIVE;
 
     return price - price * discountPercentage;
   }
 
-  addItems(items: Item[]): void {
+  addItems(items: TItem[]): void {
     this.items = items;
   }
 
-  list(): Item[] {
+  list(): TItem[] {
     return this.items;
   }
 
