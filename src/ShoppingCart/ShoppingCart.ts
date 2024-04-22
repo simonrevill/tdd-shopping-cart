@@ -23,9 +23,7 @@ export default class ShoppingCart {
   }
 
   addItems(items: Item[]) {
-    items.forEach((item: Item) => {
-      this.items.push(item);
-    });
+    this.items = items;
   }
 
   list(): Item[] {
