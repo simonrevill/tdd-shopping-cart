@@ -1,11 +1,11 @@
 import { DiscountPercentages, DiscountThresholds } from '../constants';
-import { Item, DiscountPercentage, CurrencyService } from '../types';
+import { Item, DiscountPercentage, ICurrencyService } from '../types';
 
 export default class ShoppingCart {
   private items: Item[] = [];
-  private currencyService: CurrencyService;
+  private currencyService: ICurrencyService;
 
-  constructor(currencyService: CurrencyService) {
+  constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
   }
 

@@ -1,9 +1,9 @@
-import { CurrencyService } from '../types';
+import { ICurrencyService } from '../types';
 import { createCurrencyService } from '../services';
 import ShoppingCart from './ShoppingCart';
 
 let cart: ShoppingCart;
-let currencyService: CurrencyService;
+let currencyService: ICurrencyService;
 
 const currencies = [
   { locale: 'en-GB', currency: 'GBP', currencySymbol: '£', currencyName: 'Great British Pound' },

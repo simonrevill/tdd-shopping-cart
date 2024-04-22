@@ -1,18 +1,36 @@
-import { CurrencyServiceOptions, CurrencyService } from '../types';
+import { ICurrencyServiceOptions, ICurrencyService } from '../types';
+
+class CurrencyService implements ICurrencyService {
+  locale: string;
+  currency: string;
+  currencySymbol: string;
+
+  constructor(locale: string, currency: string, currencySymbol: string) {
+    this.locale = locale;
+    this.currency = currency;
+    this.currencySymbol = currencySymbol;
+  }
+
+  format(value: number | bigint | string): string {
+    const options: Intl.NumberFormatOptions = {
+      style: 'currency',
+      currency: this.currency,
+    };
+
+    return new Intl.NumberFormat(this.locale, options).format(value);
+  }
+
+  getZeroPriceInCurrency(): string {
+    return this.format(0);
+  }
+}
 
 const createCurrencyService = ({
   locale,
   currency,
   currencySymbol,
-}: CurrencyServiceOptions): CurrencyService => ({
-  format: new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
-  }).format,
-  currencySymbol,
-  getZeroPriceInCurrency() {
-    return this.format(0);
-  },
-});
+}: ICurrencyServiceOptions): ICurrencyService => {
+  return new CurrencyService(locale, currency, currencySymbol);
+};
 
 export default createCurrencyService;
