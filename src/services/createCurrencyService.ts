@@ -17,7 +17,9 @@ class CurrencyService implements ICurrencyService {
       currency: this.currency,
     };
 
-    return new Intl.NumberFormat(this.locale, options).format(value);
+    const numberFormat = new Intl.NumberFormat(this.locale, options);
+
+    return numberFormat.format(value);
   }
 
   getZeroPriceInCurrency(): string {
