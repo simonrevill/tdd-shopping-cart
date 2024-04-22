@@ -22,7 +22,7 @@ export default class ShoppingCart {
     return price - price * discountPercentage;
   }
 
-  addItems(items: Item[]) {
+  addItems(items: Item[]): void {
     this.items = items;
   }
 
