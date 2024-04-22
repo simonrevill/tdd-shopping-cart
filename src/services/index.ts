@@ -1,3 +1,4 @@
 import createCurrencyService from './createCurrencyService';
+import CurrencyService from './CurrencyService';
 
-export { createCurrencyService };
+export { createCurrencyService, CurrencyService };
