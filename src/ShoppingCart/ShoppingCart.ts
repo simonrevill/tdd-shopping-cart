@@ -15,7 +15,7 @@ export default class ShoppingCart {
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private getDiscountedPrice(price: number): number {
+  private discountedPrice(price: number): number {
     const discountPercentage: DiscountPercentage =
       price > DiscountThresholds.TWO_HUNDRED ? DiscountPercentages.TEN : DiscountPercentages.FIVE;
 
@@ -43,7 +43,7 @@ export default class ShoppingCart {
     ].some((discountThreshold) => grossPrice > discountThreshold);
 
     return this.currencyService.format(
-      shouldApplyDiscount ? this.getDiscountedPrice(grossPrice) : grossPrice,
+      shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
     );
   }
 }
