@@ -155,7 +155,7 @@ describe.each(currencies)(
 
           cart.generateReceipt({ format: 'text' });
 
-          const receipt = readGeneratedReceipt();
+          const receipt = readGeneratedReceipt('text');
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -176,7 +176,7 @@ describe.each(currencies)(
 
           cart.generateReceipt({ format: 'text' });
 
-          const receipt = readGeneratedReceipt();
+          const receipt = readGeneratedReceipt('text');
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -200,7 +200,7 @@ describe.each(currencies)(
 
           cart.generateReceipt({ format: 'text' });
 
-          const receipt = readGeneratedReceipt();
+          const receipt = readGeneratedReceipt('text');
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -221,6 +221,38 @@ describe.each(currencies)(
           expect(() => {
             cart.generateReceipt({ format: 'json' });
           }).toThrow('Cannot generate json receipt. Cart is empty!');
+        });
+
+        it('writes a receipt to a json file with no discount', () => {
+          cart.addItems([
+            [50, 1],
+            [25, 2],
+          ]);
+
+          cart.generateReceipt({ format: 'json' });
+
+          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+
+          const expectedJson = JSON.parse(`
+            {
+              "items": [
+                {
+                  "unitPrice": "${currencySymbol}50.00",
+                  "quantity": "1",
+                  "grossPrice": "${currencySymbol}50.00"
+                },
+                {
+                  "unitPrice": "${currencySymbol}25.00",
+                  "quantity": "2",
+                  "grossPrice": "${currencySymbol}50.00"
+                }
+              ],
+              "subtotal": "${currencySymbol}100.00",
+              "total": "${currencySymbol}100.00"
+            }
+          `);
+
+          expect(receipt).toEqual(expectedJson);
         });
       });
     });
