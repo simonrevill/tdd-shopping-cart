@@ -43,7 +43,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Extend currency formatter to use different currencies_~~
 
-Write receipt to text file
+~~_Write receipt to text file_~~
 
 Write receipt to JSON file
 
