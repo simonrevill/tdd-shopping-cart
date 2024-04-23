@@ -10,19 +10,18 @@ export default class ReceiptService implements IReceiptService {
   }
 
   generate(data: TReceiptData): void {
-    const receiptsDirectory = path.join(process.cwd(), 'receipts');
+    const rootDirectory = process.cwd();
+    const receiptsDirectory = path.join(rootDirectory, 'receipts');
 
     if (!fs.existsSync(receiptsDirectory)) {
       fs.mkdirSync(receiptsDirectory);
     }
 
-    const textDirectory = path.join(process.cwd(), 'receipts/text');
+    const receiptsTextFolder = path.join(rootDirectory, 'receipts/text');
 
-    if (!fs.existsSync(textDirectory)) {
-      fs.mkdirSync(textDirectory);
+    if (!fs.existsSync(receiptsTextFolder)) {
+      fs.mkdirSync(receiptsTextFolder);
     }
-
-    const receiptsFolder = path.join(process.cwd(), 'receipts/text');
 
     let receiptString = 'Your receipt\n\n';
 
@@ -40,6 +39,6 @@ export default class ReceiptService implements IReceiptService {
 
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
 
-    fs.writeFileSync(path.join(receiptsFolder, 'receipt.txt'), receiptString);
+    fs.writeFileSync(path.join(receiptsTextFolder, 'receipt.txt'), receiptString);
   }
 }
