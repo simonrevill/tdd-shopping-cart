@@ -140,35 +140,37 @@ describe.each(currencies)(
       });
     });
 
-    describe('write receipt to text file', () => {
-      it('throws an error when attempting to generate a receipt with an empty cart', () => {
-        expect(() => {
+    describe(`generate receipts with ${currency} as currency`, () => {
+      describe('write receipt to text file', () => {
+        it('throws an error when attempting to generate a receipt with an empty cart', () => {
+          expect(() => {
+            cart.generateReceipt();
+          }).toThrow('Cannot generate text receipt. Cart is empty!');
+        });
+
+        it('writes a receipt to a text file with no discount', () => {
+          cart.addItems([
+            [50, 1],
+            [25, 2],
+          ]);
+
           cart.generateReceipt();
-        }).toThrow('Cannot generate text receipt. Cart is empty!');
-      });
 
-      it('writes a receipt to a text file with no discount', () => {
-        cart.addItems([
-          [50, 1],
-          [25, 2],
-        ]);
+          const receiptsFolder = path.join(process.cwd(), 'receipts/text');
 
-        cart.generateReceipt();
+          const receipt = fs
+            .readFileSync(path.join(receiptsFolder, 'receipt.txt'), 'utf-8')
+            .split(/\n/g);
 
-        const receiptsFolder = path.join(process.cwd(), 'receipts/text');
-
-        const receipt = fs
-          .readFileSync(path.join(receiptsFolder, 'receipt.txt'), 'utf-8')
-          .split(/\n/g);
-
-        expect(receipt[0]).toBe('Your receipt');
-        expect(receipt[1]).toBe('');
-        expect(receipt[2]).toBe(`1. 50.00 x 1 - ${currencySymbol}50.00`);
-        expect(receipt[3]).toBe(`2. 25.00 x 2 - ${currencySymbol}50.00`);
-        expect(receipt[4]).toBe('');
-        expect(receipt[5]).toBe(`Subtotal: ${currencySymbol}100.00`);
-        expect(receipt[6]).toBe('');
-        expect(receipt[7]).toBe(`Total: ${currencySymbol}100.00`);
+          expect(receipt[0]).toBe('Your receipt');
+          expect(receipt[1]).toBe('');
+          expect(receipt[2]).toBe(`1. 50.00 x 1 - ${currencySymbol}50.00`);
+          expect(receipt[3]).toBe(`2. 25.00 x 2 - ${currencySymbol}50.00`);
+          expect(receipt[4]).toBe('');
+          expect(receipt[5]).toBe(`Subtotal: ${currencySymbol}100.00`);
+          expect(receipt[6]).toBe('');
+          expect(receipt[7]).toBe(`Total: ${currencySymbol}100.00`);
+        });
       });
     });
   },
