@@ -24,7 +24,7 @@ export type TReceiptServiceGeneratorOptions = {
 };
 
 export interface IReceiptService {
-  generate: (data: TReceiptData, options: TReceiptServiceGeneratorOptions) => void;
+  create: (data: TReceiptData, options: TReceiptServiceGeneratorOptions) => void;
 }
 
 export type TReceiptItem = {

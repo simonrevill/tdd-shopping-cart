@@ -9,7 +9,7 @@ export default class TextReceiptService implements IReceiptService {
     this.currencyService = currencyService;
   }
 
-  generate(data: TReceiptData): void {
+  create(data: TReceiptData): void {
     const rootDirectory = process.cwd();
     const receiptsDirectory = path.join(rootDirectory, 'receipts');
 

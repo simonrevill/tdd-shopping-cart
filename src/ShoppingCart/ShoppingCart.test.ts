@@ -143,7 +143,7 @@ describe.each(currencies)(
       describe('write receipt to text file', () => {
         it('throws an error when attempting to generate a text receipt with an empty cart', () => {
           expect(() => {
-            cart.generateReceipt({ format: 'text' });
+            cart.createReceipt({ format: 'text' });
           }).toThrow('Cannot generate text receipt. Cart is empty!');
         });
 
@@ -153,7 +153,7 @@ describe.each(currencies)(
             [25, 2],
           ]);
 
-          cart.generateReceipt({ format: 'text' });
+          cart.createReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt('text');
 
@@ -174,7 +174,7 @@ describe.each(currencies)(
             [10, 1],
           ]);
 
-          cart.generateReceipt({ format: 'text' });
+          cart.createReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt('text');
 
@@ -198,7 +198,7 @@ describe.each(currencies)(
             [10, 1],
           ]);
 
-          cart.generateReceipt({ format: 'text' });
+          cart.createReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt('text');
 
@@ -219,7 +219,7 @@ describe.each(currencies)(
       describe('write receipt to JSON file', () => {
         it('throws an error when attempting to generate a JSON receipt with an empty cart', () => {
           expect(() => {
-            cart.generateReceipt({ format: 'json' });
+            cart.createReceipt({ format: 'json' });
           }).toThrow('Cannot generate json receipt. Cart is empty!');
         });
 
@@ -229,7 +229,7 @@ describe.each(currencies)(
             [25, 2],
           ]);
 
-          cart.generateReceipt({ format: 'json' });
+          cart.createReceipt({ format: 'json' });
 
           const receipt = JSON.parse(readGeneratedReceipt('json') as string);
 

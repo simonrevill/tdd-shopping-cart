@@ -18,13 +18,13 @@ export default class ReceiptService implements IReceiptService {
     this.jsonReceiptService = new JSONReceiptService(this.currencyService);
   }
 
-  generate(data: TReceiptData, options: TReceiptServiceGeneratorOptions): void {
+  create(data: TReceiptData, options: TReceiptServiceGeneratorOptions): void {
     if (options.format === 'text') {
-      this.textReceiptService.generate(data);
+      this.textReceiptService.create(data);
     }
 
     if (options.format === 'json') {
-      this.jsonReceiptService.generate(data);
+      this.jsonReceiptService.create(data);
     }
   }
 }

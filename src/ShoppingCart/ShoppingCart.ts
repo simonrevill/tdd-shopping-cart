@@ -61,7 +61,7 @@ export default class ShoppingCart {
     );
   }
 
-  generateReceipt(options: TReceiptServiceGeneratorOptions) {
+  createReceipt(options: TReceiptServiceGeneratorOptions) {
     if (!this.items.length) {
       throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
     }
@@ -84,6 +84,6 @@ export default class ShoppingCart {
       };
     }
 
-    this.receiptService.generate(data, options);
+    this.receiptService.create(data, options);
   }
 }
