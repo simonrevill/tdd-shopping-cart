@@ -1,6 +1,6 @@
-import createCurrencyService from './createCurrencyService';
-import CurrencyService from './CurrencyService';
-import createReceiptService from './createReceiptService';
-import ReceiptService from './ReceiptService';
+import createCurrencyService from './CurrencyService/createCurrencyService';
+import CurrencyService from './CurrencyService/CurrencyService';
+import createReceiptService from './ReceiptService/createReceiptService';
+import ReceiptService from './ReceiptService/ReceiptService';
 
 export { createCurrencyService, CurrencyService, createReceiptService, ReceiptService };

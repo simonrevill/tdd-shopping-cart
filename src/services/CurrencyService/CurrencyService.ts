@@ -1,4 +1,4 @@
-import { ICurrencyService, TCurrencyFormatter } from '../types';
+import { ICurrencyService, TCurrencyFormatter } from '../../types';
 
 export default class CurrencyService implements ICurrencyService {
   locale: string;

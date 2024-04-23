@@ -1,4 +1,4 @@
-import { ICurrencyService, IReceiptService } from '../types';
+import { ICurrencyService, IReceiptService } from '../../types';
 import ReceiptService from './ReceiptService';
 
 const createReceiptService = (currencyService: ICurrencyService): IReceiptService => {

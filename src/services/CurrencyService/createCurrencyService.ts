@@ -1,4 +1,4 @@
-import { ICurrencyServiceOptions, ICurrencyService } from '../types';
+import { ICurrencyServiceOptions, ICurrencyService } from '../../types';
 import CurrencyService from './CurrencyService';
 
 const createCurrencyService = ({
