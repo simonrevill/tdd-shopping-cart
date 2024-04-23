@@ -2,7 +2,7 @@ import {
   ICurrencyService,
   IReceiptService,
   TReceiptData,
-  TReceiptServiceGeneratorOptions,
+  TReceiptServiceCreateOptions,
 } from '../../types';
 import JSONReceiptService from './JSONReceiptService';
 import TextReceiptService from './TextReceiptService';
@@ -18,7 +18,7 @@ export default class ReceiptService implements IReceiptService {
     this.jsonReceiptService = new JSONReceiptService(this.currencyService);
   }
 
-  create(data: TReceiptData, options: TReceiptServiceGeneratorOptions): void {
+  create(data: TReceiptData, options: TReceiptServiceCreateOptions): void {
     if (options.format === 'text') {
       this.textReceiptService.create(data);
     }

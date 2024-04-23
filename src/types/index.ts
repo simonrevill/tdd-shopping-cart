@@ -19,12 +19,12 @@ export interface ICurrencyService extends ICurrencyServiceOptions {
 
 export type TReceiptFormat = 'text' | 'json' | 'html';
 
-export type TReceiptServiceGeneratorOptions = {
+export type TReceiptServiceCreateOptions = {
   format: TReceiptFormat;
 };
 
 export interface IReceiptService {
-  create: (data: TReceiptData, options: TReceiptServiceGeneratorOptions) => void;
+  create: (data: TReceiptData, options: TReceiptServiceCreateOptions) => void;
 }
 
 export type TReceiptItem = {

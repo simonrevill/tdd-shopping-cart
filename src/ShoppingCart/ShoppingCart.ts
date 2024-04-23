@@ -5,7 +5,7 @@ import {
   ICurrencyService,
   IReceiptService,
   TReceiptData,
-  TReceiptServiceGeneratorOptions,
+  TReceiptServiceCreateOptions,
 } from '../types';
 
 export default class ShoppingCart {
@@ -61,7 +61,7 @@ export default class ShoppingCart {
     );
   }
 
-  createReceipt(options: TReceiptServiceGeneratorOptions) {
+  createReceipt(options: TReceiptServiceCreateOptions) {
     if (!this.items.length) {
       throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
     }
