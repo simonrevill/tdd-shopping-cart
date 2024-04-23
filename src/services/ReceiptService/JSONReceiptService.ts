@@ -37,8 +37,6 @@ export default class JSONReceiptService implements IReceiptService {
 
     const receiptJSON = JSON.stringify(receiptObject);
 
-    console.log('receiptJson: ', receiptJSON);
-
     fs.writeFileSync(path.join(receiptsJSONFolder, 'receipt.json'), receiptJSON);
   }
 }
