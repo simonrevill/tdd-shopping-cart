@@ -30,6 +30,14 @@ export default class ShoppingCart {
     return price - price * discountPercentage;
   }
 
+  private get shouldApplyDiscount(): boolean {
+    const grossPrice = this.grossPrice();
+
+    return [DiscountThresholds.ONE_HUNDRED, DiscountThresholds.TWO_HUNDRED].some(
+      (discountThreshold) => grossPrice > discountThreshold,
+    );
+  }
+
   addItems(items: TItem[]): void {
     this.items = items;
   }
@@ -45,13 +53,8 @@ export default class ShoppingCart {
 
     const grossPrice = this.grossPrice();
 
-    const shouldApplyDiscount = [
-      DiscountThresholds.ONE_HUNDRED,
-      DiscountThresholds.TWO_HUNDRED,
-    ].some((discountThreshold) => grossPrice > discountThreshold);
-
     return this.currencyService.format(
-      shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
+      this.shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
     );
   }
 
@@ -62,11 +65,6 @@ export default class ShoppingCart {
 
     const grossPrice = this.grossPrice();
 
-    const shouldApplyDiscount = [
-      DiscountThresholds.ONE_HUNDRED,
-      DiscountThresholds.TWO_HUNDRED,
-    ].some((discountThreshold) => grossPrice > discountThreshold);
-
     const data: TReceiptData = {
       items: this.items.map((item) => ({
         unitPrice: item[0],
@@ -74,7 +72,7 @@ export default class ShoppingCart {
         grossPrice: item[0] * item[1],
       })),
       subtotal: grossPrice,
-      total: shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
+      total: this.shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
     };
 
     this.receiptService.generate(data);
