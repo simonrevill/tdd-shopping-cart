@@ -10,6 +10,18 @@ export default class ReceiptService implements IReceiptService {
   }
 
   generate(data: TReceiptData): void {
+    const receiptsDirectory = path.join(process.cwd(), 'receipts');
+
+    if (!fs.existsSync(receiptsDirectory)) {
+      fs.mkdirSync(receiptsDirectory);
+    }
+
+    const textDirectory = path.join(process.cwd(), 'receipts/text');
+
+    if (!fs.existsSync(textDirectory)) {
+      fs.mkdirSync(textDirectory);
+    }
+
     const receiptsFolder = path.join(process.cwd(), 'receipts/text');
 
     let receiptString = 'Your receipt\n\n';
