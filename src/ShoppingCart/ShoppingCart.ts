@@ -1,12 +1,20 @@
 import { DiscountPercentages, DiscountThresholds } from '../constants';
-import { TItem, TDiscountPercentage, ICurrencyService } from '../types';
+import {
+  TItem,
+  TDiscountPercentage,
+  ICurrencyService,
+  IReceiptService,
+  TReceiptData,
+} from '../types';
 
 export default class ShoppingCart {
   private items: TItem[] = [];
   private currencyService: ICurrencyService;
+  private receiptService: IReceiptService;
 
-  constructor(currencyService: ICurrencyService) {
+  constructor(currencyService: ICurrencyService, receiptService: IReceiptService) {
     this.currencyService = currencyService;
+    this.receiptService = receiptService;
   }
 
   private grossPrice(): number {
@@ -51,5 +59,24 @@ export default class ShoppingCart {
     if (!this.items.length) {
       throw new Error('Cannot generate text receipt. Cart is empty!');
     }
+
+    const grossPrice = this.grossPrice();
+
+    const shouldApplyDiscount = [
+      DiscountThresholds.ONE_HUNDRED,
+      DiscountThresholds.TWO_HUNDRED,
+    ].some((discountThreshold) => grossPrice > discountThreshold);
+
+    const data: TReceiptData = {
+      items: this.items.map((item) => ({
+        unitPrice: item[0],
+        quantity: item[1],
+        grossPrice: item[0] * item[1],
+      })),
+      subtotal: grossPrice,
+      total: shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
+    };
+
+    this.receiptService.generate(data);
   }
 }

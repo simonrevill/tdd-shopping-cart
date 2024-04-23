@@ -1,4 +1,4 @@
-import { ICurrencyService } from '../types';
+import { ICurrencyService, TCurrencyFormatter } from '../types';
 
 export default class CurrencyService implements ICurrencyService {
   locale: string;
@@ -17,6 +17,15 @@ export default class CurrencyService implements ICurrencyService {
       currency: this.currency,
     };
 
+    const numberFormat = new Intl.NumberFormat(this.locale, options);
+
+    return numberFormat.format(value);
+  }
+
+  formatNumber(value: number | bigint | string): string {
+    const options: Intl.NumberFormatOptions = {
+      minimumFractionDigits: 2,
+    };
     const numberFormat = new Intl.NumberFormat(this.locale, options);
 
     return numberFormat.format(value);
