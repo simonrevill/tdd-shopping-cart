@@ -17,7 +17,7 @@ export default class ShoppingCart {
     this.receiptService = receiptService;
   }
 
-  private grossPrice(): number {
+  private get grossPrice(): number {
     const grossPriceList = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
 
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
@@ -31,10 +31,8 @@ export default class ShoppingCart {
   }
 
   private get shouldApplyDiscount(): boolean {
-    const grossPrice = this.grossPrice();
-
     return [DiscountThresholds.ONE_HUNDRED, DiscountThresholds.TWO_HUNDRED].some(
-      (discountThreshold) => grossPrice > discountThreshold,
+      (discountThreshold) => this.grossPrice > discountThreshold,
     );
   }
 
@@ -51,10 +49,8 @@ export default class ShoppingCart {
       return this.currencyService.getZeroPriceInCurrency();
     }
 
-    const grossPrice = this.grossPrice();
-
     return this.currencyService.format(
-      this.shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
+      this.shouldApplyDiscount ? this.discountedPrice(this.grossPrice) : this.grossPrice,
     );
   }
 
@@ -63,16 +59,14 @@ export default class ShoppingCart {
       throw new Error('Cannot generate text receipt. Cart is empty!');
     }
 
-    const grossPrice = this.grossPrice();
-
     const data: TReceiptData = {
       items: this.items.map(([unitPrice, quantity]) => ({
         unitPrice,
         quantity,
         grossPrice: unitPrice * quantity,
       })),
-      subtotal: grossPrice,
-      total: this.shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
+      subtotal: this.grossPrice,
+      total: this.shouldApplyDiscount ? this.discountedPrice(this.grossPrice) : this.grossPrice,
     };
 
     this.receiptService.generate(data);
