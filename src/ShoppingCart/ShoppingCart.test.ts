@@ -215,6 +215,14 @@ describe.each(currencies)(
           expect(receipt[10]).toBe(`Total: ${currencySymbol}189.00`);
         });
       });
+
+      describe('write receipt to JSON file', () => {
+        it('throws an error when attempting to generate a JSON receipt with an empty cart', () => {
+          expect(() => {
+            cart.generateReceipt({ format: 'json' });
+          }).toThrow('Cannot generate json receipt. Cart is empty!');
+        });
+      });
     });
   },
 );

@@ -63,7 +63,7 @@ export default class ShoppingCart {
 
   generateReceipt(options: TReceiptServiceGeneratorOptions) {
     if (!this.items.length) {
-      throw new Error('Cannot generate text receipt. Cart is empty!');
+      throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
     }
 
     const data: TReceiptData = {
