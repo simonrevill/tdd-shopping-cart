@@ -4,8 +4,8 @@ import {
   TReceiptData,
   TReceiptServiceCreateOptions,
 } from '../../types';
-import JSONReceiptService from './JSONReceiptService';
-import TextReceiptService from './TextReceiptService';
+import JSONReceiptService from '../JSONReceiptService';
+import TextReceiptService from '../TextReceiptService';
 
 export default class ReceiptService implements IReceiptService {
   currencyService: ICurrencyService;
