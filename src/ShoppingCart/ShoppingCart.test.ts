@@ -130,5 +130,13 @@ describe.each(currencies)(
         expect(cart.total()).toBe(`${currencySymbol}190.00`);
       });
     });
+
+    describe('write receipt to text file', () => {
+      it('throws an error when attempting to generate a receipt with an empty cart', () => {
+        expect(() => {
+          cart.generateReceipt();
+        }).toThrow('Cannot generate text receipt. Cart is empty!');
+      });
+    });
   },
 );

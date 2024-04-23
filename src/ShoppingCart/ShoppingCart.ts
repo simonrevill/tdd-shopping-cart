@@ -46,4 +46,10 @@ export default class ShoppingCart {
       shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
     );
   }
+
+  generateReceipt() {
+    if (!this.items.length) {
+      throw new Error('Cannot generate text receipt. Cart is empty!');
+    }
+  }
 }
