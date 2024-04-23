@@ -28,6 +28,10 @@ describe.each(currencies)(
       cart = new ShoppingCart(currencyService, receiptService);
     });
 
+    afterEach(() => {
+      fs.rmSync(path.join(process.cwd(), 'receipts'), { recursive: true, force: true });
+    });
+
     describe('add items to cart', () => {
       it('adds a single items to the cart', () => {
         cart.addItems([[10, 1]]);
@@ -137,10 +141,6 @@ describe.each(currencies)(
     });
 
     describe('write receipt to text file', () => {
-      afterEach(() => {
-        fs.rmSync(path.join(process.cwd(), 'receipts'), { recursive: true, force: true });
-      });
-
       it('throws an error when attempting to generate a receipt with an empty cart', () => {
         expect(() => {
           cart.generateReceipt();
