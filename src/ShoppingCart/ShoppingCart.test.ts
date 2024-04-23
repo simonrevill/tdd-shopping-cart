@@ -141,7 +141,7 @@ describe.each(currencies)(
 
     describe(`generate receipts with ${currency} as currency`, () => {
       describe('write receipt to text file', () => {
-        it('throws an error when attempting to generate a receipt with an empty cart', () => {
+        it('throws an error when attempting to generate a text receipt with an empty cart', () => {
           expect(() => {
             cart.generateReceipt();
           }).toThrow('Cannot generate text receipt. Cart is empty!');
