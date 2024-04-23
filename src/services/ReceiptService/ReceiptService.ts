@@ -37,6 +37,12 @@ export default class ReceiptService implements IReceiptService {
       this.currencyService.currencySymbol
     }${this.currencyService.formatNumber(data.subtotal)}\n\n`;
 
+    if (data.discount) {
+      receiptString += `${data.discount.percentage * 100}% Discount: -${this.currencyService.format(
+        data.discount.deductedAmount,
+      )}\n\n`;
+    }
+
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
 
     fs.writeFileSync(path.join(receiptsTextFolder, 'receipt.txt'), receiptString);

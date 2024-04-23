@@ -171,6 +171,34 @@ describe.each(currencies)(
           expect(receipt[6]).toBe('');
           expect(receipt[7]).toBe(`Total: ${currencySymbol}100.00`);
         });
+
+        it('writes a receipt to a text file with 5% discount', () => {
+          cart.addItems([
+            [50, 1],
+            [25, 2],
+            [10, 1],
+          ]);
+
+          cart.generateReceipt();
+
+          const receiptsFolder = path.join(process.cwd(), 'receipts/text');
+
+          const receipt = fs
+            .readFileSync(path.join(receiptsFolder, 'receipt.txt'), 'utf-8')
+            .split(/\n/g);
+
+          expect(receipt[0]).toBe('Your receipt');
+          expect(receipt[1]).toBe('');
+          expect(receipt[2]).toBe(`1. 50.00 x 1 - ${currencySymbol}50.00`);
+          expect(receipt[3]).toBe(`2. 25.00 x 2 - ${currencySymbol}50.00`);
+          expect(receipt[4]).toBe(`3. 10.00 x 1 - ${currencySymbol}10.00`);
+          expect(receipt[5]).toBe('');
+          expect(receipt[6]).toBe(`Subtotal: ${currencySymbol}110.00`);
+          expect(receipt[7]).toBe('');
+          expect(receipt[8]).toBe(`5% Discount: -${currencySymbol}5.50`);
+          expect(receipt[9]).toBe('');
+          expect(receipt[10]).toBe(`Total: ${currencySymbol}104.50`);
+        });
       });
     });
   },

@@ -75,6 +75,14 @@ export default class ShoppingCart {
       total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
     };
 
+    if (this.shouldApplyDiscount) {
+      data.discount = {
+        percentage: this.discountedPrice.percentage,
+        deductedAmount: this.discountedPrice.deductedAmount,
+        netPrice: this.discountedPrice.netPrice,
+      };
+    }
+
     this.receiptService.generate(data);
   }
 }

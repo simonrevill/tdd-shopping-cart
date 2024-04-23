@@ -30,5 +30,10 @@ export type TReceiptItem = {
 export type TReceiptData = {
   items: TReceiptItem[];
   subtotal: number;
+  discount?: {
+    percentage: number;
+    deductedAmount: number;
+    netPrice: number;
+  };
   total: number;
 };
