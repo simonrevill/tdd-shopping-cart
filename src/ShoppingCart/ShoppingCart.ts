@@ -43,6 +43,28 @@ export default class ShoppingCart {
     );
   }
 
+  private buildReceiptData(): TReceiptData {
+    const data: TReceiptData = {
+      items: this.items.map(([unitPrice, quantity]) => ({
+        unitPrice,
+        quantity,
+        grossPrice: unitPrice * quantity,
+      })),
+      subtotal: this.grossPrice,
+      total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
+    };
+
+    if (this.shouldApplyDiscount) {
+      data.discount = {
+        percentage: this.discountedPrice.percentage,
+        deductedAmount: this.discountedPrice.deductedAmount,
+        netPrice: this.discountedPrice.netPrice,
+      };
+    }
+
+    return data;
+  }
+
   addItems(items: TItem[]): void {
     this.items = items;
   }
@@ -66,23 +88,7 @@ export default class ShoppingCart {
       throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
     }
 
-    const data: TReceiptData = {
-      items: this.items.map(([unitPrice, quantity]) => ({
-        unitPrice,
-        quantity,
-        grossPrice: unitPrice * quantity,
-      })),
-      subtotal: this.grossPrice,
-      total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
-    };
-
-    if (this.shouldApplyDiscount) {
-      data.discount = {
-        percentage: this.discountedPrice.percentage,
-        deductedAmount: this.discountedPrice.deductedAmount,
-        netPrice: this.discountedPrice.netPrice,
-      };
-    }
+    const data = this.buildReceiptData();
 
     this.receiptService.create(data, options);
   }
