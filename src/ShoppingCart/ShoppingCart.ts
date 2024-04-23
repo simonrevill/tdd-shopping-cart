@@ -66,10 +66,10 @@ export default class ShoppingCart {
     const grossPrice = this.grossPrice();
 
     const data: TReceiptData = {
-      items: this.items.map((item) => ({
-        unitPrice: item[0],
-        quantity: item[1],
-        grossPrice: item[0] * item[1],
+      items: this.items.map(([unitPrice, quantity]) => ({
+        unitPrice,
+        quantity,
+        grossPrice: unitPrice * quantity,
       })),
       subtotal: grossPrice,
       total: this.shouldApplyDiscount ? this.discountedPrice(grossPrice) : grossPrice,
