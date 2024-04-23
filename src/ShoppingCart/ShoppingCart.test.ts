@@ -3,6 +3,7 @@ import { createCurrencyService, createReceiptService } from '../services';
 import ShoppingCart from './ShoppingCart';
 import fs from 'node:fs';
 import path from 'node:path';
+import { deleteReceiptsDirectory } from '../test-utils';
 
 let cart: ShoppingCart;
 let currencyService: ICurrencyService;
@@ -29,7 +30,7 @@ describe.each(currencies)(
     });
 
     afterEach(() => {
-      fs.rmSync(path.join(process.cwd(), 'receipts'), { recursive: true, force: true });
+      deleteReceiptsDirectory();
     });
 
     describe('add items to cart', () => {
