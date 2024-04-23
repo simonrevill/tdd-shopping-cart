@@ -1,9 +1,7 @@
 import { ICurrencyService, IReceiptService } from '../types';
 import { createCurrencyService, createReceiptService } from '../services';
 import ShoppingCart from './ShoppingCart';
-import fs from 'node:fs';
-import path from 'node:path';
-import { deleteReceiptsDirectory } from '../test-utils';
+import { deleteReceiptsDirectory, readGeneratedReceipt } from '../test-utils';
 
 let cart: ShoppingCart;
 let currencyService: ICurrencyService;
@@ -157,11 +155,7 @@ describe.each(currencies)(
 
           cart.generateReceipt();
 
-          const receiptsFolder = path.join(process.cwd(), 'receipts/text');
-
-          const receipt = fs
-            .readFileSync(path.join(receiptsFolder, 'receipt.txt'), 'utf-8')
-            .split(/\n/g);
+          const receipt = readGeneratedReceipt();
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -182,11 +176,7 @@ describe.each(currencies)(
 
           cart.generateReceipt();
 
-          const receiptsFolder = path.join(process.cwd(), 'receipts/text');
-
-          const receipt = fs
-            .readFileSync(path.join(receiptsFolder, 'receipt.txt'), 'utf-8')
-            .split(/\n/g);
+          const receipt = readGeneratedReceipt();
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');

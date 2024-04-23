@@ -1,3 +1,4 @@
 import deleteReceiptsDirectory from './deleteReceiptsDirectory';
+import readGeneratedReceipt from './readGeneratedReceipt';
 
-export { deleteReceiptsDirectory };
+export { deleteReceiptsDirectory, readGeneratedReceipt };
