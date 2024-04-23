@@ -137,6 +137,10 @@ describe.each(currencies)(
     });
 
     describe('write receipt to text file', () => {
+      afterEach(() => {
+        fs.rmSync(path.join(process.cwd(), 'receipts'), { recursive: true, force: true });
+      });
+
       it('throws an error when attempting to generate a receipt with an empty cart', () => {
         expect(() => {
           cart.generateReceipt();
