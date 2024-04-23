@@ -23,13 +23,17 @@ export default class ShoppingCart {
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private get discountedPrice(): number {
+  private get discountedPrice(): { percentage: number; deductedAmount: number; netPrice: number } {
     const discountPercentage: TDiscountPercentage =
       this.grossPrice > DiscountThresholds.TWO_HUNDRED
         ? DiscountPercentages.TEN
         : DiscountPercentages.FIVE;
 
-    return this.grossPrice - this.grossPrice * discountPercentage;
+    return {
+      percentage: discountPercentage,
+      deductedAmount: this.grossPrice * discountPercentage,
+      netPrice: this.grossPrice - this.grossPrice * discountPercentage,
+    };
   }
 
   private get shouldApplyDiscount(): boolean {
@@ -52,7 +56,7 @@ export default class ShoppingCart {
     }
 
     return this.currencyService.format(
-      this.shouldApplyDiscount ? this.discountedPrice : this.grossPrice,
+      this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
     );
   }
 
@@ -68,7 +72,7 @@ export default class ShoppingCart {
         grossPrice: unitPrice * quantity,
       })),
       subtotal: this.grossPrice,
-      total: this.shouldApplyDiscount ? this.discountedPrice : this.grossPrice,
+      total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
     };
 
     this.receiptService.generate(data);
