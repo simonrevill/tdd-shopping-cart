@@ -23,11 +23,13 @@ export default class ShoppingCart {
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private discountedPrice(price: number): number {
+  private get discountedPrice(): number {
     const discountPercentage: TDiscountPercentage =
-      price > DiscountThresholds.TWO_HUNDRED ? DiscountPercentages.TEN : DiscountPercentages.FIVE;
+      this.grossPrice > DiscountThresholds.TWO_HUNDRED
+        ? DiscountPercentages.TEN
+        : DiscountPercentages.FIVE;
 
-    return price - price * discountPercentage;
+    return this.grossPrice - this.grossPrice * discountPercentage;
   }
 
   private get shouldApplyDiscount(): boolean {
@@ -50,7 +52,7 @@ export default class ShoppingCart {
     }
 
     return this.currencyService.format(
-      this.shouldApplyDiscount ? this.discountedPrice(this.grossPrice) : this.grossPrice,
+      this.shouldApplyDiscount ? this.discountedPrice : this.grossPrice,
     );
   }
 
@@ -66,7 +68,7 @@ export default class ShoppingCart {
         grossPrice: unitPrice * quantity,
       })),
       subtotal: this.grossPrice,
-      total: this.shouldApplyDiscount ? this.discountedPrice(this.grossPrice) : this.grossPrice,
+      total: this.shouldApplyDiscount ? this.discountedPrice : this.grossPrice,
     };
 
     this.receiptService.generate(data);
