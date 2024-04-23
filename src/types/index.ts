@@ -17,8 +17,14 @@ export interface ICurrencyService extends ICurrencyServiceOptions {
   getZeroPriceInCurrency: () => string;
 }
 
+export type TReceiptFormat = 'text' | 'json' | 'html';
+
+export type TReceiptServiceGeneratorOptions = {
+  format: TReceiptFormat;
+};
+
 export interface IReceiptService {
-  generate: (data: TReceiptData) => void;
+  generate: (data: TReceiptData, options: TReceiptServiceGeneratorOptions) => void;
 }
 
 export type TReceiptItem = {

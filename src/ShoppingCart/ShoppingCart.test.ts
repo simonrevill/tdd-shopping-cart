@@ -143,7 +143,7 @@ describe.each(currencies)(
       describe('write receipt to text file', () => {
         it('throws an error when attempting to generate a text receipt with an empty cart', () => {
           expect(() => {
-            cart.generateReceipt();
+            cart.generateReceipt({ format: 'text' });
           }).toThrow('Cannot generate text receipt. Cart is empty!');
         });
 
@@ -153,7 +153,7 @@ describe.each(currencies)(
             [25, 2],
           ]);
 
-          cart.generateReceipt();
+          cart.generateReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt();
 
@@ -174,7 +174,7 @@ describe.each(currencies)(
             [10, 1],
           ]);
 
-          cart.generateReceipt();
+          cart.generateReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt();
 
@@ -198,7 +198,7 @@ describe.each(currencies)(
             [10, 1],
           ]);
 
-          cart.generateReceipt();
+          cart.generateReceipt({ format: 'text' });
 
           const receipt = readGeneratedReceipt();
 

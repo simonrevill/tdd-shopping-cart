@@ -5,6 +5,7 @@ import {
   ICurrencyService,
   IReceiptService,
   TReceiptData,
+  TReceiptServiceGeneratorOptions,
 } from '../types';
 
 export default class ShoppingCart {
@@ -60,7 +61,7 @@ export default class ShoppingCart {
     );
   }
 
-  generateReceipt() {
+  generateReceipt(options: TReceiptServiceGeneratorOptions) {
     if (!this.items.length) {
       throw new Error('Cannot generate text receipt. Cart is empty!');
     }
@@ -83,6 +84,6 @@ export default class ShoppingCart {
       };
     }
 
-    this.receiptService.generate(data);
+    this.receiptService.generate(data, options);
   }
 }
