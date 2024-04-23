@@ -223,7 +223,7 @@ describe.each(currencies)(
           }).toThrow('Cannot generate json receipt. Cart is empty!');
         });
 
-        it('writes a receipt to a json file with no discount', () => {
+        it('writes a receipt to a JSON file with no discount', () => {
           cart.addItems([
             [50, 1],
             [25, 2],
@@ -249,6 +249,92 @@ describe.each(currencies)(
               ],
               "subtotal": "${currencySymbol}100.00",
               "total": "${currencySymbol}100.00"
+            }
+          `);
+
+          expect(receipt).toEqual(expectedJson);
+        });
+
+        it('writes a receipt to a JSON file with 5% discount', () => {
+          cart.addItems([
+            [50, 1],
+            [25, 2],
+            [10, 1],
+          ]);
+
+          cart.createReceipt({ format: 'json' });
+
+          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+
+          const expectedJson = JSON.parse(`
+            {
+              "items": [
+                {
+                  "unitPrice": "${currencySymbol}50.00",
+                  "quantity": "1",
+                  "grossPrice": "${currencySymbol}50.00"
+                },
+                {
+                  "unitPrice": "${currencySymbol}25.00",
+                  "quantity": "2",
+                  "grossPrice": "${currencySymbol}50.00"
+                },
+                {
+                  "unitPrice": "${currencySymbol}10.00",
+                  "quantity": "1",
+                  "grossPrice": "${currencySymbol}10.00"
+                }
+              ],
+              "subtotal": "${currencySymbol}110.00",
+              "discount": {
+                "percentage": "5%",
+                "deductedAmount": "-${currencySymbol}5.50",
+                "netPrice": "${currencySymbol}104.50"
+              },
+              "total": "${currencySymbol}104.50"
+            }
+          `);
+
+          expect(receipt).toEqual(expectedJson);
+        });
+
+        it('writes a receipt to a JSON file with 10% discount', () => {
+          cart.addItems([
+            [50, 2],
+            [25, 4],
+            [10, 1],
+          ]);
+
+          cart.createReceipt({ format: 'json' });
+
+          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+
+          const expectedJson = JSON.parse(`
+            {
+              "items": [
+                {
+                  "unitPrice": "${currencySymbol}50.00",
+                  "quantity": "2",
+                  "grossPrice": "${currencySymbol}100.00"
+                },
+                {
+                  "unitPrice": "${currencySymbol}25.00",
+                  "quantity": "4",
+                  "grossPrice": "${currencySymbol}100.00"
+                },
+                {
+                  "unitPrice": "${currencySymbol}10.00",
+                  "quantity": "1",
+                  "grossPrice": "${currencySymbol}10.00"
+                }
+              ],
+              "subtotal": "${currencySymbol}210.00",
+              "discount": {
+                "percentage": "10%",
+                "deductedAmount": "-${currencySymbol}21.00",
+                "netPrice": "${currencySymbol}189.00"
+              },
+              "total": "${currencySymbol}189.00"
             }
           `);
 

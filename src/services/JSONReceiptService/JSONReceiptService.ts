@@ -23,7 +23,7 @@ export default class JSONReceiptService implements IReceiptService {
       fs.mkdirSync(receiptsJSONFolder);
     }
 
-    const receiptObject = {
+    const receiptObject: Partial<TReceiptData> = {
       items: data.items.map((item) => {
         return {
           unitPrice: this.currencyService.format(item.unitPrice),
@@ -34,6 +34,17 @@ export default class JSONReceiptService implements IReceiptService {
       subtotal: this.currencyService.format(data.subtotal),
       total: this.currencyService.format(data.total),
     };
+
+    if (data.discount) {
+      receiptObject.discount = {
+        percentage: `${(data.discount.percentage as number) * 100}%`,
+        deductedAmount: `-${this.currencyService.format(data.discount.deductedAmount)}`,
+        netPrice: `${this.currencyService.format(data.discount.netPrice)}`,
+      };
+    }
+
+    receiptObject.subtotal = this.currencyService.format(data.subtotal);
+    receiptObject.total = this.currencyService.format(data.total);
 
     const receiptJSON = JSON.stringify(receiptObject);
 

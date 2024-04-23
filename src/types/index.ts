@@ -28,18 +28,18 @@ export interface IReceiptService {
 }
 
 export type TReceiptItem = {
-  unitPrice: number;
-  quantity: number;
-  grossPrice: number;
+  unitPrice: number | string;
+  quantity: number | string;
+  grossPrice: number | string;
 };
 
 export type TReceiptData = {
   items: TReceiptItem[];
-  subtotal: number;
+  subtotal: number | string;
   discount?: {
-    percentage: number;
-    deductedAmount: number;
-    netPrice: number;
+    percentage: number | string;
+    deductedAmount: number | string;
+    netPrice: number | string;
   };
-  total: number;
+  total: number | string;
 };

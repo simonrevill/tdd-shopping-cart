@@ -38,9 +38,9 @@ export default class TextReceiptService implements IReceiptService {
     }${this.currencyService.formatNumber(data.subtotal)}\n\n`;
 
     if (data.discount) {
-      receiptString += `${data.discount.percentage * 100}% Discount: -${this.currencyService.format(
-        data.discount.deductedAmount,
-      )}\n\n`;
+      receiptString += `${
+        (data.discount.percentage as number) * 100
+      }% Discount: -${this.currencyService.format(data.discount.deductedAmount)}\n\n`;
     }
 
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
