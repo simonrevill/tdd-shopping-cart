@@ -6,6 +6,7 @@ import {
   IReceiptService,
   TReceiptData,
   TReceiptServiceCreateOptions,
+  TDiscount,
 } from '../types';
 
 export default class ShoppingCart {
@@ -24,7 +25,7 @@ export default class ShoppingCart {
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private get discountedPrice(): { percentage: number; deductedAmount: number; netPrice: number } {
+  private get discountedPrice(): TDiscount {
     const discountPercentage: TDiscountPercentage =
       this.grossPrice > DiscountThresholds.TWO_HUNDRED
         ? DiscountPercentages.TEN
@@ -83,7 +84,7 @@ export default class ShoppingCart {
     );
   }
 
-  createReceipt(options: TReceiptServiceCreateOptions) {
+  createReceipt(options: TReceiptServiceCreateOptions): void {
     if (!this.items.length) {
       throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
     }

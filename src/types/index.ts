@@ -27,6 +27,12 @@ export interface IReceiptService {
   create: (data: TReceiptData, options: TReceiptServiceCreateOptions) => void;
 }
 
+export type TDiscount = {
+  percentage: number;
+  deductedAmount: number;
+  netPrice: number;
+};
+
 export type TReceiptItem = {
   unitPrice: number | string;
   quantity: number | string;
