@@ -1,28 +1,20 @@
-import { ICurrencyService, IReceiptService, TReceiptData } from '../../types';
+import {
+  ICurrencyService,
+  IReceiptFormatService,
+  TReceiptData,
+  TReceiptOutputPath,
+} from '../../types';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export default class JSONReceiptService implements IReceiptService {
+export default class JSONReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
 
   constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
   }
 
-  create(data: TReceiptData): void {
-    const rootDirectory = process.cwd();
-    const receiptsDirectory = path.join(rootDirectory, 'receipts');
-
-    if (!fs.existsSync(receiptsDirectory)) {
-      fs.mkdirSync(receiptsDirectory);
-    }
-
-    const receiptsJSONFolder = path.join(rootDirectory, 'receipts/json');
-
-    if (!fs.existsSync(receiptsJSONFolder)) {
-      fs.mkdirSync(receiptsJSONFolder);
-    }
-
+  create(data: TReceiptData, outputDirectory: TReceiptOutputPath): void {
     const receiptObject: Partial<TReceiptData> = {
       items: data.items.map((item) => {
         return {
@@ -48,6 +40,6 @@ export default class JSONReceiptService implements IReceiptService {
 
     const receiptJSON = JSON.stringify(receiptObject);
 
-    fs.writeFileSync(path.join(receiptsJSONFolder, 'receipt.json'), receiptJSON);
+    fs.writeFileSync(path.join(outputDirectory, 'receipt.json'), receiptJSON);
   }
 }

@@ -1,28 +1,20 @@
-import { ICurrencyService, IReceiptService, TReceiptData } from '../../types';
+import {
+  ICurrencyService,
+  IReceiptFormatService,
+  TReceiptData,
+  TReceiptOutputPath,
+} from '../../types';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export default class TextReceiptService implements IReceiptService {
+export default class TextReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
 
   constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
   }
 
-  create(data: TReceiptData): void {
-    const rootDirectory = process.cwd();
-    const receiptsDirectory = path.join(rootDirectory, 'receipts');
-
-    if (!fs.existsSync(receiptsDirectory)) {
-      fs.mkdirSync(receiptsDirectory);
-    }
-
-    const receiptsTextFolder = path.join(rootDirectory, 'receipts/text');
-
-    if (!fs.existsSync(receiptsTextFolder)) {
-      fs.mkdirSync(receiptsTextFolder);
-    }
-
+  create(data: TReceiptData, outputDirectory: TReceiptOutputPath): void {
     let receiptString = 'Your receipt\n\n';
 
     data.items.forEach((item, index) => {
@@ -45,6 +37,6 @@ export default class TextReceiptService implements IReceiptService {
 
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
 
-    fs.writeFileSync(path.join(receiptsTextFolder, 'receipt.txt'), receiptString);
+    fs.writeFileSync(path.join(outputDirectory, 'receipt.txt'), receiptString);
   }
 }
