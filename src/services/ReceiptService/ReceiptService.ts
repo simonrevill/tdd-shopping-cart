@@ -6,7 +6,7 @@ import {
   TReceiptServiceCreateOptions,
 } from '../../types';
 import { FileExtensions } from '../../constants';
-import FileSystemService from '../FileSystemService/FileSystemService/FileSystemService';
+import FileSystemService from '../FileSystemService';
 import TextReceiptService from '../TextReceiptService';
 import JSONReceiptService from '../JSONReceiptService';
 

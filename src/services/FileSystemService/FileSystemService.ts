@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { IFileSystemService, TReceiptOutputDirectory, TReceiptOutputPath } from '../../../types';
+import { IFileSystemService, TReceiptOutputDirectory, TReceiptOutputPath } from '../../types';
 
 export default class FileSystemService implements IFileSystemService {
   rootDirectory: string = process.cwd();
