@@ -27,8 +27,8 @@ export default class JSONReceiptService implements IReceiptFormatService {
 
     if (data.discount) {
       receiptObject.discount = {
-        percentage: `${(data.discount.percentage as number) * 100}%`,
-        deductedAmount: `-${this.currencyService.format(data.discount.deductedAmount)}`,
+        percentage: (data.discount.percentage as number) * 100 + '%',
+        deductedAmount: '-' + this.currencyService.format(data.discount.deductedAmount),
         netPrice: this.currencyService.format(data.discount.netPrice),
       };
     }
