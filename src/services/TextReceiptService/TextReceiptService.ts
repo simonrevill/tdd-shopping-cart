@@ -1,19 +1,10 @@
-import {
-  ICurrencyService,
-  IFileSystemService,
-  IReceiptFormatService,
-  TReceiptData,
-  TReceiptItem,
-  TReceiptOutputPath,
-} from '../../types';
+import { ICurrencyService, IReceiptFormatService, TReceiptData, TReceiptItem } from '../../types';
 
 export default class TextReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
-  fileSystemService: IFileSystemService;
 
-  constructor(currencyService: ICurrencyService, fileSystemService: IFileSystemService) {
+  constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
-    this.fileSystemService = fileSystemService;
   }
 
   writeItem(item: TReceiptItem, index: number): string {
@@ -31,7 +22,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     return { single: '\n', double: '\n\n' }[newLine];
   }
 
-  create(data: TReceiptData, outputDirectory: TReceiptOutputPath): void {
+  create(data: TReceiptData): string {
     let receiptString = 'Your receipt';
     receiptString += this.writeNewLine('double');
 
@@ -53,6 +44,6 @@ export default class TextReceiptService implements IReceiptFormatService {
 
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
 
-    this.fileSystemService.writeToFile(outputDirectory, 'receipt.txt', receiptString);
+    return receiptString;
   }
 }

@@ -33,10 +33,12 @@ export type TReceiptServiceCreateOptions = {
 };
 
 export interface IReceiptService {
+  writeToFile: (receiptString: string, receiptFormat: TReceiptFormat) => void;
   create: (data: TReceiptData, options: TReceiptServiceCreateOptions) => void;
 }
 
 export interface IReceiptFormatService {
+  currencyService: ICurrencyService;
   create: (data: TReceiptData, outputDirectory: TReceiptOutputPath) => void;
 }
 

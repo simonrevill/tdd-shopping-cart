@@ -2,6 +2,7 @@ import {
   ICurrencyService,
   IReceiptService,
   TReceiptData,
+  TReceiptFormat,
   TReceiptServiceCreateOptions,
 } from '../../types';
 import FileSystemService from '../FileSystemService/FileSystemService/FileSystemService';
@@ -17,19 +18,36 @@ export default class ReceiptService implements IReceiptService {
   constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
     this.fileSystemService = new FileSystemService();
-    this.textReceiptService = new TextReceiptService(this.currencyService, this.fileSystemService);
-    this.jsonReceiptService = new JSONReceiptService(this.currencyService, this.fileSystemService);
+    this.textReceiptService = new TextReceiptService(this.currencyService);
+    this.jsonReceiptService = new JSONReceiptService(this.currencyService);
+  }
+
+  writeToFile(receiptString: string, receiptFormat: TReceiptFormat): void {
+    const outputDirectory = this.fileSystemService.buildOutputDirectory(receiptFormat);
+    const fileExtensions = {
+      text: 'txt',
+      json: 'json',
+      html: 'html',
+    };
+
+    this.fileSystemService.writeToFile(
+      outputDirectory,
+      'receipt.' + fileExtensions[receiptFormat],
+      receiptString,
+    );
   }
 
   create(data: TReceiptData, options: TReceiptServiceCreateOptions): void {
-    const outputDirectory = this.fileSystemService.buildOutputDirectory(options.format);
+    let receiptString = '';
 
     if (options.format === 'text') {
-      this.textReceiptService.create(data, outputDirectory);
+      receiptString = this.textReceiptService.create(data);
     }
 
     if (options.format === 'json') {
-      this.jsonReceiptService.create(data, outputDirectory);
+      receiptString = this.jsonReceiptService.create(data);
     }
+
+    this.writeToFile(receiptString, options.format);
   }
 }

@@ -1,21 +1,13 @@
-import {
-  ICurrencyService,
-  IFileSystemService,
-  IReceiptFormatService,
-  TReceiptData,
-  TReceiptOutputPath,
-} from '../../types';
+import { ICurrencyService, IReceiptFormatService, TReceiptData } from '../../types';
 
 export default class JSONReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
-  fileSystemService: IFileSystemService;
 
-  constructor(currencyService: ICurrencyService, fileSystemService: IFileSystemService) {
+  constructor(currencyService: ICurrencyService) {
     this.currencyService = currencyService;
-    this.fileSystemService = fileSystemService;
   }
 
-  create(data: TReceiptData, outputDirectory: TReceiptOutputPath): void {
+  create(data: TReceiptData): string {
     const receiptObject: Partial<TReceiptData> = {
       items: data.items.map((item) => {
         return {
@@ -39,6 +31,6 @@ export default class JSONReceiptService implements IReceiptFormatService {
 
     const receiptJSON = JSON.stringify(receiptObject);
 
-    this.fileSystemService.writeToFile(outputDirectory, 'receipt.json', receiptJSON);
+    return receiptJSON;
   }
 }
