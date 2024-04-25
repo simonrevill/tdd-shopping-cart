@@ -1,3 +1,4 @@
 import { DiscountPercentages, DiscountThresholds } from './discount';
+import { FileExtensions } from './files';
 
-export { DiscountPercentages, DiscountThresholds };
+export { DiscountPercentages, DiscountThresholds, FileExtensions };

@@ -5,6 +5,7 @@ import {
   TReceiptFormat,
   TReceiptServiceCreateOptions,
 } from '../../types';
+import { FileExtensions } from '../../constants';
 import FileSystemService from '../FileSystemService/FileSystemService/FileSystemService';
 import TextReceiptService from '../TextReceiptService';
 import JSONReceiptService from '../JSONReceiptService';
@@ -24,15 +25,10 @@ export default class ReceiptService implements IReceiptService {
 
   writeToFile(receiptString: string, receiptFormat: TReceiptFormat): void {
     const outputDirectory = this.fileSystemService.buildOutputDirectory(receiptFormat);
-    const fileExtensions = {
-      text: 'txt',
-      json: 'json',
-      html: 'html',
-    };
 
     this.fileSystemService.writeToFile(
       outputDirectory,
-      'receipt.' + fileExtensions[receiptFormat],
+      'receipt.' + FileExtensions[receiptFormat],
       receiptString,
     );
   }
