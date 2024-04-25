@@ -19,19 +19,17 @@ export default class JSONReceiptService implements IReceiptFormatService {
       items: data.items.map((item) => {
         return {
           unitPrice: this.currencyService.format(item.unitPrice),
-          quantity: `${item.quantity}`,
+          quantity: item.quantity.toString(),
           grossPrice: this.currencyService.format(item.grossPrice),
         };
       }),
-      subtotal: this.currencyService.format(data.subtotal),
-      total: this.currencyService.format(data.total),
     };
 
     if (data.discount) {
       receiptObject.discount = {
         percentage: `${(data.discount.percentage as number) * 100}%`,
         deductedAmount: `-${this.currencyService.format(data.discount.deductedAmount)}`,
-        netPrice: `${this.currencyService.format(data.discount.netPrice)}`,
+        netPrice: this.currencyService.format(data.discount.netPrice),
       };
     }
 
