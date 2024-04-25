@@ -17,6 +17,11 @@ export interface ICurrencyService extends ICurrencyServiceOptions {
   getZeroPriceInCurrency: () => string;
 }
 
+export interface IFileSystemService {
+  buildOutputDirectory: (outputDirectoryName: TReceiptOutputDirectory) => string;
+  writeToFile: (outputDirectory: TReceiptOutputPath, fileName: string, data: string) => void;
+}
+
 export type TReceiptFormat = 'text' | 'json' | 'html';
 
 export type TReceiptOutputDirectory = TReceiptFormat;
@@ -29,7 +34,6 @@ export type TReceiptServiceCreateOptions = {
 
 export interface IReceiptService {
   create: (data: TReceiptData, options: TReceiptServiceCreateOptions) => void;
-  buildOutputDirectory: (outputDirectoryName: TReceiptOutputDirectory) => string;
 }
 
 export interface IReceiptFormatService {
