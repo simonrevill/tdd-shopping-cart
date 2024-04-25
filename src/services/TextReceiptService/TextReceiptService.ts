@@ -2,6 +2,7 @@ import {
   ICurrencyService,
   IReceiptFormatService,
   TReceiptData,
+  TReceiptItem,
   TReceiptOutputPath,
 } from '../../types';
 import fs from 'node:fs';
@@ -14,25 +15,39 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
+  writeItem(item: TReceiptItem, index: number): string {
+    let itemString = `${index + 1}. `;
+    itemString += `${this.currencyService.formatNumber(item.unitPrice)}`;
+    itemString += ` x `;
+    itemString += `${item.quantity}`;
+    itemString += ` - `;
+    itemString += `${this.currencyService.format(item.grossPrice)}`;
+
+    return itemString;
+  }
+
+  writeNewLine(newLine: 'single' | 'double'): string {
+    return { single: '\n', double: '\n\n' }[newLine];
+  }
+
   create(data: TReceiptData, outputDirectory: TReceiptOutputPath): void {
-    let receiptString = 'Your receipt\n\n';
+    let receiptString = 'Your receipt';
+    receiptString += this.writeNewLine('double');
 
     data.items.forEach((item, index) => {
-      receiptString += `${index + 1}. ${this.currencyService.formatNumber(item.unitPrice)} x ${
-        item.quantity
-      } - ${this.currencyService.format(item.grossPrice)}${
-        index === data.items.length - 1 ? '\n\n' : '\n'
-      }`;
+      receiptString += this.writeItem(item, index);
+      receiptString += this.writeNewLine(index === data.items.length - 1 ? 'double' : 'single');
     });
 
-    receiptString += `Subtotal: ${
-      this.currencyService.currencySymbol
-    }${this.currencyService.formatNumber(data.subtotal)}\n\n`;
+    receiptString += `Subtotal: ${this.currencyService.currencySymbol}`;
+    receiptString += this.currencyService.formatNumber(data.subtotal);
+    receiptString += this.writeNewLine('double');
 
     if (data.discount) {
-      receiptString += `${
-        (data.discount.percentage as number) * 100
-      }% Discount: -${this.currencyService.format(data.discount.deductedAmount)}\n\n`;
+      receiptString += (data.discount.percentage as number) * 100 + '% ';
+      receiptString += 'Discount: -';
+      receiptString += this.currencyService.format(data.discount.deductedAmount);
+      receiptString += this.writeNewLine('double');
     }
 
     receiptString += `Total: ${this.currencyService.format(data.total)}`;
