@@ -88,22 +88,15 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   }
 
   create(data: TRawReceiptData): string {
-    let receiptHTML = '<h1>Your receipt</h1>';
-    receiptHTML += this.writeNewLine();
-    receiptHTML += '<table>';
-    receiptHTML += this.writeNewLine();
-    receiptHTML += this.buildTableHead();
-    receiptHTML += this.writeNewLine();
-    receiptHTML += '<tbody>';
-    receiptHTML += this.writeNewLine();
-    receiptHTML += this.buildItems(data.items);
-    receiptHTML += this.writeNewLine();
-    receiptHTML += '</tbody>';
-    receiptHTML += this.writeNewLine();
-    receiptHTML += this.buildTableFooter(data.subtotal, data.total, data.discount);
-    receiptHTML += this.writeNewLine();
-    receiptHTML += '</table>';
-
-    return receiptHTML;
+    return [
+      '<h1>Your receipt</h1>',
+      '<table>',
+      this.buildTableHead(),
+      '<tbody>',
+      this.buildItems(data.items),
+      '</tbody>',
+      this.buildTableFooter(data.subtotal, data.total, data.discount),
+      '</table>',
+    ].join(this.writeNewLine());
   }
 }
