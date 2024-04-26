@@ -34,12 +34,12 @@ export type TReceiptServiceCreateOptions = {
 
 export interface IReceiptService {
   writeToFile: (receiptString: string, receiptFormat: TReceiptFormat) => void;
-  create: (data: TReceiptData, options: TReceiptServiceCreateOptions) => void;
+  create: (data: TRawReceiptData, options: TReceiptServiceCreateOptions) => void;
 }
 
 export interface IReceiptFormatService {
   currencyService: ICurrencyService;
-  create: (data: TReceiptData, outputDirectory: TReceiptOutputPath) => void;
+  create: (data: TRawReceiptData, outputDirectory: TReceiptOutputPath) => void;
 }
 
 export type TDiscount = {
@@ -48,19 +48,36 @@ export type TDiscount = {
   netPrice: number;
 };
 
+export type TRawReceiptItem = {
+  unitPrice: number;
+  quantity: number;
+  grossPrice: number;
+};
+
 export type TReceiptItem = {
-  unitPrice: number | string;
-  quantity: number | string;
-  grossPrice: number | string;
+  unitPrice: string;
+  quantity: string;
+  grossPrice: string;
+};
+
+export type TRawReceiptData = {
+  items: TRawReceiptItem[];
+  discount?: {
+    percentage: number;
+    deductedAmount: number;
+    netPrice: number;
+  };
+  subtotal: number;
+  total: number;
 };
 
 export type TReceiptData = {
   items: TReceiptItem[];
-  subtotal: number | string;
   discount?: {
     percentage: number | string;
     deductedAmount: number | string;
     netPrice: number | string;
   };
+  subtotal: number | string;
   total: number | string;
 };

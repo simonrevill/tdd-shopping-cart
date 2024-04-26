@@ -1,4 +1,9 @@
-import { ICurrencyService, IReceiptFormatService, TReceiptData, TReceiptItem } from '../../types';
+import {
+  ICurrencyService,
+  IReceiptFormatService,
+  TRawReceiptData,
+  TRawReceiptItem,
+} from '../../types';
 
 export default class TextReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
@@ -7,7 +12,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  writeItem(item: TReceiptItem, index: number): string {
+  writeItem(item: TRawReceiptItem, index: number): string {
     let itemString = `${index + 1}. `;
     itemString += `${this.currencyService.formatNumber(item.unitPrice)}`;
     itemString += ` x `;
@@ -22,7 +27,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     return { single: '\n', double: '\n\n' }[newLine];
   }
 
-  create(data: TReceiptData): string {
+  create(data: TRawReceiptData): string {
     let receiptString = 'Your receipt';
     receiptString += this.writeNewLine('double');
 

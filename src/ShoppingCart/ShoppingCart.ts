@@ -4,9 +4,9 @@ import {
   TDiscountPercentage,
   ICurrencyService,
   IReceiptService,
-  TReceiptData,
   TReceiptServiceCreateOptions,
   TDiscount,
+  TRawReceiptData,
 } from '../types';
 
 export default class ShoppingCart {
@@ -44,8 +44,8 @@ export default class ShoppingCart {
     );
   }
 
-  private buildReceiptData(): TReceiptData {
-    const data: TReceiptData = {
+  private buildReceiptData(): TRawReceiptData {
+    const data: TRawReceiptData = {
       items: this.items.map(([unitPrice, quantity]) => ({
         unitPrice,
         quantity,

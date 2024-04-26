@@ -1,7 +1,7 @@
 import {
   ICurrencyService,
   IReceiptService,
-  TReceiptData,
+  TRawReceiptData,
   TReceiptFormat,
   TReceiptServiceCreateOptions,
 } from '../../types';
@@ -33,8 +33,8 @@ export default class ReceiptService implements IReceiptService {
     );
   }
 
-  create(data: TReceiptData, options: TReceiptServiceCreateOptions): void {
-    let receiptString = '';
+  create(data: TRawReceiptData, options: TReceiptServiceCreateOptions): void {
+    let receiptString: string = '';
 
     if (options.format === 'text') {
       receiptString = this.textReceiptService.create(data);

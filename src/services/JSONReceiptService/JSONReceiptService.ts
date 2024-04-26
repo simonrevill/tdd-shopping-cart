@@ -1,4 +1,9 @@
-import { ICurrencyService, IReceiptFormatService, TReceiptData } from '../../types';
+import {
+  ICurrencyService,
+  IReceiptFormatService,
+  TRawReceiptData,
+  TReceiptData,
+} from '../../types';
 
 export default class JSONReceiptService implements IReceiptFormatService {
   currencyService: ICurrencyService;
@@ -7,7 +12,7 @@ export default class JSONReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  create(data: TReceiptData): string {
+  create(data: TRawReceiptData): string {
     const receiptObject: Partial<TReceiptData> = {
       items: data.items.map((item) => {
         return {
