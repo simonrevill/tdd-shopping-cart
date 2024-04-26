@@ -12,7 +12,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  writeItem(item: TRawReceiptItem, index: number): string {
+  private writeItem(item: TRawReceiptItem, index: number): string {
     let itemString = `${index + 1}. `;
     itemString += `${this.currencyService.formatNumber(item.unitPrice)}`;
     itemString += ` x `;
@@ -23,7 +23,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     return itemString;
   }
 
-  writeNewLine(newLine: 'single' | 'double'): string {
+  private writeNewLine(newLine: 'single' | 'double'): string {
     return { single: '\n', double: '\n\n' }[newLine];
   }
 
