@@ -55,6 +55,16 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     ].join(this.writeNewLine());
   }
 
+  buildDiscount(percentage: number, deductedAmount: number): string {
+    return [
+      '<tr>',
+      '<td></td>',
+      `<td><strong>${percentage * 100}% Discount</strong></td>`,
+      `<td style="color: red;">-${this.currencyService.format(deductedAmount)}</td>`,
+      '</tr>',
+    ].join(this.writeNewLine());
+  }
+
   buildTableFooter(subtotal: number, total: number, discount?: TRawReceiptDiscountData): string {
     let tableFooterString = '<tfoot>';
     tableFooterString += this.writeNewLine();
@@ -62,17 +72,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     tableFooterString += this.writeNewLine();
 
     if (discount) {
-      tableFooterString += '<tr>';
-      tableFooterString += this.writeNewLine();
-      tableFooterString += '<td></td>';
-      tableFooterString += this.writeNewLine();
-      tableFooterString += `<td><strong>${discount.percentage * 100}% Discount</strong></td>`;
-      tableFooterString += this.writeNewLine();
-      tableFooterString += `<td style="color: red;">-${this.currencyService.format(
-        discount.deductedAmount,
-      )}</td>`;
-      tableFooterString += this.writeNewLine();
-      tableFooterString += '</tr>';
+      tableFooterString += this.buildDiscount(discount.percentage, discount.deductedAmount);
       tableFooterString += this.writeNewLine();
     }
 
