@@ -13,11 +13,11 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  writeNewLine(): string {
+  private writeNewLine(): string {
     return '\n';
   }
 
-  buildTableHead(): string {
+  private buildTableHead(): string {
     return [
       '<tr>',
       '<th>Unit Price</th>',
@@ -27,7 +27,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     ].join(this.writeNewLine());
   }
 
-  buildItems(items: TRawReceiptItem[]): string {
+  private buildItems(items: TRawReceiptItem[]): string {
     const tableItemsString = items
       .map((item) => {
         return [
@@ -43,7 +43,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     return tableItemsString;
   }
 
-  buildSubtotal(subtotal: number): string {
+  private buildSubtotal(subtotal: number): string {
     return [
       '<tr>',
       '<td></td>',
@@ -53,7 +53,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     ].join(this.writeNewLine());
   }
 
-  buildDiscount(percentage: number, deductedAmount: number): string {
+  private buildDiscount(percentage: number, deductedAmount: number): string {
     return [
       '<tr>',
       '<td></td>',
@@ -63,7 +63,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     ].join(this.writeNewLine());
   }
 
-  buildTotal(total: number): string {
+  private buildTotal(total: number): string {
     return [
       '<tr>',
       '<td></td>',
@@ -73,7 +73,11 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     ].join(this.writeNewLine());
   }
 
-  buildTableFooter(subtotal: number, total: number, discount?: TRawReceiptDiscountData): string {
+  private buildTableFooter(
+    subtotal: number,
+    total: number,
+    discount?: TRawReceiptDiscountData,
+  ): string {
     return [
       this.buildSubtotal(subtotal),
       discount ? this.buildDiscount(discount.percentage, discount.deductedAmount) : '',
