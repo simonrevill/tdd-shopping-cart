@@ -155,7 +155,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text');
+          const receipt = readGeneratedReceipt('text') as string[];
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -176,7 +176,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text');
+          const receipt = readGeneratedReceipt('text') as string[];
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
@@ -200,7 +200,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text');
+          const receipt = readGeneratedReceipt('text') as string[];
 
           expect(receipt[0]).toBe('Your receipt');
           expect(receipt[1]).toBe('');
