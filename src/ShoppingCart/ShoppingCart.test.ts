@@ -285,12 +285,12 @@ describe.each(currencies)(
                   "grossPrice": "${currencySymbol}10.00"
                 }
               ],
-              "subtotal": "${currencySymbol}110.00",
               "discount": {
                 "percentage": "5%",
                 "deductedAmount": "-${currencySymbol}5.50",
                 "netPrice": "${currencySymbol}104.50"
               },
+              "subtotal": "${currencySymbol}110.00",
               "total": "${currencySymbol}104.50"
             }
           `);
@@ -328,12 +328,12 @@ describe.each(currencies)(
                   "grossPrice": "${currencySymbol}10.00"
                 }
               ],
-              "subtotal": "${currencySymbol}210.00",
               "discount": {
                 "percentage": "10%",
                 "deductedAmount": "-${currencySymbol}21.00",
                 "netPrice": "${currencySymbol}189.00"
               },
+              "subtotal": "${currencySymbol}210.00",
               "total": "${currencySymbol}189.00"
             }
           `);
