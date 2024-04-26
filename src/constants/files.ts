@@ -3,3 +3,5 @@ export enum FileExtensions {
   json = 'json',
   html = 'html',
 }
+
+export const RECEIPTS_DIRECTORY = 'receipts';

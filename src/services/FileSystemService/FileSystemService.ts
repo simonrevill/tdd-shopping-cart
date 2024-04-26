@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { IFileSystemService, TReceiptOutputDirectory, TReceiptOutputPath } from '../../types';
+import { RECEIPTS_DIRECTORY } from '../../constants';
 
 export default class FileSystemService implements IFileSystemService {
   rootDirectory: string = process.cwd();
 
   buildOutputDirectory(outputDirectoryName: TReceiptOutputDirectory): TReceiptOutputPath {
-    const receiptsDirectory = path.join(this.rootDirectory, 'receipts');
+    const receiptsDirectory = path.join(this.rootDirectory, RECEIPTS_DIRECTORY);
 
     if (!fs.existsSync(receiptsDirectory)) {
       fs.mkdirSync(receiptsDirectory);
