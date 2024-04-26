@@ -47,4 +47,4 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Write receipt to JSON file_~~
 
-Write receipt to HTML file
+~~_Write receipt to HTML file_~~
