@@ -27,8 +27,9 @@ export default class TextReceiptService implements IReceiptFormatService {
     receiptString += this.writeNewLine('double');
 
     data.items.forEach((item, index) => {
+      const isLastItem = index === data.items.length - 1;
       receiptString += this.writeItem(item, index);
-      receiptString += this.writeNewLine(index === data.items.length - 1 ? 'double' : 'single');
+      receiptString += this.writeNewLine(isLastItem ? 'double' : 'single');
     });
 
     receiptString += `Subtotal: ${this.currencyService.currencySymbol}`;
