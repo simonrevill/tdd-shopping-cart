@@ -76,21 +76,15 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   }
 
   buildTableFooter(subtotal: number, total: number, discount?: TRawReceiptDiscountData): string {
-    let tableFooterString = '<tfoot>';
-    tableFooterString += this.writeNewLine();
-    tableFooterString += this.buildSubtotal(subtotal);
-    tableFooterString += this.writeNewLine();
-
-    if (discount) {
-      tableFooterString += this.buildDiscount(discount.percentage, discount.deductedAmount);
-      tableFooterString += this.writeNewLine();
-    }
-
-    tableFooterString += this.buildTotal(total);
-    tableFooterString += this.writeNewLine();
-    tableFooterString += '</tfoot>';
-
-    return tableFooterString;
+    return [
+      '<tfoot>',
+      this.buildSubtotal(subtotal),
+      discount ? this.buildDiscount(discount.percentage, discount.deductedAmount) : '',
+      this.buildTotal(total),
+      '</tfoot>',
+    ]
+      .filter((line) => line.length > 0)
+      .join(this.writeNewLine());
   }
 
   create(data: TRawReceiptData): string {
