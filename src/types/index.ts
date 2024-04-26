@@ -37,7 +37,7 @@ export interface IReceiptService {
 
 export interface IReceiptFormatService {
   currencyService: ICurrencyService;
-  create: (data: TRawReceiptData, outputDirectory: TReceiptOutputPath) => void;
+  create: (data: TRawReceiptData) => string;
 }
 
 export type TDiscount = {
