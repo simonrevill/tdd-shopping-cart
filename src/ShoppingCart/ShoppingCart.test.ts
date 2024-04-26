@@ -341,6 +341,14 @@ describe.each(currencies)(
           expect(receipt).toEqual(expectedJson);
         });
       });
+
+      describe('write receipt to HTML file', () => {
+        it('throws an error when attempting to generate an HTML receipt with an empty cart', () => {
+          expect(() => {
+            cart.createReceipt('html');
+          }).toThrow('Cannot generate html receipt. Cart is empty!');
+        });
+      });
     });
   },
 );
