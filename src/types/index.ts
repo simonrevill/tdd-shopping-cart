@@ -58,24 +58,28 @@ export type TReceiptItem = {
   grossPrice: string;
 };
 
+export type TRawReceiptDiscountData = {
+  percentage: number;
+  deductedAmount: number;
+  netPrice: number;
+};
+
 export type TRawReceiptData = {
   items: TRawReceiptItem[];
-  discount?: {
-    percentage: number;
-    deductedAmount: number;
-    netPrice: number;
-  };
+  discount?: TRawReceiptDiscountData;
   subtotal: number;
   total: number;
 };
 
+export type TReceiptDiscountData = {
+  percentage: string;
+  deductedAmount: string;
+  netPrice: string;
+};
+
 export type TReceiptData = {
   items: TReceiptItem[];
-  discount?: {
-    percentage: number | string;
-    deductedAmount: number | string;
-    netPrice: number | string;
-  };
+  discount?: TReceiptDiscountData;
   subtotal: number | string;
   total: number | string;
 };

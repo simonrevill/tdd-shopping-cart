@@ -2,6 +2,7 @@ import {
   ICurrencyService,
   IReceiptFormatService,
   TRawReceiptData,
+  TRawReceiptDiscountData,
   TRawReceiptItem,
 } from '../../types';
 
@@ -56,7 +57,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     return tableItemsString;
   }
 
-  buildTableFooter(subtotal: number, total: number): string {
+  buildTableFooter(subtotal: number, total: number, discount?: TRawReceiptDiscountData): string {
     let tableFooterString = '<tfoot>';
     tableFooterString += this.writeNewLine();
     tableFooterString += '<tr>';
@@ -69,6 +70,22 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     tableFooterString += this.writeNewLine();
     tableFooterString += '</tr>';
     tableFooterString += this.writeNewLine();
+
+    if (discount) {
+      tableFooterString += '<tr>';
+      tableFooterString += this.writeNewLine();
+      tableFooterString += '<td></td>';
+      tableFooterString += this.writeNewLine();
+      tableFooterString += `<td><strong>${discount.percentage * 100}% Discount</strong></td>`;
+      tableFooterString += this.writeNewLine();
+      tableFooterString += `<td style="color: red;">-${this.currencyService.format(
+        discount.deductedAmount,
+      )}</td>`;
+      tableFooterString += this.writeNewLine();
+      tableFooterString += '</tr>';
+      tableFooterString += this.writeNewLine();
+    }
+
     tableFooterString += '<tr>';
     tableFooterString += this.writeNewLine();
     tableFooterString += '<td></td>';
@@ -96,7 +113,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     receiptHTML += this.buildItems(data.items);
     receiptHTML += '</tbody>';
     receiptHTML += this.writeNewLine();
-    receiptHTML += this.buildTableFooter(data.subtotal, data.total);
+    receiptHTML += this.buildTableFooter(data.subtotal, data.total, data.discount);
     receiptHTML += '</table>';
 
     return receiptHTML;
