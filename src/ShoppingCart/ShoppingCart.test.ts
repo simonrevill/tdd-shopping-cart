@@ -348,6 +348,52 @@ describe.each(currencies)(
             cart.createReceipt('html');
           }).toThrow('Cannot generate html receipt. Cart is empty!');
         });
+
+        it('writes a receipt to an HTML file with no discount', () => {
+          cart.addItems([
+            [50, 1],
+            [25, 2],
+          ]);
+
+          cart.createReceipt('html');
+
+          const receipt = readGeneratedReceipt('html') as string[];
+
+          expect(receipt[0]).toBe('<h1>Your receipt</h1>');
+          expect(receipt[1]).toBe('<table>');
+          expect(receipt[2]).toBe('<thead>');
+          expect(receipt[3]).toBe('<tr>');
+          expect(receipt[4]).toBe('<th>Unit Price</th>');
+          expect(receipt[5]).toBe('<th>Quantity</th>');
+          expect(receipt[6]).toBe('<th>Gross Price</th>');
+          expect(receipt[7]).toBe('</tr>');
+          expect(receipt[8]).toBe('</thead>');
+          expect(receipt[9]).toBe('<tbody>');
+          expect(receipt[10]).toBe('<tr>');
+          expect(receipt[11]).toBe(`<td>${currencySymbol}50.00</td>`);
+          expect(receipt[12]).toBe('<td>1</td>');
+          expect(receipt[13]).toBe(`<td>${currencySymbol}50.00</td>`);
+          expect(receipt[14]).toBe('</tr>');
+          expect(receipt[15]).toBe('<tr>');
+          expect(receipt[16]).toBe(`<td>${currencySymbol}25.00</td>`);
+          expect(receipt[17]).toBe('<td>2</td>');
+          expect(receipt[18]).toBe(`<td>${currencySymbol}50.00</td>`);
+          expect(receipt[19]).toBe('</tr>');
+          expect(receipt[20]).toBe('</tbody>');
+          expect(receipt[21]).toBe('<tfoot>');
+          expect(receipt[22]).toBe('<tr>');
+          expect(receipt[23]).toBe('<td></td>');
+          expect(receipt[24]).toBe('<td><strong>Subtotal</strong></td>');
+          expect(receipt[25]).toBe(`<td>${currencySymbol}100.00</td>`);
+          expect(receipt[26]).toBe('</tr>');
+          expect(receipt[27]).toBe('<tr>');
+          expect(receipt[28]).toBe('<td></td>');
+          expect(receipt[29]).toBe('<td><strong>Total</strong></td>');
+          expect(receipt[30]).toBe(`<td>${currencySymbol}100.00</td>`);
+          expect(receipt[31]).toBe('</tr>');
+          expect(receipt[32]).toBe('</tfoot>');
+          expect(receipt[33]).toBe('</table>');
+        });
       });
     });
   },

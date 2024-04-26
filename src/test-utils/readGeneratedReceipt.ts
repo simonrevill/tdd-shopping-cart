@@ -11,7 +11,7 @@ const readGeneratedReceipt = (format: TReceiptFormat): string[] | string => {
     'utf-8',
   );
 
-  return format === 'text' ? receipt.split(/\n/g) : receipt;
+  return format === 'json' ? receipt : receipt.split(/\n/g);
 };
 
 export default readGeneratedReceipt;
