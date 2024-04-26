@@ -9,7 +9,7 @@ import { FileExtensions } from '../../constants';
 import FileSystemService from '../FileSystemService';
 import TextReceiptService from '../TextReceiptService';
 import JSONReceiptService from '../JSONReceiptService';
-import HTMLReceiptService from '../HTMLReceiptService/HTMLReceiptService';
+import HTMLReceiptService from '../HTMLReceiptService';
 
 export default class ReceiptService implements IReceiptService {
   currencyService: ICurrencyService;
