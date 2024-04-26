@@ -18,22 +18,15 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   }
 
   buildTableHead(): string {
-    let tableHeadString = '<thead>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '<tr>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '<th>Unit Price</th>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '<th>Quantity</th>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '<th>Gross Price</th>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '</tr>';
-    tableHeadString += this.writeNewLine();
-    tableHeadString += '</thead>';
-    tableHeadString += this.writeNewLine();
-
-    return tableHeadString;
+    return [
+      '<thead>',
+      '<tr>',
+      '<th>Unit Price</th>',
+      '<th>Quantity</th>',
+      '<th>Gross Price</th>',
+      '</tr>',
+      '</thead>',
+    ].join(this.writeNewLine());
   }
 
   buildItems(items: TRawReceiptItem[]): string {
@@ -108,6 +101,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     receiptHTML += '<table>';
     receiptHTML += this.writeNewLine();
     receiptHTML += this.buildTableHead();
+    receiptHTML += this.writeNewLine();
     receiptHTML += '<tbody>';
     receiptHTML += this.writeNewLine();
     receiptHTML += this.buildItems(data.items);
