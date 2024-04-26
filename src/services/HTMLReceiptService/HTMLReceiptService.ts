@@ -19,13 +19,11 @@ export default class HTMLReceiptService implements IReceiptFormatService {
 
   buildTableHead(): string {
     return [
-      '<thead>',
       '<tr>',
       '<th>Unit Price</th>',
       '<th>Quantity</th>',
       '<th>Gross Price</th>',
       '</tr>',
-      '</thead>',
     ].join(this.writeNewLine());
   }
 
@@ -91,7 +89,9 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     return [
       '<h1>Your receipt</h1>',
       '<table>',
+      '<thead>',
       this.buildTableHead(),
+      '</thead>',
       '<tbody>',
       this.buildItems(data.items),
       '</tbody>',
