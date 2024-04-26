@@ -45,18 +45,20 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     return tableItemsString;
   }
 
+  buildSubtotal(subtotal: number): string {
+    return [
+      '<tr>',
+      '<td></td>',
+      '<td><strong>Subtotal</strong></td>',
+      `<td>${this.currencyService.format(subtotal)}</td>`,
+      '</tr>',
+    ].join(this.writeNewLine());
+  }
+
   buildTableFooter(subtotal: number, total: number, discount?: TRawReceiptDiscountData): string {
     let tableFooterString = '<tfoot>';
     tableFooterString += this.writeNewLine();
-    tableFooterString += '<tr>';
-    tableFooterString += this.writeNewLine();
-    tableFooterString += '<td></td>';
-    tableFooterString += this.writeNewLine();
-    tableFooterString += '<td><strong>Subtotal</strong></td>';
-    tableFooterString += this.writeNewLine();
-    tableFooterString += `<td>${this.currencyService.format(subtotal)}</td>`;
-    tableFooterString += this.writeNewLine();
-    tableFooterString += '</tr>';
+    tableFooterString += this.buildSubtotal(subtotal);
     tableFooterString += this.writeNewLine();
 
     if (discount) {
