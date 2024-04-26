@@ -233,7 +233,7 @@ describe.each(currencies)(
 
           const receipt = JSON.parse(readGeneratedReceipt('json') as string);
 
-          const expectedJson = JSON.parse(`
+          const expectedJSON = JSON.parse(`
             {
               "items": [
                 {
@@ -252,7 +252,7 @@ describe.each(currencies)(
             }
           `);
 
-          expect(receipt).toEqual(expectedJson);
+          expect(receipt).toEqual(expectedJSON);
         });
 
         it('writes a receipt to a JSON file with 5% discount', () => {
@@ -266,7 +266,7 @@ describe.each(currencies)(
 
           const receipt = JSON.parse(readGeneratedReceipt('json') as string);
 
-          const expectedJson = JSON.parse(`
+          const expectedJSON = JSON.parse(`
             {
               "items": [
                 {
@@ -295,7 +295,7 @@ describe.each(currencies)(
             }
           `);
 
-          expect(receipt).toEqual(expectedJson);
+          expect(receipt).toEqual(expectedJSON);
         });
 
         it('writes a receipt to a JSON file with 10% discount', () => {
@@ -309,7 +309,7 @@ describe.each(currencies)(
 
           const receipt = JSON.parse(readGeneratedReceipt('json') as string);
 
-          const expectedJson = JSON.parse(`
+          const expectedJSON = JSON.parse(`
             {
               "items": [
                 {
@@ -338,7 +338,7 @@ describe.each(currencies)(
             }
           `);
 
-          expect(receipt).toEqual(expectedJson);
+          expect(receipt).toEqual(expectedJSON);
         });
       });
 
