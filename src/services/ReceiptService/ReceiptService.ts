@@ -3,7 +3,7 @@ import {
   IReceiptService,
   TRawReceiptData,
   TReceiptFormat,
-  TReceiptServiceCreateOptions,
+  TReceiptServiceCreateFormat,
 } from '../../types';
 import { FileExtensions } from '../../constants';
 import FileSystemService from '../FileSystemService';
@@ -33,17 +33,17 @@ export default class ReceiptService implements IReceiptService {
     );
   }
 
-  create(data: TRawReceiptData, options: TReceiptServiceCreateOptions): void {
+  create(data: TRawReceiptData, format: TReceiptServiceCreateFormat): void {
     let receiptString: string = '';
 
-    if (options.format === 'text') {
+    if (format === 'text') {
       receiptString = this.textReceiptService.create(data);
     }
 
-    if (options.format === 'json') {
+    if (format === 'json') {
       receiptString = this.jsonReceiptService.create(data);
     }
 
-    this.writeToFile(receiptString, options.format);
+    this.writeToFile(receiptString, format);
   }
 }

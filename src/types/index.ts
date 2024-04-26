@@ -28,13 +28,11 @@ export type TReceiptOutputDirectory = TReceiptFormat;
 
 export type TReceiptOutputPath = `receipts/${TReceiptOutputDirectory}`;
 
-export type TReceiptServiceCreateOptions = {
-  format: TReceiptFormat;
-};
+export type TReceiptServiceCreateFormat = TReceiptFormat;
 
 export interface IReceiptService {
   writeToFile: (receiptString: string, receiptFormat: TReceiptFormat) => void;
-  create: (data: TRawReceiptData, options: TReceiptServiceCreateOptions) => void;
+  create: (data: TRawReceiptData, format: TReceiptServiceCreateFormat) => void;
 }
 
 export interface IReceiptFormatService {

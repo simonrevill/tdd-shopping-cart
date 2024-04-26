@@ -4,9 +4,9 @@ import {
   TDiscountPercentage,
   ICurrencyService,
   IReceiptService,
-  TReceiptServiceCreateOptions,
   TDiscount,
   TRawReceiptData,
+  TReceiptServiceCreateFormat,
 } from '../types';
 
 export default class ShoppingCart {
@@ -84,13 +84,13 @@ export default class ShoppingCart {
     );
   }
 
-  createReceipt(options: TReceiptServiceCreateOptions): void {
+  createReceipt(format: TReceiptServiceCreateFormat): void {
     if (!this.items.length) {
-      throw new Error(`Cannot generate ${options.format} receipt. Cart is empty!`);
+      throw new Error(`Cannot generate ${format} receipt. Cart is empty!`);
     }
 
     const data = this.buildReceiptData();
 
-    this.receiptService.create(data, options);
+    this.receiptService.create(data, format);
   }
 }
