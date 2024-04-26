@@ -32,20 +32,15 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   buildItems(items: TRawReceiptItem[]): string {
     const tableItemsString = items
       .map((item) => {
-        let itemString = '<tr>';
-        itemString += this.writeNewLine();
-        itemString += `<td>${this.currencyService.format(item.unitPrice)}</td>`;
-        itemString += this.writeNewLine();
-        itemString += `<td>${item.quantity}</td>`;
-        itemString += this.writeNewLine();
-        itemString += `<td>${this.currencyService.format(item.grossPrice)}</td>`;
-        itemString += this.writeNewLine();
-        itemString += '</tr>';
-        itemString += this.writeNewLine();
-
-        return itemString;
+        return [
+          '<tr>',
+          `<td>${this.currencyService.format(item.unitPrice)}</td>`,
+          `<td>${item.quantity}</td>`,
+          `<td>${this.currencyService.format(item.grossPrice)}</td>`,
+          '</tr>',
+        ].join(this.writeNewLine());
       })
-      .join('');
+      .join(this.writeNewLine());
 
     return tableItemsString;
   }
@@ -105,6 +100,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     receiptHTML += '<tbody>';
     receiptHTML += this.writeNewLine();
     receiptHTML += this.buildItems(data.items);
+    receiptHTML += this.writeNewLine();
     receiptHTML += '</tbody>';
     receiptHTML += this.writeNewLine();
     receiptHTML += this.buildTableFooter(data.subtotal, data.total, data.discount);
