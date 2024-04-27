@@ -13,7 +13,7 @@ export default class JSONReceiptService implements IReceiptFormatService {
   }
 
   create(data: TRawReceiptData): string {
-    const receiptObject: Partial<TReceiptData> = {
+    const receiptObject: TReceiptData = {
       items: data.items.map((item) => {
         return {
           unitPrice: this.currencyService.format(item.unitPrice),
@@ -21,18 +21,16 @@ export default class JSONReceiptService implements IReceiptFormatService {
           grossPrice: this.currencyService.format(item.grossPrice),
         };
       }),
+      ...(data.discount && {
+        discount: {
+          percentage: (data.discount.percentage as number) * 100 + '%',
+          deductedAmount: '-' + this.currencyService.format(data.discount.deductedAmount),
+          netPrice: this.currencyService.format(data.discount.netPrice),
+        },
+      }),
+      subtotal: this.currencyService.format(data.subtotal),
+      total: this.currencyService.format(data.total),
     };
-
-    if (data.discount) {
-      receiptObject.discount = {
-        percentage: (data.discount.percentage as number) * 100 + '%',
-        deductedAmount: '-' + this.currencyService.format(data.discount.deductedAmount),
-        netPrice: this.currencyService.format(data.discount.netPrice),
-      };
-    }
-
-    receiptObject.subtotal = this.currencyService.format(data.subtotal);
-    receiptObject.total = this.currencyService.format(data.total);
 
     const receiptJSON = JSON.stringify(receiptObject);
 
