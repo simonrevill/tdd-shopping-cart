@@ -12,13 +12,13 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  private writeItem(item: TRawReceiptItem, index: number): string {
+  private writeItem({ unitPrice, quantity, grossPrice }: TRawReceiptItem, index: number): string {
     let itemString = `${index + 1}. `;
-    itemString += `${this.currencyService.formatNumber(item.unitPrice)}`;
+    itemString += `${this.currencyService.formatNumber(unitPrice)}`;
     itemString += ` x `;
-    itemString += `${item.quantity}`;
+    itemString += `${quantity}`;
     itemString += ` - `;
-    itemString += `${this.currencyService.format(item.grossPrice)}`;
+    itemString += `${this.currencyService.format(grossPrice)}`;
 
     return itemString;
   }
