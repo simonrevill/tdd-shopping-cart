@@ -29,12 +29,12 @@ export default class HTMLReceiptService implements IReceiptFormatService {
 
   private buildItems(items: TRawReceiptItem[]): string {
     return items
-      .map((item) => {
+      .map(({ unitPrice, quantity, grossPrice }) => {
         return [
           '<tr>',
-          `<td>${this.currencyService.format(item.unitPrice)}</td>`,
-          `<td>${item.quantity}</td>`,
-          `<td>${this.currencyService.format(item.grossPrice)}</td>`,
+          `<td>${this.currencyService.format(unitPrice)}</td>`,
+          `<td>${quantity}</td>`,
+          `<td>${this.currencyService.format(grossPrice)}</td>`,
           '</tr>',
         ].join(this.writeNewLine());
       })
