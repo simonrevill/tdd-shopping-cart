@@ -28,7 +28,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   }
 
   private buildItems(items: TRawReceiptItem[]): string {
-    const tableItemsString = items
+    return items
       .map((item) => {
         return [
           '<tr>',
@@ -39,8 +39,6 @@ export default class HTMLReceiptService implements IReceiptFormatService {
         ].join(this.writeNewLine());
       })
       .join(this.writeNewLine());
-
-    return tableItemsString;
   }
 
   private buildSubtotal(subtotal: number): string {
