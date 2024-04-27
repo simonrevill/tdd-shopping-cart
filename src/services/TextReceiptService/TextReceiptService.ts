@@ -27,28 +27,28 @@ export default class TextReceiptService implements IReceiptFormatService {
     return { single: '\n', double: '\n\n' }[newLine];
   }
 
-  create(data: TRawReceiptData): string {
+  create({ items, subtotal, total, discount }: TRawReceiptData): string {
     let receiptString = 'Your receipt';
     receiptString += this.writeNewLine('double');
 
-    data.items.forEach((item, index) => {
-      const isLastItem = index === data.items.length - 1;
+    items.forEach((item, index) => {
+      const isLastItem = index === items.length - 1;
       receiptString += this.writeItem(item, index);
       receiptString += this.writeNewLine(isLastItem ? 'double' : 'single');
     });
 
     receiptString += `Subtotal: ${this.currencyService.currencySymbol}`;
-    receiptString += this.currencyService.formatNumber(data.subtotal);
+    receiptString += this.currencyService.formatNumber(subtotal);
     receiptString += this.writeNewLine('double');
 
-    if (data.discount) {
-      receiptString += (data.discount.percentage as number) * 100 + '% ';
+    if (discount) {
+      receiptString += discount.percentage * 100 + '% ';
       receiptString += 'Discount: -';
-      receiptString += this.currencyService.format(data.discount.deductedAmount);
+      receiptString += this.currencyService.format(discount.deductedAmount);
       receiptString += this.writeNewLine('double');
     }
 
-    receiptString += `Total: ${this.currencyService.format(data.total)}`;
+    receiptString += `Total: ${this.currencyService.format(total)}`;
 
     return receiptString;
   }
