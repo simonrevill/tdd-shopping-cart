@@ -42,8 +42,7 @@ export default class TextReceiptService implements IReceiptFormatService {
     receiptString += this.writeNewLine('double');
 
     if (discount) {
-      receiptString += discount.percentage * 100 + '% ';
-      receiptString += 'Discount: -';
+      receiptString += discount.percentage * 100 + '% Discount: -';
       receiptString += this.currencyService.format(discount.deductedAmount);
       receiptString += this.writeNewLine('double');
     }
