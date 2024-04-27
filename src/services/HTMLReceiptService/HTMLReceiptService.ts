@@ -46,7 +46,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
       '<tr>',
       '<td></td>',
       '<td><strong>Subtotal</strong></td>',
-      `<td>${this.currencyService.format(subtotal)}</td>`,
+      `<td><strong>${this.currencyService.format(subtotal)}</strong></td>`,
       '</tr>',
     ].join(this.writeNewLine());
   }
@@ -56,7 +56,9 @@ export default class HTMLReceiptService implements IReceiptFormatService {
       '<tr>',
       '<td></td>',
       `<td><strong>${percentage * 100}% Discount</strong></td>`,
-      `<td style="color: red;">-${this.currencyService.format(deductedAmount)}</td>`,
+      `<td style="color: red;"><strong>-${this.currencyService.format(
+        deductedAmount,
+      )}</strong></td>`,
       '</tr>',
     ].join(this.writeNewLine());
   }
@@ -66,7 +68,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
       '<tr>',
       '<td></td>',
       '<td><strong>Total</strong></td>',
-      `<td>${this.currencyService.format(total)}</td>`,
+      `<td><strong>${this.currencyService.format(total)}</strong></td>`,
       '</tr>',
     ].join(this.writeNewLine());
   }

@@ -384,12 +384,12 @@ describe.each(currencies)(
           expect(receipt[22]).toBe('<tr>');
           expect(receipt[23]).toBe('<td></td>');
           expect(receipt[24]).toBe('<td><strong>Subtotal</strong></td>');
-          expect(receipt[25]).toBe(`<td>${currencySymbol}100.00</td>`);
+          expect(receipt[25]).toBe(`<td><strong>${currencySymbol}100.00</strong></td>`);
           expect(receipt[26]).toBe('</tr>');
           expect(receipt[27]).toBe('<tr>');
           expect(receipt[28]).toBe('<td></td>');
           expect(receipt[29]).toBe('<td><strong>Total</strong></td>');
-          expect(receipt[30]).toBe(`<td>${currencySymbol}100.00</td>`);
+          expect(receipt[30]).toBe(`<td><strong>${currencySymbol}100.00</strong></td>`);
           expect(receipt[31]).toBe('</tr>');
           expect(receipt[32]).toBe('</tfoot>');
           expect(receipt[33]).toBe('</table>');
@@ -436,17 +436,19 @@ describe.each(currencies)(
           expect(receipt[27]).toBe('<tr>');
           expect(receipt[28]).toBe('<td></td>');
           expect(receipt[29]).toBe('<td><strong>Subtotal</strong></td>');
-          expect(receipt[30]).toBe(`<td>${currencySymbol}110.00</td>`);
+          expect(receipt[30]).toBe(`<td><strong>${currencySymbol}110.00</strong></td>`);
           expect(receipt[31]).toBe('</tr>');
           expect(receipt[32]).toBe('<tr>');
           expect(receipt[33]).toBe('<td></td>');
           expect(receipt[34]).toBe('<td><strong>5% Discount</strong></td>');
-          expect(receipt[35]).toBe(`<td style="color: red;">-${currencySymbol}5.50</td>`);
+          expect(receipt[35]).toBe(
+            `<td style="color: red;"><strong>-${currencySymbol}5.50</strong></td>`,
+          );
           expect(receipt[36]).toBe('</tr>');
           expect(receipt[37]).toBe('<tr>');
           expect(receipt[38]).toBe('<td></td>');
           expect(receipt[39]).toBe('<td><strong>Total</strong></td>');
-          expect(receipt[40]).toBe(`<td>${currencySymbol}104.50</td>`);
+          expect(receipt[40]).toBe(`<td><strong>${currencySymbol}104.50</strong></td>`);
           expect(receipt[41]).toBe('</tr>');
           expect(receipt[42]).toBe('</tfoot>');
           expect(receipt[43]).toBe('</table>');
@@ -493,17 +495,19 @@ describe.each(currencies)(
           expect(receipt[27]).toBe('<tr>');
           expect(receipt[28]).toBe('<td></td>');
           expect(receipt[29]).toBe('<td><strong>Subtotal</strong></td>');
-          expect(receipt[30]).toBe(`<td>${currencySymbol}210.00</td>`);
+          expect(receipt[30]).toBe(`<td><strong>${currencySymbol}210.00</strong></td>`);
           expect(receipt[31]).toBe('</tr>');
           expect(receipt[32]).toBe('<tr>');
           expect(receipt[33]).toBe('<td></td>');
           expect(receipt[34]).toBe('<td><strong>10% Discount</strong></td>');
-          expect(receipt[35]).toBe(`<td style="color: red;">-${currencySymbol}21.00</td>`);
+          expect(receipt[35]).toBe(
+            `<td style="color: red;"><strong>-${currencySymbol}21.00</strong></td>`,
+          );
           expect(receipt[36]).toBe('</tr>');
           expect(receipt[37]).toBe('<tr>');
           expect(receipt[38]).toBe('<td></td>');
           expect(receipt[39]).toBe('<td><strong>Total</strong></td>');
-          expect(receipt[40]).toBe(`<td>${currencySymbol}189.00</td>`);
+          expect(receipt[40]).toBe(`<td><strong>${currencySymbol}189.00</strong></td>`);
           expect(receipt[41]).toBe('</tr>');
           expect(receipt[42]).toBe('</tfoot>');
           expect(receipt[43]).toBe('</table>');
