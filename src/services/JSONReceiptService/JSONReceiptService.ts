@@ -14,13 +14,11 @@ export default class JSONReceiptService implements IReceiptFormatService {
 
   create(data: TRawReceiptData): string {
     const receiptObject: TReceiptData = {
-      items: data.items.map((item) => {
-        return {
-          unitPrice: this.currencyService.format(item.unitPrice),
-          quantity: item.quantity.toString(),
-          grossPrice: this.currencyService.format(item.grossPrice),
-        };
-      }),
+      items: data.items.map((item) => ({
+        unitPrice: this.currencyService.format(item.unitPrice),
+        quantity: item.quantity.toString(),
+        grossPrice: this.currencyService.format(item.grossPrice),
+      })),
       ...(data.discount && {
         discount: {
           percentage: (data.discount.percentage as number) * 100 + '%',
