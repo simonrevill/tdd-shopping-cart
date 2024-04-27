@@ -85,7 +85,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
       .join(this.writeNewLine());
   }
 
-  create(data: TRawReceiptData): string {
+  create({ items, subtotal, total, discount }: TRawReceiptData): string {
     return [
       '<h1>Your receipt</h1>',
       '<table>',
@@ -93,10 +93,10 @@ export default class HTMLReceiptService implements IReceiptFormatService {
       this.buildTableHead(),
       '</thead>',
       '<tbody>',
-      this.buildItems(data.items),
+      this.buildItems(items),
       '</tbody>',
       '<tfoot>',
-      this.buildTableFooter(data.subtotal, data.total, data.discount),
+      this.buildTableFooter(subtotal, total, discount),
       '</tfoot>',
       '</table>',
     ].join(this.writeNewLine());
