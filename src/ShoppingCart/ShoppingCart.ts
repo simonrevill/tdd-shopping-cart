@@ -45,25 +45,22 @@ export default class ShoppingCart {
   }
 
   private buildReceiptData(): TRawReceiptData {
-    const data: TRawReceiptData = {
+    return {
       items: this.items.map(([unitPrice, quantity]) => ({
         unitPrice,
         quantity,
         grossPrice: unitPrice * quantity,
       })),
+      ...(this.shouldApplyDiscount && {
+        discount: {
+          percentage: this.discountedPrice.percentage,
+          deductedAmount: this.discountedPrice.deductedAmount,
+          netPrice: this.discountedPrice.netPrice,
+        },
+      }),
       subtotal: this.grossPrice,
       total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
     };
-
-    if (this.shouldApplyDiscount) {
-      data.discount = {
-        percentage: this.discountedPrice.percentage,
-        deductedAmount: this.discountedPrice.deductedAmount,
-        netPrice: this.discountedPrice.netPrice,
-      };
-    }
-
-    return data;
   }
 
   addItems(items: TItem[]): void {
