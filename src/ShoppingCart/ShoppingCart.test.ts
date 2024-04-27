@@ -157,14 +157,18 @@ describe.each(currencies)(
 
           const receipt = readGeneratedReceipt('text') as string[];
 
-          expect(receipt[0]).toBe('Your receipt');
-          expect(receipt[1]).toBe('');
-          expect(receipt[2]).toBe(`1. 50.00 x 1 - ${currencySymbol}50.00`);
-          expect(receipt[3]).toBe(`2. 25.00 x 2 - ${currencySymbol}50.00`);
-          expect(receipt[4]).toBe('');
-          expect(receipt[5]).toBe(`Subtotal: ${currencySymbol}100.00`);
-          expect(receipt[6]).toBe('');
-          expect(receipt[7]).toBe(`Total: ${currencySymbol}100.00`);
+          const expectedReceipt = [
+            `Your receipt`,
+            ``,
+            `1. 50.00 x 1 - ${currencySymbol}50.00`,
+            `2. 25.00 x 2 - ${currencySymbol}50.00`,
+            ``,
+            `Subtotal: ${currencySymbol}100.00`,
+            ``,
+            `Total: ${currencySymbol}100.00`,
+          ];
+
+          expect(receipt).toEqual(expectedReceipt);
         });
 
         it('writes a receipt to a text file with 5% discount', () => {
@@ -178,17 +182,21 @@ describe.each(currencies)(
 
           const receipt = readGeneratedReceipt('text') as string[];
 
-          expect(receipt[0]).toBe('Your receipt');
-          expect(receipt[1]).toBe('');
-          expect(receipt[2]).toBe(`1. 50.00 x 1 - ${currencySymbol}50.00`);
-          expect(receipt[3]).toBe(`2. 25.00 x 2 - ${currencySymbol}50.00`);
-          expect(receipt[4]).toBe(`3. 10.00 x 1 - ${currencySymbol}10.00`);
-          expect(receipt[5]).toBe('');
-          expect(receipt[6]).toBe(`Subtotal: ${currencySymbol}110.00`);
-          expect(receipt[7]).toBe('');
-          expect(receipt[8]).toBe(`5% Discount: -${currencySymbol}5.50`);
-          expect(receipt[9]).toBe('');
-          expect(receipt[10]).toBe(`Total: ${currencySymbol}104.50`);
+          const expectedReceipt = [
+            `Your receipt`,
+            ``,
+            `1. 50.00 x 1 - ${currencySymbol}50.00`,
+            `2. 25.00 x 2 - ${currencySymbol}50.00`,
+            `3. 10.00 x 1 - ${currencySymbol}10.00`,
+            ``,
+            `Subtotal: ${currencySymbol}110.00`,
+            ``,
+            `5% Discount: -${currencySymbol}5.50`,
+            ``,
+            `Total: ${currencySymbol}104.50`,
+          ];
+
+          expect(receipt).toEqual(expectedReceipt);
         });
 
         it('writes a receipt to a text file with 10% discount', () => {
@@ -202,17 +210,21 @@ describe.each(currencies)(
 
           const receipt = readGeneratedReceipt('text') as string[];
 
-          expect(receipt[0]).toBe('Your receipt');
-          expect(receipt[1]).toBe('');
-          expect(receipt[2]).toBe(`1. 50.00 x 2 - ${currencySymbol}100.00`);
-          expect(receipt[3]).toBe(`2. 25.00 x 4 - ${currencySymbol}100.00`);
-          expect(receipt[4]).toBe(`3. 10.00 x 1 - ${currencySymbol}10.00`);
-          expect(receipt[5]).toBe('');
-          expect(receipt[6]).toBe(`Subtotal: ${currencySymbol}210.00`);
-          expect(receipt[7]).toBe('');
-          expect(receipt[8]).toBe(`10% Discount: -${currencySymbol}21.00`);
-          expect(receipt[9]).toBe('');
-          expect(receipt[10]).toBe(`Total: ${currencySymbol}189.00`);
+          const expectedReceipt = [
+            `Your receipt`,
+            ``,
+            `1. 50.00 x 2 - ${currencySymbol}100.00`,
+            `2. 25.00 x 4 - ${currencySymbol}100.00`,
+            `3. 10.00 x 1 - ${currencySymbol}10.00`,
+            ``,
+            `Subtotal: ${currencySymbol}210.00`,
+            ``,
+            `10% Discount: -${currencySymbol}21.00`,
+            ``,
+            `Total: ${currencySymbol}189.00`,
+          ];
+
+          expect(receipt).toEqual(expectedReceipt);
         });
       });
 
