@@ -155,7 +155,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text') as string[];
+          const receipt = readGeneratedReceipt('text');
 
           const expectedReceipt = [
             `Your receipt`,
@@ -180,7 +180,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text') as string[];
+          const receipt = readGeneratedReceipt('text');
 
           const expectedReceipt = [
             `Your receipt`,
@@ -208,7 +208,7 @@ describe.each(currencies)(
 
           cart.createReceipt('text');
 
-          const receipt = readGeneratedReceipt('text') as string[];
+          const receipt = readGeneratedReceipt('text');
 
           const expectedReceipt = [
             `Your receipt`,
@@ -243,7 +243,7 @@ describe.each(currencies)(
 
           cart.createReceipt('json');
 
-          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+          const receipt = JSON.parse(readGeneratedReceipt('json'));
 
           const expectedJSON = JSON.parse(`
             {
@@ -276,7 +276,7 @@ describe.each(currencies)(
 
           cart.createReceipt('json');
 
-          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+          const receipt = JSON.parse(readGeneratedReceipt('json'));
 
           const expectedJSON = JSON.parse(`
             {
@@ -319,7 +319,7 @@ describe.each(currencies)(
 
           cart.createReceipt('json');
 
-          const receipt = JSON.parse(readGeneratedReceipt('json') as string);
+          const receipt = JSON.parse(readGeneratedReceipt('json'));
 
           const expectedJSON = JSON.parse(`
             {
@@ -369,7 +369,7 @@ describe.each(currencies)(
 
           cart.createReceipt('html');
 
-          const receipt = readGeneratedReceipt('html') as string[];
+          const receipt = readGeneratedReceipt('html');
 
           const expectedReceipt = [
             `<h1>Your receipt</h1>`,
@@ -420,7 +420,7 @@ describe.each(currencies)(
 
           cart.createReceipt('html');
 
-          const receipt = readGeneratedReceipt('html') as string[];
+          const receipt = readGeneratedReceipt('html');
 
           const expectedReceipt = [
             `<h1>Your receipt</h1>`,
@@ -481,7 +481,7 @@ describe.each(currencies)(
 
           cart.createReceipt('html');
 
-          const receipt = readGeneratedReceipt('html') as string[];
+          const receipt = readGeneratedReceipt('html');
 
           const expectedReceipt = [
             `<h1>Your receipt</h1>`,
