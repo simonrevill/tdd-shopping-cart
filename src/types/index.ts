@@ -15,7 +15,7 @@ export interface ICurrencyServiceOptions {
 export interface ICurrencyService extends ICurrencyServiceOptions {
   format: TCurrencyFormatter;
   formatNumber: TNumberFormatter;
-  getZeroPriceInCurrency: () => string;
+  getNilPriceInCurrency: () => string;
 }
 
 export interface IFileSystemService {

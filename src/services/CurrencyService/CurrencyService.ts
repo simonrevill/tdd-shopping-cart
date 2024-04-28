@@ -30,7 +30,7 @@ export default class CurrencyService implements ICurrencyService {
     return this.numberFormatter.format(value);
   }
 
-  getZeroPriceInCurrency(): string {
+  getNilPriceInCurrency(): string {
     return this.format(0);
   }
 }

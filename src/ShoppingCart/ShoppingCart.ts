@@ -73,7 +73,7 @@ export default class ShoppingCart {
 
   total(): string {
     if (!this.items.length) {
-      return this.currencyService.getZeroPriceInCurrency();
+      return this.currencyService.getNilPriceInCurrency();
     }
 
     return this.currencyService.format(
