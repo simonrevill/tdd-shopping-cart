@@ -47,40 +47,33 @@ export type TDiscount = {
   netPrice: number;
 };
 
-export type TRawReceiptItem = {
-  unitPrice: number;
-  quantity: number;
-  grossPrice: number;
+type BaseReceiptItem<T> = {
+  unitPrice: T;
+  quantity: T;
+  grossPrice: T;
 };
 
-export type TReceiptItem = {
-  unitPrice: string;
-  quantity: string;
-  grossPrice: string;
+type BaseReceiptDiscountData<T> = {
+  percentage: T;
+  deductedAmount: T;
+  netPrice: T;
 };
 
-export type TRawReceiptDiscountData = {
-  percentage: number;
-  deductedAmount: number;
-  netPrice: number;
+type BaseReceiptData<T> = {
+  items: BaseReceiptItem<T>[];
+  discount?: BaseReceiptDiscountData<T>;
+  subtotal: T;
+  total: T;
 };
 
-export type TRawReceiptData = {
-  items: TRawReceiptItem[];
-  discount?: TRawReceiptDiscountData;
-  subtotal: number;
-  total: number;
-};
+export type TRawReceiptItem = BaseReceiptItem<number>;
 
-export type TReceiptDiscountData = {
-  percentage: string;
-  deductedAmount: string;
-  netPrice: string;
-};
+export type TReceiptItem = BaseReceiptItem<string>;
 
-export type TReceiptData = {
-  items: TReceiptItem[];
-  discount?: TReceiptDiscountData;
-  subtotal: number | string;
-  total: number | string;
-};
+export type TRawReceiptDiscountData = BaseReceiptDiscountData<number>;
+
+export type TReceiptDiscountData = BaseReceiptDiscountData<string>;
+
+export type TRawReceiptData = BaseReceiptData<number>;
+
+export type TReceiptData = BaseReceiptData<string>;
