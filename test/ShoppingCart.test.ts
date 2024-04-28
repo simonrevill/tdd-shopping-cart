@@ -1,7 +1,7 @@
-import { ICurrencyService, IReceiptService } from '../types';
-import { createCurrencyService, createReceiptService } from '../services';
-import ShoppingCart from './ShoppingCart';
-import { deleteReceiptsDirectory, readGeneratedReceipt } from '../test-utils';
+import { ICurrencyService, IReceiptService } from '../src/types';
+import { createCurrencyService, createReceiptService } from '../src/services';
+import ShoppingCart from '../src/ShoppingCart/ShoppingCart';
+import { deleteReceiptsDirectory, readGeneratedReceipt } from './test-utils';
 
 let cart: ShoppingCart;
 let currencyService: ICurrencyService;

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { TReceiptFormat } from '../types';
-import { FileExtensions, RECEIPTS_DIRECTORY } from '../constants';
+import { TReceiptFormat } from '../../src/types';
+import { FileExtensions, RECEIPTS_DIRECTORY } from '../../src/constants';
 
 function readGeneratedReceipt(format: 'json'): string;
 function readGeneratedReceipt(format: 'text' | 'html'): string[];
