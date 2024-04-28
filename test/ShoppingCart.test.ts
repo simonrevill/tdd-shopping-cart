@@ -13,8 +13,8 @@ const currencies = [
 ];
 
 describe.each(currencies)(
-  'shopping cart with $currency as currency',
-  ({ locale, currency, currencySymbol }) => {
+  'shopping cart with $currencyName ($currency) as currency',
+  ({ locale, currency, currencySymbol, currencyName }) => {
     beforeEach(() => {
       currencyService = createCurrencyService({
         locale,
@@ -139,7 +139,7 @@ describe.each(currencies)(
       });
     });
 
-    describe(`generate receipts with ${currency} as currency`, () => {
+    describe(`generate receipts with ${currencyName} (${currency}) as currency`, () => {
       describe('write receipt to text file', () => {
         it('throws an error when attempting to generate a text receipt with an empty cart', () => {
           expect(() => {
