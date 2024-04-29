@@ -3,17 +3,6 @@ import { ICurrencyService, IReceiptService } from '../src/types';
 import { createCurrencyService, createReceiptService } from '../src/services';
 import { deleteReceiptsDirectory, readGeneratedReceipt, PRODUCT_DATA } from './test-utils';
 
-const {
-  PRODUCT_A_10,
-  PRODUCT_B_20,
-  PRODUCT_C_15,
-  PRODUCT_D_17_09,
-  PRODUCT_E_14_5,
-  PRODUCT_F_7_22,
-  PRODUCT_G_50,
-  PRODUCT_H_25,
-} = PRODUCT_DATA;
-
 let cart: ShoppingCart;
 let currencyService: ICurrencyService;
 let receiptService: IReceiptService;
@@ -49,26 +38,26 @@ describe.each(currencies)(
 
     describe('add items to cart', () => {
       it('adds a single items to the cart', () => {
-        cart.addItems([[PRODUCT_A_10, 1]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_A_10, 1]]);
 
-        expect(cart.list()).toEqual([[PRODUCT_A_10, 1]]);
+        expect(cart.list()).toEqual([[PRODUCT_DATA.PRODUCT_A_10, 1]]);
       });
 
       it('adds multiple quantities of a single item to the cart', () => {
-        cart.addItems([[PRODUCT_A_10, 2]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_A_10, 2]]);
 
-        expect(cart.list()).toEqual([[PRODUCT_A_10, 2]]);
+        expect(cart.list()).toEqual([[PRODUCT_DATA.PRODUCT_A_10, 2]]);
       });
 
       it('adds two different items with different quantities to the cart', () => {
         cart.addItems([
-          [PRODUCT_A_10, 2],
-          [PRODUCT_B_20, 3],
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_B_20, 3],
         ]);
 
         expect(cart.list()).toEqual([
-          [PRODUCT_A_10, 2],
-          [PRODUCT_B_20, 3],
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_B_20, 3],
         ]);
       });
     });
@@ -79,21 +68,21 @@ describe.each(currencies)(
       });
 
       it('gets gross value for single item in the cart', () => {
-        cart.addItems([[PRODUCT_A_10, 1]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_A_10, 1]]);
 
         expect(cart.total()).toBe(`${currencySymbol}10.00`);
       });
 
       it('gets gross value of multiple single items in the cart', () => {
-        cart.addItems([[PRODUCT_A_10, 2]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_A_10, 2]]);
 
         expect(cart.total()).toBe(`${currencySymbol}20.00`);
       });
 
       it('gets gross value for two different items with different quantities in the cart', () => {
         cart.addItems([
-          [PRODUCT_A_10, 2],
-          [PRODUCT_C_15, 3],
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_C_15, 3],
         ]);
 
         expect(cart.total()).toBe(`${currencySymbol}65.00`);
@@ -101,9 +90,9 @@ describe.each(currencies)(
 
       it('gets total gross value with unit prices of varying decimal values', () => {
         cart.addItems([
-          [PRODUCT_D_17_09, 2],
-          [PRODUCT_E_14_5, 3],
-          [PRODUCT_F_7_22, 2],
+          [PRODUCT_DATA.PRODUCT_D_17_09, 2],
+          [PRODUCT_DATA.PRODUCT_E_14_5, 3],
+          [PRODUCT_DATA.PRODUCT_F_7_22, 2],
         ]);
 
         expect(cart.total()).toBe(`${currencySymbol}92.12`);
@@ -117,8 +106,8 @@ describe.each(currencies)(
 
       it('gets total net value', () => {
         cart.addItems([
-          [PRODUCT_A_10, 2],
-          [PRODUCT_C_15, 3],
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_C_15, 3],
         ]);
 
         expect(cart.total()).toBe(`${currencySymbol}65.00`);
@@ -126,30 +115,30 @@ describe.each(currencies)(
 
       it(`applies a 5% discount if total gross value is over ${currencySymbol}100`, () => {
         cart.addItems([
-          [PRODUCT_G_50, 2],
-          [PRODUCT_A_10, 1],
+          [PRODUCT_DATA.PRODUCT_G_50, 2],
+          [PRODUCT_DATA.PRODUCT_A_10, 1],
         ]);
 
         expect(cart.total()).toBe(`${currencySymbol}104.50`);
       });
 
       it(`does not apply a 5% discount if total gross value is equal to ${currencySymbol}100`, () => {
-        cart.addItems([[PRODUCT_G_50, 2]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_G_50, 2]]);
 
         expect(cart.total()).toBe(`${currencySymbol}100.00`);
       });
 
       it(`applies a 10% discount if total gross value is over ${currencySymbol}200`, () => {
         cart.addItems([
-          [PRODUCT_G_50, 4],
-          [PRODUCT_A_10, 1],
+          [PRODUCT_DATA.PRODUCT_G_50, 4],
+          [PRODUCT_DATA.PRODUCT_A_10, 1],
         ]);
 
         expect(cart.total()).toBe(`${currencySymbol}189.00`);
       });
 
       it(`only applies a 5% discount (not 10%) if total gross value is equal to ${currencySymbol}200`, () => {
-        cart.addItems([[PRODUCT_G_50, 4]]);
+        cart.addItems([[PRODUCT_DATA.PRODUCT_G_50, 4]]);
 
         expect(cart.total()).toBe(`${currencySymbol}190.00`);
       });
@@ -165,8 +154,8 @@ describe.each(currencies)(
 
         it('writes a receipt to a text file with no discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
           ]);
 
           cart.createReceipt('text');
@@ -189,9 +178,9 @@ describe.each(currencies)(
 
         it('writes a receipt to a text file with 5% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('text');
@@ -217,9 +206,9 @@ describe.each(currencies)(
 
         it('writes a receipt to a text file with 10% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 2],
-            [PRODUCT_H_25, 4],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 2],
+            [PRODUCT_DATA.PRODUCT_H_25, 4],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('text');
@@ -253,8 +242,8 @@ describe.each(currencies)(
 
         it('writes a receipt to a JSON file with no discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
           ]);
 
           cart.createReceipt('json');
@@ -285,9 +274,9 @@ describe.each(currencies)(
 
         it('writes a receipt to a JSON file with 5% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('json');
@@ -328,9 +317,9 @@ describe.each(currencies)(
 
         it('writes a receipt to a JSON file with 10% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 2],
-            [PRODUCT_H_25, 4],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 2],
+            [PRODUCT_DATA.PRODUCT_H_25, 4],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('json');
@@ -379,8 +368,8 @@ describe.each(currencies)(
 
         it('writes a receipt to an HTML file with no discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
           ]);
 
           cart.createReceipt('html');
@@ -429,9 +418,9 @@ describe.each(currencies)(
 
         it('writes a receipt to an HTML file with 5% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 1],
-            [PRODUCT_H_25, 2],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 1],
+            [PRODUCT_DATA.PRODUCT_H_25, 2],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('html');
@@ -490,9 +479,9 @@ describe.each(currencies)(
 
         it('writes a receipt to an HTML file with 10% discount', () => {
           cart.addItems([
-            [PRODUCT_G_50, 2],
-            [PRODUCT_H_25, 4],
-            [PRODUCT_A_10, 1],
+            [PRODUCT_DATA.PRODUCT_G_50, 2],
+            [PRODUCT_DATA.PRODUCT_H_25, 4],
+            [PRODUCT_DATA.PRODUCT_A_10, 1],
           ]);
 
           cart.createReceipt('html');
