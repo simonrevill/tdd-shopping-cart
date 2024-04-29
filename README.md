@@ -51,7 +51,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Write receipt to HTML file_~~
 
-Let items have an id
+~~_Let items have an id_~~
 
 Let items have a name
 
