@@ -1,4 +1,9 @@
-export type TItem = [number, number];
+export type TProduct = {
+  id: number;
+  unitPrice: number;
+};
+
+export type TShoppingCartItem = [TProduct, number];
 
 export type TDiscountPercentage = 0.05 | 0.1;
 

@@ -1,6 +1,6 @@
 import { DiscountPercentages, DiscountThresholds } from '../constants';
 import {
-  TItem,
+  TShoppingCartItem,
   TDiscountPercentage,
   ICurrencyService,
   IReceiptService,
@@ -10,7 +10,7 @@ import {
 } from '../types';
 
 export default class ShoppingCart {
-  private items: TItem[] = [];
+  private items: TShoppingCartItem[] = [];
   private currencyService: ICurrencyService;
   private receiptService: IReceiptService;
 
@@ -20,7 +20,7 @@ export default class ShoppingCart {
   }
 
   private get grossPrice(): number {
-    const grossPriceList = this.items.map(([unitPrice, quantity]) => unitPrice * quantity);
+    const grossPriceList = this.items.map(([{ unitPrice }, quantity]) => unitPrice * quantity);
 
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
@@ -46,7 +46,7 @@ export default class ShoppingCart {
 
   private buildReceiptData(): TRawReceiptData {
     return {
-      items: this.items.map(([unitPrice, quantity]) => ({
+      items: this.items.map(([{ unitPrice }, quantity]) => ({
         unitPrice,
         quantity,
         grossPrice: unitPrice * quantity,
@@ -59,11 +59,11 @@ export default class ShoppingCart {
     };
   }
 
-  addItems(items: TItem[]): void {
+  addItems(items: TShoppingCartItem[]): void {
     this.items = items;
   }
 
-  list(): TItem[] {
+  list(): TShoppingCartItem[] {
     return this.items;
   }
 
