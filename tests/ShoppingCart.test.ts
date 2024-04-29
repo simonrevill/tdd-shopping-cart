@@ -8,17 +8,22 @@ let currencyService: ICurrencyService;
 let receiptService: IReceiptService;
 
 const currencies = [
-  { locale: 'en-GB', currency: 'GBP', currencySymbol: '£', currencyName: 'Great British Pound' },
-  { locale: 'en-US', currency: 'USD', currencySymbol: '$', currencyName: 'US Dollar' },
+  {
+    locale: 'en-GB',
+    currencyCode: 'GBP',
+    currencySymbol: '£',
+    currencyName: 'Great British Pound',
+  },
+  { locale: 'en-US', currencyCode: 'USD', currencySymbol: '$', currencyName: 'US Dollar' },
 ];
 
 describe.each(currencies)(
-  'shopping cart with $currencyName ($currency) as currency',
-  ({ locale, currency, currencySymbol, currencyName }) => {
+  'shopping cart with $currencyName ($currencyCode) as currency',
+  ({ locale, currencyCode, currencySymbol, currencyName }) => {
     beforeEach(() => {
       currencyService = createCurrencyService({
         locale,
-        currency,
+        currencyCode,
         currencySymbol,
       });
 
@@ -139,7 +144,7 @@ describe.each(currencies)(
       });
     });
 
-    describe(`generate receipts with ${currencyName} (${currency}) as currency`, () => {
+    describe(`generate receipts with ${currencyName} (${currencyCode}) as currency`, () => {
       describe('write receipt to text file', () => {
         it('throws an error when attempting to generate a text receipt with an empty cart', () => {
           expect(() => {

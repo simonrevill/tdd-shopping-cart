@@ -3,10 +3,10 @@ import CurrencyService from './CurrencyService';
 
 const createCurrencyService = ({
   locale,
-  currency,
+  currencyCode,
   currencySymbol,
 }: ICurrencyServiceOptions): ICurrencyService => {
-  return new CurrencyService(locale, currency, currencySymbol);
+  return new CurrencyService(locale, currencyCode, currencySymbol);
 };
 
 export default createCurrencyService;

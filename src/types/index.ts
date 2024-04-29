@@ -8,7 +8,7 @@ export type TNumberFormatter = TCurrencyFormatter;
 
 export interface ICurrencyServiceOptions {
   locale: string;
-  currency: string;
+  currencyCode: string;
   currencySymbol: string;
 }
 

@@ -2,19 +2,19 @@ import { ICurrencyService } from '../../types';
 
 export default class CurrencyService implements ICurrencyService {
   locale: string;
-  currency: string;
+  currencyCode: string;
   currencySymbol: string;
   currencyFormatter: Intl.NumberFormat;
   numberFormatter: Intl.NumberFormat;
 
-  constructor(locale: string, currency: string, currencySymbol: string) {
+  constructor(locale: string, currencyCode: string, currencySymbol: string) {
     this.locale = locale;
-    this.currency = currency;
+    this.currencyCode = currencyCode;
     this.currencySymbol = currencySymbol;
 
     this.currencyFormatter = new Intl.NumberFormat(this.locale, {
       style: 'currency',
-      currency: this.currency,
+      currency: this.currencyCode,
     });
 
     this.numberFormatter = new Intl.NumberFormat(this.locale, {
