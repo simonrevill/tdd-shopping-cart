@@ -51,7 +51,13 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Write receipt to HTML file_~~
 
-Let items have an id, name, and description
+Let items have an id
+
+Let items have a name
+
+Let items have a description
+
+Let items have an image url
 
 Remove a single item from the cart
 
