@@ -20,6 +20,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   private buildTableHead(): string {
     return [
       '    <tr>',
+      '      <th>Name</th>',
       '      <th>Unit Price</th>',
       '      <th>Quantity</th>',
       '      <th>Gross Price</th>',
@@ -29,9 +30,10 @@ export default class HTMLReceiptService implements IReceiptFormatService {
 
   private buildItems(items: TRawReceiptItem[]): string {
     return items
-      .map(({ unitPrice, quantity, grossPrice }) => {
+      .map(({ name, unitPrice, quantity, grossPrice }) => {
         return [
           '    <tr>',
+          `      <td>${name}</td>`,
           `      <td>${this.currencyService.format(unitPrice)}</td>`,
           `      <td>${quantity}</td>`,
           `      <td>${this.currencyService.format(grossPrice)}</td>`,

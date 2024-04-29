@@ -12,12 +12,16 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  private writeItem({ unitPrice, quantity, grossPrice }: TRawReceiptItem, index: number): string {
+  private writeItem(
+    { name, unitPrice, quantity, grossPrice }: TRawReceiptItem,
+    index: number,
+  ): string {
     const itemIndex = index + 1;
-    const itemUnitPrice = this.currencyService.formatNumber(unitPrice);
+    const itemName = name;
+    const itemUnitPrice = this.currencyService.format(unitPrice);
     const itemGrossPrice = this.currencyService.format(grossPrice);
 
-    return `${itemIndex}. ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
+    return `${itemIndex}. ${itemName} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
   }
 
   private writeNewLine(newLine: 'single' | 'double'): string {

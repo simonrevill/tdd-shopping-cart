@@ -14,7 +14,8 @@ export default class JSONReceiptService implements IReceiptFormatService {
 
   create({ items, subtotal, total, discount }: TRawReceiptData): string {
     const receiptObject: TReceiptData = {
-      items: items.map(({ unitPrice, quantity, grossPrice }) => ({
+      items: items.map(({ name, unitPrice, quantity, grossPrice }) => ({
+        name,
         unitPrice: this.currencyService.format(unitPrice),
         quantity: quantity.toString(),
         grossPrice: this.currencyService.format(grossPrice),

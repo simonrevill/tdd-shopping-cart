@@ -1,5 +1,6 @@
 export type TProduct = {
   id: string;
+  name: string;
   unitPrice: number;
 };
 
@@ -54,6 +55,7 @@ export interface IReceiptFormatService {
 }
 
 type TBaseReceiptItem<T> = {
+  name: string;
   unitPrice: T;
   quantity: T;
   grossPrice: T;

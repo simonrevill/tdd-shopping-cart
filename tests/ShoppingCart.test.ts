@@ -160,8 +160,8 @@ describe.each(currencies)(
           const expectedReceipt = [
             `Your receipt`,
             ``,
-            `1. 50.00 x 1 - ${currencySymbol}50.00`,
-            `2. 25.00 x 2 - ${currencySymbol}50.00`,
+            `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 1 - ${currencySymbol}50.00`,
+            `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 2 - ${currencySymbol}50.00`,
             ``,
             `Subtotal: ${currencySymbol}100.00`,
             ``,
@@ -185,9 +185,9 @@ describe.each(currencies)(
           const expectedReceipt = [
             `Your receipt`,
             ``,
-            `1. 50.00 x 1 - ${currencySymbol}50.00`,
-            `2. 25.00 x 2 - ${currencySymbol}50.00`,
-            `3. 10.00 x 1 - ${currencySymbol}10.00`,
+            `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 1 - ${currencySymbol}50.00`,
+            `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 2 - ${currencySymbol}50.00`,
+            `3. ${PRODUCT_DATA.PRODUCT_A_10.name} - ${currencySymbol}10.00 x 1 - ${currencySymbol}10.00`,
             ``,
             `Subtotal: ${currencySymbol}110.00`,
             ``,
@@ -213,9 +213,9 @@ describe.each(currencies)(
           const expectedReceipt = [
             `Your receipt`,
             ``,
-            `1. 50.00 x 2 - ${currencySymbol}100.00`,
-            `2. 25.00 x 4 - ${currencySymbol}100.00`,
-            `3. 10.00 x 1 - ${currencySymbol}10.00`,
+            `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 2 - ${currencySymbol}100.00`,
+            `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 4 - ${currencySymbol}100.00`,
+            `3. ${PRODUCT_DATA.PRODUCT_A_10.name} - ${currencySymbol}10.00 x 1 - ${currencySymbol}10.00`,
             ``,
             `Subtotal: ${currencySymbol}210.00`,
             ``,
@@ -249,11 +249,13 @@ describe.each(currencies)(
               {
                 "items": [
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}50.00"
                   },
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}50.00"
@@ -282,16 +284,19 @@ describe.each(currencies)(
               {
                 "items": [
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}50.00"
                   },
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}50.00"
                   },
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_A_10.name}",
                     "unitPrice": "${currencySymbol}10.00",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}10.00"
@@ -325,16 +330,19 @@ describe.each(currencies)(
               {
                 "items": [
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}100.00"
                   },
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
                     "quantity": "4",
                     "grossPrice": "${currencySymbol}100.00"
                   },
                   {
+                    "name": "${PRODUCT_DATA.PRODUCT_A_10.name}",
                     "unitPrice": "${currencySymbol}10.00",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}10.00"
@@ -376,6 +384,7 @@ describe.each(currencies)(
             `<table>`,
             `  <thead>`,
             `    <tr>`,
+            `      <th>Name</th>`,
             `      <th>Unit Price</th>`,
             `      <th>Quantity</th>`,
             `      <th>Gross Price</th>`,
@@ -383,11 +392,13 @@ describe.each(currencies)(
             `  </thead>`,
             `  <tbody>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_G_50.name}</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `      <td>1</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `    </tr>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_H_25.name}</td>`,
             `      <td>${currencySymbol}25.00</td>`,
             `      <td>2</td>`,
             `      <td>${currencySymbol}50.00</td>`,
@@ -427,6 +438,7 @@ describe.each(currencies)(
             `<table>`,
             `  <thead>`,
             `    <tr>`,
+            `      <th>Name</th>`,
             `      <th>Unit Price</th>`,
             `      <th>Quantity</th>`,
             `      <th>Gross Price</th>`,
@@ -434,16 +446,19 @@ describe.each(currencies)(
             `  </thead>`,
             `  <tbody>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_G_50.name}</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `      <td>1</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `    </tr>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_H_25.name}</td>`,
             `      <td>${currencySymbol}25.00</td>`,
             `      <td>2</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `    </tr>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_A_10.name}</td>`,
             `      <td>${currencySymbol}10.00</td>`,
             `      <td>1</td>`,
             `      <td>${currencySymbol}10.00</td>`,
@@ -488,6 +503,7 @@ describe.each(currencies)(
             `<table>`,
             `  <thead>`,
             `    <tr>`,
+            `      <th>Name</th>`,
             `      <th>Unit Price</th>`,
             `      <th>Quantity</th>`,
             `      <th>Gross Price</th>`,
@@ -495,16 +511,19 @@ describe.each(currencies)(
             `  </thead>`,
             `  <tbody>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_G_50.name}</td>`,
             `      <td>${currencySymbol}50.00</td>`,
             `      <td>2</td>`,
             `      <td>${currencySymbol}100.00</td>`,
             `    </tr>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_H_25.name}</td>`,
             `      <td>${currencySymbol}25.00</td>`,
             `      <td>4</td>`,
             `      <td>${currencySymbol}100.00</td>`,
             `    </tr>`,
             `    <tr>`,
+            `      <td>${PRODUCT_DATA.PRODUCT_A_10.name}</td>`,
             `      <td>${currencySymbol}10.00</td>`,
             `      <td>1</td>`,
             `      <td>${currencySymbol}10.00</td>`,
