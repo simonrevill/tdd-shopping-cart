@@ -1,5 +1,4 @@
-import deleteReceiptsDirectory from './deleteReceiptsDirectory';
-import readGeneratedReceipt from './readGeneratedReceipt';
-import PRODUCT_DATA from '././productData';
+import { deleteReceiptsDirectory, readGeneratedReceipt } from './files';
+import PRODUCT_DATA from './data';
 
 export { deleteReceiptsDirectory, readGeneratedReceipt, PRODUCT_DATA };
