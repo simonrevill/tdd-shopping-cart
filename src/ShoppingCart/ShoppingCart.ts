@@ -52,11 +52,7 @@ export default class ShoppingCart {
         grossPrice: unitPrice * quantity,
       })),
       ...(this.shouldApplyDiscount && {
-        discount: {
-          percentage: this.discountedPrice.percentage,
-          deductedAmount: this.discountedPrice.deductedAmount,
-          netPrice: this.discountedPrice.netPrice,
-        },
+        discount: this.discountedPrice,
       }),
       subtotal: this.grossPrice,
       total: this.shouldApplyDiscount ? this.discountedPrice.netPrice : this.grossPrice,
