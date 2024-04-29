@@ -1,4 +1,4 @@
-import { createCurrencyService, CurrencyService } from './CurrencyService';
-import { createReceiptService, ReceiptService } from './ReceiptService';
+import { createCurrencyService } from './CurrencyService';
+import { createReceiptService } from './ReceiptService';
 
-export { createCurrencyService, CurrencyService, createReceiptService, ReceiptService };
+export { createCurrencyService, createReceiptService };
