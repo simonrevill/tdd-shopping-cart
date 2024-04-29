@@ -55,6 +55,7 @@ export interface IReceiptFormatService {
 }
 
 type TBaseReceiptItem<T> = {
+  id: string;
   name: string;
   unitPrice: T;
   quantity: T;

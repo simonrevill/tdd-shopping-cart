@@ -30,10 +30,13 @@ export default class HTMLReceiptService implements IReceiptFormatService {
 
   private buildItems(items: TRawReceiptItem[]): string {
     return items
-      .map(({ name, unitPrice, quantity, grossPrice }) => {
+      .map(({ id, name, unitPrice, quantity, grossPrice }) => {
         return [
           '    <tr>',
-          `      <td>${name}</td>`,
+          `      <td style="display: flex; flex-direction: column; gap: 0.25rem">`,
+          `        <span>${name}</span>`,
+          `        <span style="font-size: 0.75rem">ID: ${id}</span>`,
+          `      </td>`,
           `      <td>${this.currencyService.format(unitPrice)}</td>`,
           `      <td>${quantity}</td>`,
           `      <td>${this.currencyService.format(grossPrice)}</td>`,

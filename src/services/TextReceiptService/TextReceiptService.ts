@@ -12,16 +12,28 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
+  private writeItemSeparator(): string {
+    return `   ---------------------------------------------`;
+  }
+
   private writeItem(
-    { name, unitPrice, quantity, grossPrice }: TRawReceiptItem,
+    { id, name, unitPrice, quantity, grossPrice }: TRawReceiptItem,
     index: number,
   ): string {
+    let itemString = '';
     const itemIndex = index + 1;
+    const itemId = id;
     const itemName = name;
     const itemUnitPrice = this.currencyService.format(unitPrice);
     const itemGrossPrice = this.currencyService.format(grossPrice);
 
-    return `${itemIndex}. ${itemName} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
+    itemString += `${itemIndex}. ${itemName} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
+    itemString += this.writeNewLine('single');
+    itemString += `   ID: ${itemId}`;
+    itemString += this.writeNewLine('single');
+    itemString += this.writeItemSeparator();
+
+    return itemString;
   }
 
   private writeNewLine(newLine: 'single' | 'double'): string {
@@ -38,17 +50,17 @@ export default class TextReceiptService implements IReceiptFormatService {
       receiptString += this.writeNewLine(isLastItem ? 'double' : 'single');
     });
 
-    receiptString += `Subtotal: ${this.currencyService.currencySymbol}`;
+    receiptString += `   Subtotal: ${this.currencyService.currencySymbol}`;
     receiptString += this.currencyService.formatNumber(subtotal);
     receiptString += this.writeNewLine('double');
 
     if (discount) {
-      receiptString += discount.percentage * 100 + '% Discount: -';
+      receiptString += '   ' + discount.percentage * 100 + '% Discount: -';
       receiptString += this.currencyService.format(discount.deductedAmount);
       receiptString += this.writeNewLine('double');
     }
 
-    receiptString += `Total: ${this.currencyService.format(total)}`;
+    receiptString += `   Total: ${this.currencyService.format(total)}`;
 
     return receiptString;
   }

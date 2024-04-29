@@ -46,7 +46,8 @@ export default class ShoppingCart {
 
   private buildReceiptData(): TRawReceiptData {
     return {
-      items: this.items.map(([{ name, unitPrice }, quantity]) => ({
+      items: this.items.map(([{ id, name, unitPrice }, quantity]) => ({
+        id,
         name,
         unitPrice,
         quantity,
