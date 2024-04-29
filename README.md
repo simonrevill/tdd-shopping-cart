@@ -53,7 +53,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Let items have an id_~~
 
-Let items have a name
+~~_Let items have a name_~~
 
 Let items have a description
 
