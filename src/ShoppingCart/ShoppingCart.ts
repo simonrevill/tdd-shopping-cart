@@ -4,9 +4,9 @@ import {
   TDiscountPercentage,
   ICurrencyService,
   IReceiptService,
-  TDiscount,
   TRawReceiptData,
   TReceiptServiceCreateFormat,
+  TRawReceiptDiscountData,
 } from '../types';
 
 export default class ShoppingCart {
@@ -25,7 +25,7 @@ export default class ShoppingCart {
     return grossPriceList.reduce((previousPrice, currentPrice) => previousPrice + currentPrice);
   }
 
-  private get discountedPrice(): TDiscount {
+  private get discountedPrice(): TRawReceiptDiscountData {
     const discountPercentage: TDiscountPercentage =
       this.grossPrice > DiscountThresholds.TWO_HUNDRED
         ? DiscountPercentages.TEN

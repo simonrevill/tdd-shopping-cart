@@ -41,12 +41,6 @@ export interface IReceiptFormatService {
   create: (data: TRawReceiptData) => string;
 }
 
-export type TDiscount = {
-  percentage: number;
-  deductedAmount: number;
-  netPrice: number;
-};
-
 type TBaseReceiptItem<T> = {
   unitPrice: T;
   quantity: T;
