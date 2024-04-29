@@ -7,6 +7,13 @@ export type TShoppingCartItem = [TProduct, number];
 
 export type TDiscountPercentage = 0.05 | 0.1;
 
+export type TCurrency = {
+  locale: string;
+  currencyCode: string;
+  currencySymbol: string;
+  currencyName: string;
+};
+
 export type TCurrencyFormatter = (value: number | bigint | string) => string;
 
 export type TNumberFormatter = TCurrencyFormatter;

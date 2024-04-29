@@ -1,21 +1,16 @@
 import ShoppingCart from '../src/ShoppingCart/ShoppingCart';
 import { ICurrencyService, IReceiptService } from '../src/types';
 import { createCurrencyService, createReceiptService } from '../src/services';
-import { deleteReceiptsDirectory, readGeneratedReceipt, PRODUCT_DATA } from './test-utils';
+import {
+  deleteReceiptsDirectory,
+  readGeneratedReceipt,
+  currencies,
+  PRODUCT_DATA,
+} from './test-utils';
 
 let cart: ShoppingCart;
 let currencyService: ICurrencyService;
 let receiptService: IReceiptService;
-
-const currencies = [
-  {
-    locale: 'en-GB',
-    currencyCode: 'GBP',
-    currencySymbol: '£',
-    currencyName: 'Great British Pound',
-  },
-  { locale: 'en-US', currencyCode: 'USD', currencySymbol: '$', currencyName: 'US Dollar' },
-];
 
 describe.each(currencies)(
   'shopping cart with $currencyName ($currencyCode) as currency',

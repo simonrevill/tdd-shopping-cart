@@ -1,6 +1,6 @@
 import { TProduct } from '../../src/types';
 
-const PRODUCT_DATA: { [key: string]: TProduct } = {
+export const PRODUCT_DATA: { [key: string]: TProduct } = {
   PRODUCT_A_10: {
     id: 1,
     unitPrice: 10,
@@ -34,5 +34,3 @@ const PRODUCT_DATA: { [key: string]: TProduct } = {
     unitPrice: 25,
   },
 };
-
-export default PRODUCT_DATA;
