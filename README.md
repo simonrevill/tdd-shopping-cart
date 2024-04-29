@@ -53,6 +53,6 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 Let items have an id, name, and description
 
-Remove a single item
+Remove a single item from the cart
 
-Remove multiple items
+Remove multiple items from the cart
