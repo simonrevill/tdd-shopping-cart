@@ -47,6 +47,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
     return [
       '    <tr>',
       '      <td></td>',
+      '      <td></td>',
       '      <td><strong>Subtotal</strong></td>',
       `      <td><strong>${this.currencyService.format(subtotal)}</strong></td>`,
       '    </tr>',
@@ -56,6 +57,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   private buildDiscount(percentage: number, deductedAmount: number): string {
     return [
       '    <tr>',
+      '      <td></td>',
       '      <td></td>',
       `      <td><strong>${percentage * 100}% Discount</strong></td>`,
       `      <td style="color: red;"><strong>-${this.currencyService.format(
@@ -68,6 +70,7 @@ export default class HTMLReceiptService implements IReceiptFormatService {
   private buildTotal(total: number): string {
     return [
       '    <tr>',
+      '      <td></td>',
       '      <td></td>',
       '      <td><strong>Total</strong></td>',
       `      <td><strong>${this.currencyService.format(total)}</strong></td>`,
