@@ -41,6 +41,8 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Get '£0.00' as net value if cart is empty_~~
 
+## Expanding on above requirements
+
 ~~_Extend currency formatter to use different currencies_~~
 
 ~~_Write receipt to text file_~~
@@ -48,3 +50,9 @@ Test-drive some code that will calculate the total net value of items in a shopp
 ~~_Write receipt to JSON file_~~
 
 ~~_Write receipt to HTML file_~~
+
+Let items have an id, name, and description
+
+Remove a single item
+
+Remove multiple items
