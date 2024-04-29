@@ -47,33 +47,33 @@ export type TDiscount = {
   netPrice: number;
 };
 
-type BaseReceiptItem<T> = {
+type TBaseReceiptItem<T> = {
   unitPrice: T;
   quantity: T;
   grossPrice: T;
 };
 
-type BaseReceiptDiscountData<T> = {
+type TBaseReceiptDiscountData<T> = {
   percentage: T;
   deductedAmount: T;
   netPrice: T;
 };
 
-type BaseReceiptData<T> = {
-  items: BaseReceiptItem<T>[];
-  discount?: BaseReceiptDiscountData<T>;
+type TBaseReceiptData<T> = {
+  items: TBaseReceiptItem<T>[];
+  discount?: TBaseReceiptDiscountData<T>;
   subtotal: T;
   total: T;
 };
 
-export type TRawReceiptItem = BaseReceiptItem<number>;
+export type TRawReceiptItem = TBaseReceiptItem<number>;
 
-export type TReceiptItem = BaseReceiptItem<string>;
+export type TReceiptItem = TBaseReceiptItem<string>;
 
-export type TRawReceiptDiscountData = BaseReceiptDiscountData<number>;
+export type TRawReceiptDiscountData = TBaseReceiptDiscountData<number>;
 
-export type TReceiptDiscountData = BaseReceiptDiscountData<string>;
+export type TReceiptDiscountData = TBaseReceiptDiscountData<string>;
 
-export type TRawReceiptData = BaseReceiptData<number>;
+export type TRawReceiptData = TBaseReceiptData<number>;
 
-export type TReceiptData = BaseReceiptData<string>;
+export type TReceiptData = TBaseReceiptData<string>;
