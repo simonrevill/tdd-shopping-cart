@@ -17,7 +17,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Add two different items with different quantities to the cart_~~
 
-Add a single item to the cart after items have already been added without removing the existing items
+~~_Add a single item to the cart after items have already been added without removing the existing items_~~
 
 Add multiple items to the cart after items have already been added without removing the existing items
 
