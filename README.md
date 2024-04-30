@@ -17,6 +17,14 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Add two different items with different quantities to the cart_~~
 
+Add a single item to the cart after items have already been added without removing the existing items
+
+Add multiple items to the cart after items have already been added without removing the existing items
+
+Remove a single item from the cart
+
+Remove multiple items from the cart
+
 ~~_Get gross value for single item in the cart_~~
 
 ~~_Get gross value of multiple single items in the cart_~~
@@ -58,7 +66,3 @@ Test-drive some code that will calculate the total net value of items in a shopp
 ~~_Let items have a description_~~
 
 Let items have an image url
-
-Remove a single item from the cart
-
-Remove multiple items from the cart
