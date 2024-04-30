@@ -55,7 +55,7 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Let items have a name_~~
 
-Let items have a description
+~~_Let items have a description_~~
 
 Let items have an image url
 
