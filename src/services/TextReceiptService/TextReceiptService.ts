@@ -12,8 +12,12 @@ export default class TextReceiptService implements IReceiptFormatService {
     this.currencyService = currencyService;
   }
 
-  private writeItemSeparator(): string {
-    return `   ---------------------------------------------`;
+  private writeNewLine(newLine: 'single' | 'double' | 'separator'): string {
+    return {
+      single: '\n',
+      double: '\n\n',
+      separator: '   ---------------------------------------------',
+    }[newLine];
   }
 
   private writeItem(
@@ -34,13 +38,9 @@ export default class TextReceiptService implements IReceiptFormatService {
     itemString += this.writeNewLine('single');
     itemString += `   Description: ${itemDescription}`;
     itemString += this.writeNewLine('single');
-    itemString += this.writeItemSeparator();
+    itemString += this.writeNewLine('separator');
 
     return itemString;
-  }
-
-  private writeNewLine(newLine: 'single' | 'double'): string {
-    return { single: '\n', double: '\n\n' }[newLine];
   }
 
   create({ items, subtotal, total, discount }: TRawReceiptData): string {
