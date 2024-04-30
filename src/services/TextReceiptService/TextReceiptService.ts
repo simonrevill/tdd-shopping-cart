@@ -25,18 +25,14 @@ export default class TextReceiptService implements IReceiptFormatService {
     index: number,
   ): string {
     let itemString = '';
-    const itemIndex = index + 1;
-    const itemId = id;
-    const itemName = name;
     const itemUnitPrice = this.currencyService.format(unitPrice);
-    const itemDescription = description;
     const itemGrossPrice = this.currencyService.format(grossPrice);
 
-    itemString += `${itemIndex}. ${itemName} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
+    itemString += `${index + 1}. ${name} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
     itemString += this.writeNewLine('single');
-    itemString += `   ID: ${itemId}`;
+    itemString += `   ID: ${id}`;
     itemString += this.writeNewLine('single');
-    itemString += `   Description: ${itemDescription}`;
+    itemString += `   Description: ${description}`;
     itemString += this.writeNewLine('single');
     itemString += this.writeNewLine('separator');
 
