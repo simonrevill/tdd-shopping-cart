@@ -17,22 +17,6 @@ Test-drive some code that will calculate the total net value of items in a shopp
 
 ~~_Add two different items with different quantities to the cart_~~
 
-~~_Add a single item to the cart after items have already been added without removing the existing items_~~
-
-~~_Add multiple items to the cart after items have already been added without removing the existing items_~~
-
-Increase quantity of an item when adding an item that is already in the cart
-
-Increase quantity of multiple items when adding items that are already in the cart
-
-Remove a single item from the cart
-
-Remove multiple items from the cart
-
-Decrease quantity of an item when removing an item that is already in the cart with a quantity greater than 1
-
-Decrease quantity of multiple items when removing items that are already in the cart with a quantity greater than 1
-
 ~~_Get gross value for single item in the cart_~~
 
 ~~_Get gross value of multiple single items in the cart_~~
@@ -74,3 +58,19 @@ Decrease quantity of multiple items when removing items that are already in the 
 ~~_Let items have a description_~~
 
 Let items have an image url
+
+~~_Add a single item to the cart after items have already been added without removing the existing items_~~
+
+~~_Add multiple items to the cart after items have already been added without removing the existing items_~~
+
+Increase quantity of an item when adding an item that is already in the cart
+
+Increase quantity of multiple items when adding items that are already in the cart
+
+Remove a single item from the cart
+
+Remove multiple items from the cart
+
+Decrease quantity of an item when removing an item that is already in the cart with a quantity greater than 1
+
+Decrease quantity of multiple items when removing items that are already in the cart with a quantity greater than 1
