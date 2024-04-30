@@ -63,7 +63,7 @@ export default class ShoppingCart {
   }
 
   addItems(items: TShoppingCartItem[]): void {
-    this.items = items;
+    this.items = [...this.items, ...items];
   }
 
   list(): TShoppingCartItem[] {
