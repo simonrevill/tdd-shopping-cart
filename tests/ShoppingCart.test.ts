@@ -70,6 +70,25 @@ describe.each(currencies)(
           [PRODUCT_DATA.PRODUCT_C_15, 1],
         ]);
       });
+
+      it('adds multiple items to the cart after items have already been added without removing the existing items', () => {
+        cart.addItems([
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_B_20, 3],
+        ]);
+
+        cart.addItems([
+          [PRODUCT_DATA.PRODUCT_C_15, 1],
+          [PRODUCT_DATA.PRODUCT_G_50, 1],
+        ]);
+
+        expect(cart.list()).toEqual([
+          [PRODUCT_DATA.PRODUCT_A_10, 2],
+          [PRODUCT_DATA.PRODUCT_B_20, 3],
+          [PRODUCT_DATA.PRODUCT_C_15, 1],
+          [PRODUCT_DATA.PRODUCT_G_50, 1],
+        ]);
+      });
     });
 
     describe('calculate gross values', () => {
