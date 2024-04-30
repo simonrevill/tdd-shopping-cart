@@ -162,9 +162,11 @@ describe.each(currencies)(
             ``,
             `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 1 - ${currencySymbol}50.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_G_50.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_G_50.description}`,
             `   ---------------------------------------------`,
             `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 2 - ${currencySymbol}50.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_H_25.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_H_25.description}`,
             `   ---------------------------------------------`,
             ``,
             `   Subtotal: ${currencySymbol}100.00`,
@@ -191,12 +193,15 @@ describe.each(currencies)(
             ``,
             `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 1 - ${currencySymbol}50.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_G_50.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_G_50.description}`,
             `   ---------------------------------------------`,
             `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 2 - ${currencySymbol}50.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_H_25.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_H_25.description}`,
             `   ---------------------------------------------`,
             `3. ${PRODUCT_DATA.PRODUCT_A_10.name} - ${currencySymbol}10.00 x 1 - ${currencySymbol}10.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_A_10.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_A_10.description}`,
             `   ---------------------------------------------`,
             ``,
             `   Subtotal: ${currencySymbol}110.00`,
@@ -225,12 +230,15 @@ describe.each(currencies)(
             ``,
             `1. ${PRODUCT_DATA.PRODUCT_G_50.name} - ${currencySymbol}50.00 x 2 - ${currencySymbol}100.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_G_50.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_G_50.description}`,
             `   ---------------------------------------------`,
             `2. ${PRODUCT_DATA.PRODUCT_H_25.name} - ${currencySymbol}25.00 x 4 - ${currencySymbol}100.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_H_25.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_H_25.description}`,
             `   ---------------------------------------------`,
             `3. ${PRODUCT_DATA.PRODUCT_A_10.name} - ${currencySymbol}10.00 x 1 - ${currencySymbol}10.00`,
             `   ID: ${PRODUCT_DATA.PRODUCT_A_10.id}`,
+            `   Description: ${PRODUCT_DATA.PRODUCT_A_10.description}`,
             `   ---------------------------------------------`,
             ``,
             `   Subtotal: ${currencySymbol}210.00`,
@@ -268,6 +276,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_G_50.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_G_50.description}",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}50.00"
                   },
@@ -275,6 +284,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_H_25.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_H_25.description}",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}50.00"
                   }
@@ -305,6 +315,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_G_50.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_G_50.description}",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}50.00"
                   },
@@ -312,6 +323,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_H_25.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_H_25.description}",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}50.00"
                   },
@@ -319,6 +331,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_A_10.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_A_10.name}",
                     "unitPrice": "${currencySymbol}10.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_A_10.description}",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}10.00"
                   }
@@ -354,6 +367,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_G_50.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_G_50.name}",
                     "unitPrice": "${currencySymbol}50.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_G_50.description}",
                     "quantity": "2",
                     "grossPrice": "${currencySymbol}100.00"
                   },
@@ -361,6 +375,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_H_25.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_H_25.name}",
                     "unitPrice": "${currencySymbol}25.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_H_25.description}",
                     "quantity": "4",
                     "grossPrice": "${currencySymbol}100.00"
                   },
@@ -368,6 +383,7 @@ describe.each(currencies)(
                     "id": "${PRODUCT_DATA.PRODUCT_A_10.id}",
                     "name": "${PRODUCT_DATA.PRODUCT_A_10.name}",
                     "unitPrice": "${currencySymbol}10.00",
+                    "description": "${PRODUCT_DATA.PRODUCT_A_10.description}",
                     "quantity": "1",
                     "grossPrice": "${currencySymbol}10.00"
                   }

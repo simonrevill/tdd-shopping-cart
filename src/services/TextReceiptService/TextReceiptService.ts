@@ -17,7 +17,7 @@ export default class TextReceiptService implements IReceiptFormatService {
   }
 
   private writeItem(
-    { id, name, unitPrice, quantity, grossPrice }: TRawReceiptItem,
+    { id, name, unitPrice, description, quantity, grossPrice }: TRawReceiptItem,
     index: number,
   ): string {
     let itemString = '';
@@ -25,11 +25,14 @@ export default class TextReceiptService implements IReceiptFormatService {
     const itemId = id;
     const itemName = name;
     const itemUnitPrice = this.currencyService.format(unitPrice);
+    const itemDescription = description;
     const itemGrossPrice = this.currencyService.format(grossPrice);
 
     itemString += `${itemIndex}. ${itemName} - ${itemUnitPrice} x ${quantity} - ${itemGrossPrice}`;
     itemString += this.writeNewLine('single');
     itemString += `   ID: ${itemId}`;
+    itemString += this.writeNewLine('single');
+    itemString += `   Description: ${itemDescription}`;
     itemString += this.writeNewLine('single');
     itemString += this.writeItemSeparator();
 

@@ -2,6 +2,7 @@ export type TProduct = {
   id: string;
   name: string;
   unitPrice: number;
+  description: string;
 };
 
 export type TShoppingCartItem = [TProduct, number];
@@ -58,6 +59,7 @@ type TBaseReceiptItem<T> = {
   id: string;
   name: string;
   unitPrice: T;
+  description: string;
   quantity: T;
   grossPrice: T;
 };
